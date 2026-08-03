@@ -29,15 +29,16 @@ export default function Home() {
             />
           </a>
           
-          <div className="flex items-center space-x-8 md:space-x-12">
-            <nav className="hidden md:flex items-center space-x-8 lg:space-x-12 text-xl font-light text-white">
+          <div className="flex items-center space-x-20 md:space-x-42">
+            <nav className="hidden md:flex items-center space-x-8 lg:space-x-30 text-2xl font-light text-white">
               <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">Home</a>
               <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">About Us</a>
               <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">Services</a>
-              <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">Contact</a>
+              <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">The Dentists</a>
+              <a href="#" className="hover:text-zinc-300 transition-colors cursor-pointer">Testimonials</a>
             </nav>
             <button className="bg-white text-[#0399B0] text-lg sm:text-xl px-5 py-3 rounded-md font-medium hover:bg-[var(--color2)] hover:text-[var(--color1)] transition-colors cursor-pointer z-30">
-              Get Started
+              Contact Us
             </button>
           </div>
         </header>
