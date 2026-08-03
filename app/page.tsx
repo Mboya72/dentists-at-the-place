@@ -48,7 +48,7 @@ export default function Home() {
           <h2 className="text-3xl sm:text-5xl font-normal text-white tracking-tight drop-shadow-md">
             Dental Care For
           </h2>
-          <h1 className="text-6xl sm:text-8xl lg:text-[140px] leading-tight font-semibold text-white/90 text-left tracking-tight">
+          <h1 className="text-6xl sm:text-8xl lg:text-[180px]/[1] leading-tight font-semibold text-white/90 text-left tracking-tight">
             Your <br /> New Smile
           </h1>
         </div>
