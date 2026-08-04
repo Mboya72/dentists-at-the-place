@@ -6,6 +6,7 @@
   /* Brand palette */
   --color1: #ffffff;
   --color2: #0399B0;
+  --color3: #01B3C4;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   
   --color-brand-white: var(--color1);
   --color-brand-cyan: var(--color2);
+  --color-brand-teal: var(--color3);
 
   --font-sans: var(--font-outfit), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;

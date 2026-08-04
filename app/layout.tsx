@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Outfit, Urbanist } from "next/font/google";
-import "./globals.css";
+import {Outfit} from "next/font/google";
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = Outfit({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
