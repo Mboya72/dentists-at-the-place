@@ -1,4 +1,3 @@
-// components/Navbar.tsx
 
 "use client";
 
@@ -20,7 +19,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="absolute  top-0 left-0 right-0 z-50 flex items-center justify-between py-6 max-w-[90vw] mx-auto">
+    <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between py-6 max-w-[90vw] mx-auto">
       {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
@@ -50,15 +49,19 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button className="bg-white text-[#0399B0] px-5 py-3 rounded-md font-medium hover:bg-[var(--color2)] hover:text-[var(--color1)] transition-colors">
-          Contact Us
-        </button>
+        {/* Desktop Contact Us Button */}
+        <Link href="#contact">
+          <button className="bg-white text-[#0399B0] px-5 py-3 rounded-md font-medium cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-95 transition-all duration-200 shadow-sm">
+            Contact Us
+          </button>
+        </Link>
       </div>
 
       {/* Hamburger */}
       <button
-        className="md:hidden flex flex-col justify-center gap-1.5 z-50"
+        className="md:hidden flex flex-col justify-center gap-1.5 z-50 cursor-pointer"
         onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle Menu"
       >
         <span
           className={`block h-0.5 w-7 bg-white transition ${
@@ -79,7 +82,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-[70dvh] w-72 bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl transform transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 right-0 h-[70dvh] w-72 bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl transform transition-transform duration-300 md:hidden z-40 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -99,12 +102,15 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <button
+          <Link
+            href="#contact"
+            className="w-full"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 w-full bg-white text-[#0399B0] cursor-pointer hover:cursor-pointer hover:bg-opacity-90 active:scale-[0.98] transition-all py-3 rounded-md font-medium"
           >
-            Contact Us
-          </button>
+            <button className="mt-4 w-full bg-white text-[#0399B0] py-3 rounded-md font-medium cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-[0.98] transition-all duration-200 shadow-md">
+              Contact Us
+            </button>
+          </Link>
         </nav>
       </div>
     </header>

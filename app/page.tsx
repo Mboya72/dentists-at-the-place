@@ -8,7 +8,8 @@ import Navbar from "@/components/navbar";
 export default function Home() {
 
   return (
-    <div className="flex flex-col text-[var(--color2)] min-h-screen h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth font-sans bg-white">
+    <div className="flex flex-col text-[var(--color2)] min-h-screen h-screen overflow-y-scroll snap-y 
+    snap-mandatory scroll-smooth font-sans bg-white">
       {/* 1. Full-Screen Hero Image Section */}
       <section className="relative w-full h-screen snap-start snap-always shrink-0 overflow-hidden">
         {/* Background Image */}
@@ -43,7 +44,7 @@ export default function Home() {
             we provide professional treatment in a welcoming environment where
             your comfort comes first.
           </p>
-          <div className="mt-4 flex flex-wrap sm:max-w-175 max-w-240 gap-3 justify-between">
+          <div className="mt-5 flex flex-wrap sm:max-w-175 max-w-240 gap-3 justify-between">
             <button className="flex items-center rounded-full gap-4 bg-white text-[#0399B0] text-sm sm:text-xl px-3 py-3 font-medium hover:bg-[var(--color2)] hover:text-[var(--color1)] transition-colors cursor-pointer z-30">
               <span>Book An Appointment</span>
               <Image
@@ -66,7 +67,7 @@ export default function Home() {
               />
             </button>
           </div>
-          <div className="flex mt-6 justify-between gap-2">
+          <div className="flex mt-9 justify-between gap-2">
             <div className="border border-[var(--color2)] sm:w-70 w-60 rounded-2xl bg-white/20 dark:bg-black/30 backdrop-blur-xl border-white/30 dark:border-white/10 shadow-xl p-5 text-neutral-800 dark:text-neutral-100">
               <h1 className="sm:text-3xl text-2xl">
                 Working <br /> Hours
