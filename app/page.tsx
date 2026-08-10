@@ -6,10 +6,11 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
-
   return (
-    <div className="flex flex-col text-[var(--color2)] min-h-screen h-screen overflow-y-scroll snap-y 
-    snap-mandatory scroll-smooth font-sans bg-white">
+    <div
+      className="flex flex-col text-[var(--color2)] min-h-screen h-screen overflow-y-scroll snap-y 
+    snap-mandatory scroll-smooth font-sans bg-white"
+    >
       {/* 1. Full-Screen Hero Image Section */}
       <section className="relative w-full h-screen snap-start snap-always shrink-0 overflow-hidden">
         {/* Background Image */}
@@ -103,48 +104,61 @@ export default function Home() {
       </section>
 
       {/* 2. About Section */}
-      <section className="h-screen w-full snap-start snap-always shrink-0 max-w-[90vw] gap-5 
-      items-center mx-auto flex flex-col justify-center">
+      <section
+        className="h-screen w-full snap-start snap-always shrink-0 max-w-[90vw] gap-5 
+      items-center mx-auto flex flex-col justify-center"
+      >
         <div className="flex gap-10 justify-between">
           <div className="flex flex-col max-w-[40vw] gap-4 justify-between">
             <div>
               <h2 className="text-[var(--color4)] text-3xl font-bold">
                 About Us
               </h2>
-              <p className="text-[var(--color4)] mt-2 font-light text-[22px]/[1.3]">
-                We combine Innovative solutions with a Human approach to make
-                every patient feel confident and calm. We combine innovative
-                dental solutions with a human-centered approach to make every
-                patient feel confident, comfortable, and cared for. Our team is
-                committed to delivering exceptional dental care through advanced
-                technology, personalized treatment plans, and a welcoming
-                environment designed around your needs. Whether you&apos;re
-                visiting for preventive care or a complete smile transformation,
-                your oral health is our priority.
+              <p className="text-[var(--color4)] mt-2 font-light text-[26px]/[1.3]">
+                <span className="font-semibold text-[var(--color2)]">
+                  We combine Innovative
+                </span>{" "}
+                solutions with a Human approach to make every patient{" "}
+                <span className="font-semibold text-[var(--color2)]">
+                  feel confident and calm.
+                </span>{" "}
+                We combine innovative dental solutions with a human-centered
+                approach to make every patient feel{" "}
+                <span className="font-semibold text-[var(--color2)]">
+                  confident, comfortable, and cared for.
+                </span>{" "}
+                Our team is committed to delivering exceptional dental care
+                through advanced technology, personalized treatment plans, and a
+                welcoming environment designed around your needs. Whether
+                you&apos;re visiting for preventive care or a complete smile
+                transformation,{" "}
+                <span className="font-semibold text-[var(--color2)]">
+                  your oral health is our priority.
+                </span>
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <div className="bg-[var(--color3)] rounded-xl p-5">
-                <h1 className="text-[var(--color4)] text-8xl">250+</h1>
-                <p className="text-gray-500 text-[28px]/[1] font-light">
+            <div className="grid grid-cols-2 gap-7 mt-4">
+              <div className="bg-[var(--color5)] rounded-xl p-5">
+                <h1 className="text-[var(--color4)] text-9xl">250+</h1>
+                <p className="text-gray-500 text-[35px]/[1] font-light">
                   Perfomed <br /> Surgeries
                 </p>
               </div>
               <div className="bg-[var(--color3)] rounded-xl p-5">
-                <h1 className="text-[var(--color4)] text-8xl">241</h1>
-                <p className="text-gray-500 text-[28px]/[1] font-light">
+                <h1 className="text-[var(--color1)] text-9xl">241</h1>
+                <p className="text-white text-[35px]/[1] font-light">
                   Satisfied <br /> Patients
                 </p>
               </div>
               <div className="bg-[var(--color3)] rounded-xl p-5">
-                <h1 className="text-[var(--color4)] text-8xl">241</h1>
-                <p className="text-gray-500 text-[28px]/[1] font-light">
+                <h1 className="text-[var(--color1)] text-9xl">241</h1>
+                <p className="text-white text-[35px]/[1] font-light">
                   Staff <br /> Members
                 </p>
               </div>
-              <div className="bg-[var(--color3)] rounded-xl p-5">
-                <h1 className="text-[var(--color4)] text-8xl">241</h1>
-                <p className="text-gray-500 text-[28px]/[1] font-light">
+              <div className="bg-[var(--color5)] rounded-xl p-5">
+                <h1 className="text-[var(--color4)] text-9xl">241</h1>
+                <p className="text-gray-500 text-[35px]/[1] font-light">
                   Yearly <br /> Surgeries
                 </p>
               </div>
@@ -154,9 +168,11 @@ export default function Home() {
             <Image src="/aboutus.png" width={850} height={850} alt="About Us" />
           </div>
         </div>
-        <button className="flex items-center rounded-full gap-4 bg-[var(--color2)] text-[var(--color1)] 
-        text-sm sm:text-xl px-1 pl-2 py-1 font-medium hover:bg-[var(--color4)] hover:text-[var(--color2)] 
-        transition-colors cursor-pointer z-30">
+        <button
+          className="flex items-center rounded-full gap-2 bg-[var(--color2)] text-[var(--color1)] 
+        text-sm sm:text-xl mt-2 px-1 pl-4 py-1 hover:bg-[var(--color4)] hover:text-[var(--color2)] 
+        transition-colors cursor-pointer z-30"
+        >
           <span>More about us</span>
           <Image
             src="/arrow_forward.svg"
