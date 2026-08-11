@@ -1,13 +1,15 @@
+
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navTheme, setNavTheme] = useState<"light" | "dark">("dark");
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -16,6 +18,35 @@ export default function Navbar() {
     { href: "/dentists", label: "The Dentists" },
     { href: "/testimonials", label: "Testimonials" },
   ];
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("[data-nav-theme]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleSection) {
+          const theme = visibleSection.target.getAttribute("data-nav-theme");
+
+          if (theme === "light" || theme === "dark") {
+            setNavTheme(theme);
+          }
+        }
+      },
+      {
+        threshold: [0.2, 0.5, 0.8],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const isDark = navTheme === "dark";
 
   return (
     <header className="z-50 absolute top-0 left-0 right-0 flex items-center justify-between py-6 mx-auto max-w-[90vw]">
@@ -32,7 +63,11 @@ export default function Navbar() {
 
       {/* Desktop Navigation */}
       <div className="hidden items-center space-x-10 md:flex lg:space-x-20">
-        <nav className="flex items-center text-md font-light text-white space-x-8 lg:space-x-[4vw]">
+        <nav
+          className={`flex items-center text-md font-light space-x-8 lg:space-x-[4vw] transition-colors duration-300 ${
+            isDark ? "text-white" : "text-black"
+          }`}
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -63,19 +98,21 @@ export default function Navbar() {
         aria-label="Toggle Menu"
       >
         <span
-          className={`block h-0.5 w-7 bg-white transition ${
-            menuOpen ? "rotate-45 translate-y-2" : ""
-          }`}
+          className={`block h-0.5 w-7 transition ${
+            isDark ? "bg-white" : "bg-black"
+          } ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
         />
+
         <span
-          className={`block h-0.5 w-7 bg-white transition ${
-            menuOpen ? "opacity-0" : ""
-          }`}
+          className={`block h-0.5 w-7 transition ${
+            isDark ? "bg-white" : "bg-black"
+          } ${menuOpen ? "opacity-0" : ""}`}
         />
+
         <span
-          className={`block h-0.5 w-7 bg-white transition ${
-            menuOpen ? "-rotate-45 -translate-y-2" : ""
-          }`}
+          className={`block h-0.5 w-7 transition ${
+            isDark ? "bg-white" : "bg-black"
+          } ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
         />
       </button>
 
@@ -85,7 +122,11 @@ export default function Navbar() {
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <nav className="flex flex-col items-start gap-8 pt-28 px-8 text-white text-lg">
+        <nav
+          className={`flex flex-col items-start gap-8 pt-28 px-8 text-lg ${
+            isDark ? "text-white" : "text-black"
+          }`}
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}

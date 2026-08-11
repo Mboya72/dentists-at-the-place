@@ -30,7 +30,9 @@ export default function DentistsPage() {
   ];
 
   return (
-    <div className="min-h-screen text-[var(--color4)] bg-[var(--color1)]">
+    <div 
+     data-nav-theme="light"
+    className="min-h-screen bg-white text-[var(--color4)] ">
       <Navbar />
 
       <main
