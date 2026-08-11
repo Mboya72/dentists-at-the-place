@@ -2,10 +2,11 @@
 
 import Navbar from "@/components/navbar";
 import Image from "next/image";
+import "../globals.css";
 
 export default function AboutUs() {
   return (
-    <section className="relative w-[100vw] h-[100dvh] overflow-hidden">
+    <section className="overflow-hidden relative w-[100vw] h-[100dvh]">
             {/* Background Image */}
             <Image
               src="/aboutus.jpg"
@@ -16,13 +17,13 @@ export default function AboutUs() {
             />
 
             {/* Dark Tint Overlay */}
-            <div className="absolute inset-0 bg-black/55 pointer-events-none z-0" />
+            <div className="z-0 absolute inset-0 bg-black/55 pointer-events-none" />
 
             {/* Content */}
-            <div className="min-h-screen relative max-w-[90vw] mx-auto flex flex-col text-white z-10">
+            <div className="z-10 relative flex flex-col mx-auto min-h-screen max-w-[90vw] text-white">
               <Navbar />
 
-              <main className="relative max-w-[90vw] pt-50">
+              <main className="relative pt-50 max-w-[90vw]">
                 <h1 className="text-5xl font-bold">About Us</h1>
                 <p className="mt-6">
                   This is the about us page.

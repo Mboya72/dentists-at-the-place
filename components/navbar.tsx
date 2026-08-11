@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -19,7 +18,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between py-6 max-w-[90vw] mx-auto">
+    <header className="z-50 absolute top-0 left-0 right-0 flex items-center justify-between py-6 mx-auto max-w-[90vw]">
       {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
@@ -32,8 +31,8 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-10 lg:space-x-20">
-        <nav className="flex items-center space-x-8 lg:space-x-[4vw] text-md font-light text-white">
+      <div className="hidden items-center space-x-10 md:flex lg:space-x-20">
+        <nav className="flex items-center text-md font-light text-white space-x-8 lg:space-x-[4vw]">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -51,7 +50,7 @@ export default function Navbar() {
 
         {/* Desktop Contact Us Button */}
         <Link href="#contact">
-          <button className="bg-white text-[#0399B0] px-5 py-3 rounded-md font-medium cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-95 transition-all duration-200 shadow-sm">
+          <button className="px-5 py-3 text-[#0399B0] font-medium bg-white rounded-md shadow-sm transition-all duration-200 cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-95">
             Contact Us
           </button>
         </Link>
@@ -59,7 +58,7 @@ export default function Navbar() {
 
       {/* Hamburger */}
       <button
-        className="md:hidden flex flex-col justify-center gap-1.5 z-50 cursor-pointer"
+        className="z-50 flex flex-col justify-center gap-1.5 cursor-pointer md:hidden"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle Menu"
       >
@@ -107,7 +106,7 @@ export default function Navbar() {
             className="w-full"
             onClick={() => setMenuOpen(false)}
           >
-            <button className="mt-4 w-full bg-white text-[#0399B0] py-3 rounded-md font-medium cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-[0.98] transition-all duration-200 shadow-md">
+            <button className="mt-4 py-3 w-full text-[#0399B0] font-medium bg-white rounded-md shadow-md transition-all duration-200 cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-[0.98]">
               Contact Us
             </button>
           </Link>

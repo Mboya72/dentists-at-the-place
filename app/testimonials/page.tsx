@@ -1,11 +1,12 @@
 import Navbar from "@/components/navbar";
+import "../globals.css";
 
 export default function TestimonialsPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="min-h-screen pt-32 ">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+      <main className="pt-32 min-h-screen">
+        <div className="mx-auto px-6 py-12 max-w-7xl">
           <h1 className="text-5xl font-bold text-[var(--color1)]">
             Patient Testimonials
           </h1>
@@ -15,7 +16,7 @@ export default function TestimonialsPage() {
             confidence. Here&apos;s what some of them have to say.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
+          <div className="grid gap-8 mt-16 md:grid-cols-2">
             {[
               {
                 name: "Sarah M.",
@@ -40,7 +41,7 @@ export default function TestimonialsPage() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-gray-200 p-8 shadow-sm"
+                className="p-8 rounded-2xl border-gray-200 shadow-sm border"
               >
                 <div className="text-5xl text-[var(--color2)]">&quot;</div>
 
