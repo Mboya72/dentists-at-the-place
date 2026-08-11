@@ -20,30 +20,42 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const sections = document.querySelectorAll("[data-nav-theme]");
+    const updateNavTheme = () => {
+      const sections = document.querySelectorAll<HTMLElement>(
+        "[data-nav-theme]"
+      );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      // Check the area directly underneath the navbar
+      const navY = 40;
 
-        if (visibleSection) {
-          const theme = visibleSection.target.getAttribute("data-nav-theme");
+      let currentTheme: "light" | "dark" = "dark";
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= navY && rect.bottom > navY) {
+          const theme = section.dataset.navTheme;
 
           if (theme === "light" || theme === "dark") {
-            setNavTheme(theme);
+            currentTheme = theme;
           }
         }
-      },
-      {
-        threshold: [0.2, 0.5, 0.8],
-      }
-    );
+      });
 
-    sections.forEach((section) => observer.observe(section));
+      setNavTheme(currentTheme);
+    };
 
-    return () => observer.disconnect();
+    // Wait until the page has rendered
+    const frame = requestAnimationFrame(updateNavTheme);
+
+    window.addEventListener("scroll", updateNavTheme, { passive: true });
+    window.addEventListener("resize", updateNavTheme);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateNavTheme);
+      window.removeEventListener("resize", updateNavTheme);
+    };
   }, []);
 
   const isDark = navTheme === "dark";
@@ -156,3 +168,4 @@ export default function Navbar() {
     </header>
   );
 }
+
