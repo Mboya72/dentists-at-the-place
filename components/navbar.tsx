@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -25,7 +24,7 @@ export default function Navbar() {
         "[data-nav-theme]"
       );
 
-      // Check the area directly underneath the navbar
+      // Position directly underneath the navbar
       const navY = 40;
 
       let currentTheme: "light" | "dark" = "dark";
@@ -45,7 +44,6 @@ export default function Navbar() {
       setNavTheme(currentTheme);
     };
 
-    // Wait until the page has rendered
     const frame = requestAnimationFrame(updateNavTheme);
 
     window.addEventListener("scroll", updateNavTheme, { passive: true });
@@ -61,7 +59,7 @@ export default function Navbar() {
   const isDark = navTheme === "dark";
 
   return (
-    <header className="z-50 absolute top-0 left-0 right-0 flex items-center justify-between py-6 mx-auto max-w-[90vw]">
+    <header className="absolute top-0 left-0 right-0 z-50 mx-auto flex max-w-[90vw] items-center justify-between py-6">
       {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
@@ -76,7 +74,7 @@ export default function Navbar() {
       {/* Desktop Navigation */}
       <div className="hidden items-center space-x-10 md:flex lg:space-x-20">
         <nav
-          className={`flex items-center text-md font-light space-x-8 lg:space-x-[4vw] transition-colors duration-300 ${
+          className={`flex items-center space-x-8 text-md font-light transition-colors duration-300 lg:space-x-[4vw] ${
             isDark ? "text-white" : "text-black"
           }`}
         >
@@ -84,9 +82,9 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`pb-1 transition-colors hover:text-[var(--color2)] ${
+              className={`pb-1 transition-colors duration-300 hover:text-[var(--color2)] ${
                 pathname === item.href
-                  ? "text-[var(--color2)] font-medium border-b-4 border-[var(--color2)] rounded-sm"
+                  ? "rounded-sm border-b-4 border-[var(--color2)] font-medium text-[var(--color2)]"
                   : ""
               }`}
             >
@@ -95,9 +93,26 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop Contact Us Button */}
+        {/* Desktop Contact Us */}
         <Link href="#contact">
-          <button className="px-5 py-3 text-[#0399B0] font-medium bg-white rounded-md shadow-sm transition-all duration-200 cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-95">
+          <button
+            className={`
+              cursor-pointer rounded-md px-5 py-3 font-medium
+              shadow-sm transition-all duration-300
+              active:scale-95
+              ${
+                isDark
+                  ? `
+                    bg-white text-[var(--color2)]
+                    hover:bg-[var(--color2)] hover:text-white
+                  `
+                  : `
+                    bg-[var(--color2)] text-white
+                    hover:bg-[var(--color4)] hover:text-white
+                  `
+              }
+            `}
+          >
             Contact Us
           </button>
         </Link>
@@ -105,61 +120,102 @@ export default function Navbar() {
 
       {/* Hamburger */}
       <button
-        className="z-50 flex flex-col justify-center gap-1.5 cursor-pointer md:hidden"
+        className="z-50 flex cursor-pointer flex-col justify-center gap-1.5 md:hidden"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle Menu"
+        aria-expanded={menuOpen}
       >
         <span
-          className={`block h-0.5 w-7 transition ${
-            isDark ? "bg-white" : "bg-black"
-          } ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+          className={`
+            block h-0.5 w-7 transition-all duration-300
+            ${isDark ? "bg-white" : "bg-black"}
+            ${menuOpen ? "translate-y-2 rotate-45" : ""}
+          `}
         />
 
         <span
-          className={`block h-0.5 w-7 transition ${
-            isDark ? "bg-white" : "bg-black"
-          } ${menuOpen ? "opacity-0" : ""}`}
+          className={`
+            block h-0.5 w-7 transition-all duration-300
+            ${isDark ? "bg-white" : "bg-black"}
+            ${menuOpen ? "opacity-0" : ""}
+          `}
         />
 
         <span
-          className={`block h-0.5 w-7 transition ${
-            isDark ? "bg-white" : "bg-black"
-          } ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+          className={`
+            block h-0.5 w-7 transition-all duration-300
+            ${isDark ? "bg-white" : "bg-black"}
+            ${menuOpen ? "-translate-y-2 -rotate-45" : ""}
+          `}
         />
       </button>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-[70dvh] w-72 bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl transform transition-transform duration-300 md:hidden z-40 ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`
+          fixed top-0 right-0 z-40 h-[70dvh] w-72
+          transform border shadow-xl
+          backdrop-blur-xl
+          transition-transform duration-300
+          md:hidden
+          ${
+            isDark
+              ? "border-white/20 bg-black/20"
+              : "border-black/10 bg-white/80"
+          }
+          ${menuOpen ? "translate-x-0" : "translate-x-full"}
+        `}
       >
         <nav
-          className={`flex flex-col items-start gap-8 pt-28 px-8 text-lg ${
-            isDark ? "text-white" : "text-black"
-          }`}
+          className={`
+            flex flex-col items-start gap-8 px-8 pt-28 text-lg
+            ${isDark ? "text-white" : "text-black"}
+          `}
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`transition-colors hover:text-[var(--color2)] ${
-                pathname === item.href
-                  ? "text-[var(--color2)] font-semibold"
-                  : ""
-              }`}
+              className={`
+                transition-colors duration-300
+                hover:text-[var(--color2)]
+                ${
+                  pathname === item.href
+                    ? "font-semibold text-[var(--color2)]"
+                    : ""
+                }
+              `}
             >
               {item.label}
             </Link>
           ))}
 
+          {/* Mobile Contact Us */}
           <Link
             href="#contact"
             className="w-full"
             onClick={() => setMenuOpen(false)}
           >
-            <button className="mt-4 py-3 w-full text-[#0399B0] font-medium bg-white rounded-md shadow-md transition-all duration-200 cursor-pointer hover:bg-[var(--color2)] hover:text-white active:scale-[0.98]">
+            <button
+              className={`
+                mt-4 w-full rounded-md py-3
+                font-medium shadow-md
+                transition-all duration-300
+                active:scale-[0.98]
+                ${
+                  isDark
+                    ? `
+                      bg-white text-[var(--color2)]
+                      hover:bg-[var(--color2)] hover:text-white
+                    `
+                    : `
+                      bg-[var(--color2)] text-white
+                      hover:bg-[var(--color4)] hover:text-white
+                    `
+                }
+              `}
+            >
               Contact Us
             </button>
           </Link>
@@ -168,4 +224,3 @@ export default function Navbar() {
     </header>
   );
 }
-

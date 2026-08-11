@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
@@ -38,9 +37,9 @@ const services = [
     image: "/paediatric-dentistry.jpg",
   },
   {
-    title: "Emergencies",
+    title: "Dental Hygiene & Gum Care",
     description:
-      "Prompt treatment for toothaches, broken teeth, infections, and other urgent dental issues.",
+      "Professional cleaning and gum care designed to maintain healthy teeth, prevent gum disease, and keep your smile fresh.",
     image: "/emergency-dentistry.jpg",
   },
 ];
@@ -78,50 +77,63 @@ export default function Home() {
           </h1>
 
           <p className="mt-2 max-w-180 text-md font-light leading-relaxed text-white text-xl sm:max-w-160 lg:text-xl">
-            From preventive checkups and cosmetic dentistry to emergency care,
-            we provide professional treatment in a welcoming environment where
-            your comfort comes first.
+            We provide all aspects of general dentistry together with advanced
+            procedures, delivered with a contemporary and conservative approach
+            to oral health care.
           </p>
-          <div className="flex flex-wrap justify-between gap-3 mt-5 max-w-240 sm:max-w-175">
-            <button className="z-30 flex items-center gap-4 px-3 py-3 text-[#0399B0] text-sm font-medium bg-white rounded-full transition-colors cursor-pointer hover:bg-[var(--color2)] hover:text-[var(--color1)] sm:text-xl">
-              <span>Book An Appointment</span>
-              <Image
-                src="/arrow_forward.svg"
-                alt="arrow"
-                width={40}
-                height={40}
-                className="p-1 w-6 h-6 h-8 h-10 bg-[var(--color2)] rounded-full sm:w-8 md:w-10"
-              />
-            </button>
 
-            <button className="z-30 flex items-center gap-4 px-3 py-3 text-[var(--color1)] text-sm font-medium bg-[var(--color2)] rounded-full transition-colors cursor-pointer hover:bg-[var(--color1)] hover:text-[var(--color2)] sm:text-xl">
-              <span>Explore Services</span>
-              <Image
-                src="/arrow_forward.svg"
-                alt="arrow"
-                width={40}
-                height={40}
-                className="p-1 w-6 h-6 h-8 h-10 text-[var(--color2)] bg-[var(--color2)] rounded-full sm:w-8 md:w-10"
-              />
-            </button>
+          <div className="flex flex-wrap justify-between gap-3 mt-5 max-w-240 sm:max-w-175">
+            <Link href="#contact">
+              <button className="z-30 flex items-center gap-4 px-3 py-3 text-[#0399B0] text-sm font-medium bg-white rounded-full transition-colors cursor-pointer hover:bg-[var(--color2)] hover:text-[var(--color1)] sm:text-xl">
+                <span>Book An Appointment</span>
+
+                <Image
+                  src="/arrow_forward.svg"
+                  alt="arrow"
+                  width={40}
+                  height={40}
+                  className="p-1 w-6 h-6 h-8 h-10 bg-[var(--color2)] rounded-full sm:w-8 md:w-10"
+                />
+              </button>
+            </Link>
+
+            <Link href="/services">
+              <button className="z-30 flex items-center gap-4 px-3 py-3 text-[var(--color1)] text-sm font-medium bg-[var(--color2)] rounded-full transition-colors cursor-pointer hover:bg-[var(--color1)] hover:text-[var(--color2)] sm:text-xl">
+                <span>Explore Services</span>
+
+                <Image
+                  src="/arrow_forward.svg"
+                  alt="arrow"
+                  width={40}
+                  height={40}
+                  className="p-1 w-6 h-6 h-8 h-10 bg-[var(--color2)] rounded-full sm:w-8 md:w-10"
+                />
+              </button>
+            </Link>
           </div>
+
           <div className="flex justify-between gap-2 mt-9">
             <div className="p-5 w-60 text-neutral-800 bg-white/20 border-[var(--color2)] rounded-2xl border-white/30 shadow-xl border dark:bg-black/30 backdrop-blur-xl dark:border-white/10 dark:text-neutral-100 sm:w-70">
               <h1 className="text-2xl sm:text-3xl">
                 Working <br /> Hours
               </h1>
+
               <div className="flex items-center gap-4 mt-2">
                 <Image src="/clock.svg" alt="clock" width={45} height={45} />
+
                 <div className="flex flex-col text-sm sm:text-sm">
-                  <p>MON - SAT</p>
-                  <p>9:00 AM - 5:00 PM</p>
+                  <p>MON - FRI</p>
+                  <p>8:30 AM - 5:30 PM</p>
+                  <p>SAT: 8:30 AM - 1:00 PM</p>
                 </div>
               </div>
             </div>
+
             <div className="p-5 w-60 text-neutral-800 bg-white/20 border-[var(--color2)] rounded-2xl border-white/30 shadow-xl border dark:bg-black/30 backdrop-blur-xl dark:border-white/10 dark:text-neutral-100 sm:w-70">
               <h1 className="text-2xl sm:text-3xl">
                 Visit Our <br /> Clinic
               </h1>
+
               <div className="flex items-center gap-2 mt-2">
                 <Image
                   src="/location.svg"
@@ -129,9 +141,11 @@ export default function Home() {
                   width={65}
                   height={65}
                 />
+
                 <div>
                   <p className="text-sm sm:text-sm">
-                    The Place, General Mathenge Drive, Nairobi.
+                    The Place, General Mathenge Rd, next to Autoexpress and
+                    Zucchini, Westlands, Nairobi.
                   </p>
                 </div>
               </div>
@@ -141,114 +155,384 @@ export default function Home() {
       </section>
 
       {/* 2. About Section */}
-      <section className="overflow-hidden flex flex-col justify-center items-center mx-auto py-6 h-dvh w-full max-w-[90vw] snap-start snap-always shrink-0 lg:py-8">
+      <section
+        data-nav-theme="light"
+        className="
+    flex
+    flex-col 
+    items-center
+    justify-center
+    mx-auto
+    w-full
+    min-h-dvh
+    max-w-[90vw]
+    py-10
+    snap-start
+    snap-always
+    shrink-0
+    lg:py-12
+  "
+      >
         {/* WHO WE ARE */}
-        <div className="mb-5 text-center shrink-0 lg:mb-7">
-          <div className="inline-flex items-center px-4 py-1 text-sm font-medium text-[var(--color4)] bg-gray-100 rounded-full sm:text-base">
-            <span className="mr-1">•</span>
+        <div className="mb-6 shrink-0 text-center lg:mb-8">
+          <div
+            className="
+        inline-flex
+        items-center
+        rounded-full
+        bg-[var(--color5)]
+        px-4
+        py-1.5
+        text-sm
+        font-medium
+        text-[var(--color4)]
+        sm:text-base
+      "
+          >
+            <span className="mr-2 text-[var(--color2)]">•</span>
             Who We Are
           </div>
         </div>
 
         {/* MAIN CONTENT */}
-        <div className="flex flex-col flex-1 items-center justify-center gap-6 gap-10 w-full min-h-0 lg:flex-row">
-          {/* TEXT + STATS */}
-          <div className="flex flex-col justify-between gap-6 w-full h-full lg:w-[55%]">
-            <h2 className="text-[var(--color4)] font-medium leading-none text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-              About Us{" "}
+        <div
+          className="
+      flex
+      w-full
+      flex-col
+      items-center
+      justify-center
+      gap-8
+      lg:flex-row
+      lg:gap-12
+      xl:gap-16
+    "
+        >
+          {/* TEXT CONTENT */}
+          <div
+            className="
+        flex
+        w-full
+        flex-col
+        lg:w-[55%]
+      "
+          >
+            {/* Heading */}
+            <h2
+              className="
+          text-[var(--color4)]
+          text-2xl
+          font-medium
+          leading-[1.05]
+          sm:text-3xl
+          md:text-4xl
+          lg:text-5xl
+          xl:text-6xl
+        "
+            >
+              Multidisciplinary Dental Care
+              <br />
+              <span className="text-[var(--color2)]">Designed Around You.</span>
             </h2>
-            {/* PARAGRAPH */}
-            <p className="max-w-[55vw] text-[var(--color4)] font-light text-base sm:text-lg md:text-xl lg:text-[26px]/[1.3] xl:text-[28px]/[1.3]">
+
+            {/* Main Description */}
+            <p
+              className="
+          mt-6
+          max-w-3xl
+          text-base
+          font-light
+          leading-[1.5]
+          text-[var(--color4)]
+          sm:text-lg
+          md:text-xl
+          lg:text-[24px]
+          lg:leading-[1.35]
+          xl:text-[27px]
+        "
+            >
+              Dentists @ The Place is a{" "}
               <span className="font-semibold text-[var(--color2)]">
-                We combine innovative
+                multidisciplinary dental clinic
               </span>{" "}
-              dental solutions with a human-centered approach to make every
-              patient feel{" "}
-              <span className="font-semibold text-[var(--color2)]">
-                confident, comfortable, and cared for.
-              </span>{" "}
-              Our team is committed to delivering exceptional dental care
-              through advanced technology, personalized treatment plans, and a
-              welcoming environment designed around your needs. Whether
-              you&apos;re visiting for preventive care or a complete smile
-              transformation,{" "}
-              <span className="font-semibold text-[var(--color2)]">
-                your oral health is our priority.
-              </span>
+              in the heart of Westlands, Nairobi, providing accessible,
+              high-quality dental care in a welcoming and modern environment.
             </p>
 
-            {/* STATS */}
-            <div className="grid grid-cols-2 gap-3 mt-2 sm:gap-4 lg:gap-5">
-              {/* 250+ */}
-              <div className="p-4 bg-[var(--color5)] rounded-xl sm:p-5 lg:p-5">
-                <h1 className="text-[var(--color4)] text-5xl leading-none sm:text-6xl md:text-7xl lg:text-8xl">
-                  250+
-                </h1>
+            {/* Secondary Description */}
+            <p
+              className="
+          mt-4
+          max-w-3xl
+          text-sm
+          font-light
+          leading-[1.6]
+          text-[var(--color4)]/70
+          sm:text-base
+          lg:text-lg
+        "
+            >
+              We provide all aspects of general dentistry together with advanced
+              procedures, combining qualified dental professionals, innovative
+              therapy, and a contemporary approach to oral health care.
+            </p>
 
-                <p className="mt-2 text-gray-500 text-sm leading-none font-light sm:text-base md:text-lg lg:text-2xl">
-                  Performed <br /> Surgeries
+            {/* SERVICES / HIGHLIGHTS */}
+            <div
+              className="
+          mt-7
+          grid
+          grid-cols-2
+          gap-3
+          sm:grid-cols-3
+          sm:gap-4
+          lg:mt-8
+        "
+            >
+              {/* General Dentistry */}
+              <div
+                className="
+            rounded-xl
+            bg-[var(--color5)]
+            p-4
+            sm:p-5
+          "
+              >
+                <span className="text-2xl text-[var(--color2)] sm:text-3xl">
+                  01
+                </span>
+
+                <h3
+                  className="
+              mt-3
+              text-sm
+              font-medium
+              text-[var(--color4)]
+              sm:text-base
+            "
+                >
+                  General Dentistry
+                </h3>
+
+                <p
+                  className="
+              mt-1
+              text-xs
+              font-light
+              leading-[1.4]
+              text-[var(--color4)]/60
+              sm:text-sm
+            "
+                >
+                  Everyday dental care for healthy smiles.
                 </p>
               </div>
 
-              {/* Patients */}
-              <div className="p-4 bg-[var(--color3)] rounded-xl sm:p-5 lg:p-5">
-                <h1 className="text-[var(--color1)] text-5xl leading-none sm:text-6xl md:text-7xl lg:text-8xl">
-                  241
-                </h1>
+              {/* Advanced Procedures */}
+              <div
+                className="
+            rounded-xl
+            bg-[var(--color3)]
+            p-4
+            sm:p-5
+          "
+              >
+                <span className="text-2xl text-white sm:text-3xl">02</span>
 
-                <p className="mt-2 text-white text-sm leading-none font-light sm:text-base md:text-lg lg:text-2xl">
-                  Satisfied <br /> Patients
+                <h3
+                  className="
+              mt-3
+              text-sm
+              font-medium
+              text-white
+              sm:text-base
+            "
+                >
+                  Advanced Procedures
+                </h3>
+
+                <p
+                  className="
+              mt-1
+              text-xs
+              font-light
+              leading-[1.4]
+              text-white/70
+              sm:text-sm
+            "
+                >
+                  Modern solutions for complex dental needs.
                 </p>
               </div>
 
-              {/* Staff */}
-              <div className="p-4 bg-[var(--color3)] rounded-xl sm:p-5 lg:p-5">
-                <h1 className="text-[var(--color1)] text-5xl leading-none sm:text-6xl md:text-7xl lg:text-8xl">
-                  241
-                </h1>
+              {/* Comprehensive Care */}
+              <div
+                className="
+            col-span-2
+            rounded-xl
+            bg-[var(--color5)]
+            p-4
+            sm:col-span-1
+            sm:p-5
+          "
+              >
+                <span className="text-2xl text-[var(--color2)] sm:text-3xl">
+                  03
+                </span>
 
-                <p className="mt-2 text-white text-sm leading-none font-light sm:text-base md:text-lg lg:text-2xl">
-                  Staff <br /> Members
-                </p>
-              </div>
+                <h3
+                  className="
+              mt-3
+              text-sm
+              font-medium
+              text-[var(--color4)]
+              sm:text-base
+            "
+                >
+                  Comprehensive Care
+                </h3>
 
-              {/* Yearly */}
-              <div className="p-4 bg-[var(--color5)] rounded-xl sm:p-5 lg:p-5">
-                <h1 className="text-[var(--color4)] text-5xl leading-none sm:text-6xl md:text-7xl lg:text-8xl">
-                  241
-                </h1>
-
-                <p className="mt-2 text-gray-500 text-sm leading-none font-light sm:text-base md:text-lg lg:text-2xl">
-                  Yearly <br /> Surgeries
+                <p
+                  className="
+              mt-1
+              text-xs
+              font-light
+              leading-[1.4]
+              text-[var(--color4)]/60
+              sm:text-sm
+            "
+                >
+                  From prevention to complete smile rehabilitation.
                 </p>
               </div>
             </div>
           </div>
 
           {/* IMAGE */}
-          <div className="flex justify-center items-center w-full shrink-0 lg:w-[45%]">
+          <div
+            className="
+        flex
+        w-full
+        items-center
+        justify-center
+        lg:w-[45%]
+      "
+          >
             <Image
               src="/aboutus.png"
               width={1050}
               height={1050}
-              alt="About Us"
-              className="object-contain w-[70vw] max-w-[700px] h-auto max-w-[600px] max-w-[650px] sm:w-[60vw] md:w-[50vw] lg:w-[45vw] xl:max-w-[800px]"
+              alt="Dental care at Dentists @ The Place"
+              className="
+          h-auto
+          w-[70vw]
+          max-w-[520px]
+          object-contain
+          sm:w-[60vw]
+          md:w-[50vw]
+          lg:w-[42vw]
+          xl:max-w-[650px]
+        "
             />
           </div>
         </div>
 
-        {/* BUTTON */}
-        <button className="z-30 flex items-center self-start gap-2 mt-4 px-1 pl-4 py-1 text-[var(--color1)] text-sm bg-[var(--color2)] rounded-full transition-colors cursor-pointer shrink-0 hover:bg-[var(--color4)] hover:text-[var(--color2)] sm:text-base lg:self-auto">
-          <span>More about us</span>
+        {/* BOTTOM CONTENT */}
+        <div
+          className="
+      mt-7
+      flex
+      w-full
+      flex-col
+      items-start
+      justify-between
+      gap-5
+      lg:mt-8
+      lg:flex-row
+      lg:items-center
+    "
+        >
+          {/* Location */}
+          <div className="flex items-start gap-3">
+            <div
+              className="
+          flex
+          h-10
+          w-10
+          shrink-0
+          items-center
+          justify-center
+          rounded-full
+          bg-[var(--color5)]
+          text-[var(--color2)]
+        "
+            >
+              •
+            </div>
 
-          <Image
-            src="/arrow_forward.svg"
-            alt="arrow"
-            width={40}
-            height={40}
-            className="p-1 w-7 h-7 h-8 bg-[var(--color2)] rounded-full sm:w-8"
-          />
-        </button>
+            <div>
+              <p className="text-sm font-medium text-[var(--color4)]">
+                Visit Us
+              </p>
+
+              <p className="mt-1 text-xs font-light text-[var(--color4)]/60 sm:text-sm">
+                General Mathenge Rd, next to Autoexpress and Zucchini,
+                Westlands, Nairobi.
+              </p>
+            </div>
+          </div>
+
+          {/* BUTTON */}
+          <Link
+            href="/aboutus"
+            className="
+        group
+        flex
+        shrink-0
+        items-center
+        gap-2
+        rounded-full
+        bg-[var(--color2)]
+        py-1
+        pl-5
+        pr-1
+        text-sm
+        font-medium
+        text-[var(--color1)]
+        transition-all
+        duration-300
+        hover:bg-[var(--color4)]
+        sm:text-base
+      "
+          >
+            <span>More About Us</span>
+
+            <span
+              className="
+          flex
+          h-8
+          w-8
+          items-center
+          justify-center
+          rounded-full
+          bg-[var(--color1)]
+          transition-transform
+          duration-300
+          group-hover:translate-x-1
+          sm:h-9
+          sm:w-9
+        "
+            >
+              <Image
+                src="/arrow_forward.svg"
+                alt=""
+                width={24}
+                height={24}
+                className="h-5 w-5"
+              />
+            </span>
+          </Link>
+        </div>
       </section>
 
       {/* 3. Services Section */}
@@ -665,9 +949,12 @@ export default function Home() {
         </div>
 
         {/* SEE ALL BUTTON */}
-        <button className="flex items-center justify-center px-6 py-3 mt-8 text-[var(--color1)] text-base bg-[var(--color2)] rounded-full transition-colors cursor-pointer hover:bg-[var(--color4)] sm:text-lg lg:mt-10">
+        <Link
+          href="/dentists"
+          className="flex items-center justify-center px-6 py-3 mt-8 text-base text-[var(--color1)] bg-[var(--color2)] rounded-full transition-colors cursor-pointer hover:bg-[var(--color4)] sm:text-lg lg:mt-10"
+        >
           See All Doctors
-        </button>
+        </Link>
       </section>
 
       {/* 5. Testimonials Section */}
@@ -785,7 +1072,10 @@ export default function Home() {
       </section>
 
       {/* 6. Contact Us Section */}
-      <section className="flex flex-col justify-center px-5 py-12 py-10 min-h-screen w-full snap-start snap-always shrink-0 sm:px-8 lg:px-[7vw]">
+      <section
+        id="contact"
+        className="flex flex-col justify-center px-5 py-12 py-10 min-h-screen w-full snap-start snap-always shrink-0 sm:px-8 lg:px-[7vw]"
+      >
         {/* Section Label */}
         <div className="mb-8 text-center lg:mb-10">
           <div className="inline-flex items-center px-4 py-1 text-sm font-medium text-[var(--color4)] bg-gray-100 rounded-full sm:text-base">
@@ -821,17 +1111,17 @@ export default function Home() {
               <div className="w-full max-w-sm">
                 <div className="flex justify-between py-3 text-sm border-b border-[var(--color5)] sm:text-base">
                   <span>Mon - Fri</span>
-                  <span>9:00 - 20:00</span>
+                  <span>8:30 AM - 5:30 PM</span>
                 </div>
 
                 <div className="flex justify-between py-3 text-sm border-b border-[var(--color5)] sm:text-base">
-                  <span>Sat - Sun</span>
-                  <span>8:00 - 16:00</span>
+                  <span>Saturday</span>
+                  <span>8:30 AM - 1:00 PM</span>
                 </div>
 
                 <div className="flex justify-between py-3 text-sm sm:text-base">
-                  <span>Emergency</span>
-                  <span>24/7 Hours</span>
+                  <span>Sunday</span>
+                  <span>Closed</span>
                 </div>
               </div>
             </div>
@@ -850,7 +1140,8 @@ export default function Home() {
                   </p>
 
                   <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
-                    The Place, General Mathenge Drive, Nairobi
+                    The Place, General Mathenge Rd, next to Autoexpress and
+                    Zucchini, Westlands, Nairobi.
                   </p>
                 </div>
               </div>
@@ -867,7 +1158,23 @@ export default function Home() {
                   </p>
 
                   <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
-                    +254 712 345 678
+                    0725 272727
+                    <br />
+                    0754 272727
+                  </p>
+                </div>
+              </div>
+              {/* Email */}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-10 h-10 text-white bg-[var(--color2)] rounded-md">
+                  <span className="text-xl">@</span>
+                </div>
+
+                <div>
+                  <p className="text-xs text-[var(--color2)]">Email Us</p>
+
+                  <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
+                    dentists@theplace.co.ke
                   </p>
                 </div>
               </div>
@@ -905,23 +1212,26 @@ export default function Home() {
                 />
 
                 <select className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]">
-                  <option>Select Department</option>
-                  <option>General Dentistry</option>
-                  <option>Cosmetic Dentistry</option>
+                  <option>Select Service</option>
                   <option>Dental Implants</option>
+                  <option>Cavity Prevention</option>
+                  <option>Dental Hygiene</option>
+                  <option>Family Dentistry</option>
+                  <option>Root Canal Treatment</option>
+                  <option>Tooth Extraction</option>
+                  <option>Crowns & Bridges</option>
                   <option>Orthodontics</option>
-                  <option>Paediatric Dentistry</option>
+                  <option>Invisalign</option>
                 </select>
               </div>
 
               {/* Doctor + Date */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <select className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]">
-                  <option>Select Doctor</option>
-                  <option>Dr. Lawson B</option>
-                  <option>Dr. Miles P</option>
-                  <option>Dr. Bruno G</option>
-                  <option>Dr. Carthy L</option>
+                  <option>Select Dentist</option>
+                  <option>Dr. Chand Shah</option>
+                  <option>Dr. Kunal Shah</option>
+                  <option>Dr. Aisha Mohamed</option>
                 </select>
 
                 <input
@@ -967,9 +1277,9 @@ export default function Home() {
               </p>
 
               <p className="mt-6 max-w-xs text-sm leading-[1.4] text-white/90">
-                From preventive checkups and cosmetic dentistry to emergency
-                care, we provide professional treatment in a welcoming
-                environment where your comfort comes first.
+                We provide all aspects of general dentistry together with
+                advanced procedures in a welcoming and comfortable environment
+                where your oral health comes first.
               </p>
             </div>
 
@@ -1004,11 +1314,15 @@ export default function Home() {
               <h3 className="mb-4 text-lg font-medium">Services</h3>
 
               <ul className="text-sm text-white/90 space-y-3">
-                <li>· General Dentistry</li>
-                <li>· Cosmetic Dentistry</li>
                 <li>· Dental Implants</li>
+                <li>· Cavity Prevention</li>
+                <li>· Dental Hygiene</li>
+                <li>· Family Dentistry</li>
+                <li>· Root Canal Treatment</li>
+                <li>· Tooth Extraction</li>
+                <li>· Crowns & Bridges</li>
                 <li>· Orthodontics</li>
-                <li>· Paediatric Dentistry</li>
+                <li>· Invisalign</li>
               </ul>
             </div>
 
@@ -1051,18 +1365,29 @@ export default function Home() {
               <p className="text-white/70">Visit Our Clinic</p>
 
               <p className="font-medium">
-                The Place, General Mathenge Drive, Nairobi
+                The Place, General Mathenge Rd, next to Autoexpress and
+                Zucchini, Westlands, Nairobi.
               </p>
             </div>
 
             <div>
               <p className="text-white/70">General Inquiries</p>
 
-              <p className="font-medium">Info@example.com</p>
+              <p className="font-medium">dentists@theplace.co.ke</p>
+            </div>
+
+            <div>
+              <p className="text-white/70">Call Us</p>
+
+              <p className="font-medium">
+                0725 272727
+                <br />
+                0754 272727
+              </p>
             </div>
 
             <div className="lg:text-right">
-              <p>© {new Date().getFullYear()} Terms & Conditions</p>
+              <p>© {new Date().getFullYear()} Dentists @ The Place</p>
             </div>
           </div>
         </div>
