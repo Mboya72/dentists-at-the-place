@@ -20,9 +20,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const updateNavTheme = () => {
-      const sections = document.querySelectorAll<HTMLElement>(
-        "[data-nav-theme]"
-      );
+      const sections =
+        document.querySelectorAll<HTMLElement>("[data-nav-theme]");
 
       // Position directly underneath the navbar
       const navY = 40;
@@ -63,7 +62,7 @@ export default function Navbar() {
       {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
-          src="/logo.svg"
+          src="/logo.png"
           alt="Logo"
           width={60}
           height={60}
@@ -94,24 +93,24 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Contact Us */}
-        <Link href="#contact">
+        <Link href="/#contact">
           <button
             className={`
-              cursor-pointer rounded-md px-5 py-3 font-medium
-              shadow-sm transition-all duration-300
-              active:scale-95
-              ${
-                isDark
-                  ? `
-                    bg-white text-[var(--color2)]
-                    hover:bg-[var(--color2)] hover:text-white
-                  `
-                  : `
-                    bg-[var(--color2)] text-white
-                    hover:bg-[var(--color4)] hover:text-white
-                  `
-              }
-            `}
+      cursor-pointer rounded-md px-5 py-3 font-medium
+      shadow-sm transition-all duration-300
+      active:scale-95
+      ${
+        isDark
+          ? `
+            bg-white text-[var(--color2)]
+            hover:bg-[var(--color2)] hover:text-white
+          `
+          : `
+            bg-[var(--color2)] text-white
+            hover:bg-[var(--color4)] hover:text-white
+          `
+      }
+    `}
           >
             Contact Us
           </button>
@@ -193,28 +192,28 @@ export default function Navbar() {
 
           {/* Mobile Contact Us */}
           <Link
-            href="#contact"
+            href="/#contact"
             className="w-full"
             onClick={() => setMenuOpen(false)}
           >
             <button
               className={`
-                mt-4 w-full rounded-md py-3
-                font-medium shadow-md
-                transition-all duration-300
-                active:scale-[0.98]
-                ${
-                  isDark
-                    ? `
-                      bg-white text-[var(--color2)]
-                      hover:bg-[var(--color2)] hover:text-white
-                    `
-                    : `
-                      bg-[var(--color2)] text-white
-                      hover:bg-[var(--color4)] hover:text-white
-                    `
-                }
-              `}
+      mt-4 w-full rounded-md py-3
+      font-medium shadow-md
+      transition-all duration-300
+      active:scale-[0.98]
+      ${
+        isDark
+          ? `
+            bg-white text-[var(--color2)]
+            hover:bg-[var(--color2)] hover:text-white
+          `
+          : `
+            bg-[var(--color2)] text-white
+            hover:bg-[var(--color4)] hover:text-white
+          `
+      }
+    `}
             >
               Contact Us
             </button>

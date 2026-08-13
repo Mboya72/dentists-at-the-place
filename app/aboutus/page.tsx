@@ -3,6 +3,7 @@
 import Navbar from "@/components/navbar";
 import Image from "next/image";
 import "../globals.css";
+import Link from "next/link";
 
 export default function AboutUs() {
   return (
@@ -53,9 +54,7 @@ export default function AboutUs() {
                 "
               >
                 Dental Care for
-                <span className="block text-[var(--color2)]">
-                  Everyone.
-                </span>
+                <span className="block text-[var(--color2)]">Everyone.</span>
               </h1>
 
               {/* Description */}
@@ -71,11 +70,11 @@ export default function AboutUs() {
                   lg:text-xl
                 "
               >
-                Dentists @ The Place is a multidisciplinary dental clinic
-                in the heart of Westlands, Nairobi. We provide all aspects
-                of general dentistry together with advanced procedures,
-                delivering contemporary and conservative oral healthcare
-                in a welcoming environment.
+                Dentists @ The Place is a multidisciplinary dental clinic in the
+                heart of Westlands, Nairobi. We provide all aspects of general
+                dentistry together with advanced procedures, delivering
+                contemporary and conservative oral healthcare in a welcoming
+                environment.
               </p>
 
               {/* CTA */}
@@ -164,30 +163,27 @@ export default function AboutUs() {
               "
             >
               A Contemporary Approach to
-              <span className="text-[var(--color2)]">
-                {" "}Oral Healthcare.
-              </span>
+              <span className="text-[var(--color2)]"> Oral Healthcare.</span>
             </h2>
 
             <p className="mt-7 text-lg font-light leading-relaxed text-gray-600">
-              Dentists @ The Place is a multidisciplinary clinic located
-              in the heart of Westlands, with accessible on-site parking.
-              We provide comprehensive general dentistry alongside
-              advanced dental procedures.
+              Dentists @ The Place is a multidisciplinary clinic located in the
+              heart of Westlands, with accessible on-site parking. We provide
+              comprehensive general dentistry alongside advanced dental
+              procedures.
             </p>
 
             <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
-              Our approach to dental care is contemporary and
-              conservative, combining qualified dental professionals,
-              innovative therapy, and personalised treatment plans to
-              provide care around the individual needs of every patient.
+              Our approach to dental care is contemporary and conservative,
+              combining qualified dental professionals, innovative therapy, and
+              personalised treatment plans to provide care around the individual
+              needs of every patient.
             </p>
 
             <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
               From preventive care and routine dental hygiene to advanced
-              procedures and complete smile transformations, our goal is
-              to help every patient maintain a healthy and confident
-              smile.
+              procedures and complete smile transformations, our goal is to help
+              every patient maintain a healthy and confident smile.
             </p>
           </div>
 
@@ -231,15 +227,12 @@ export default function AboutUs() {
               "
             >
               Comprehensive Dental Care
-              <span className="text-[var(--color2)]">
-                {" "}for Everyone.
-              </span>
+              <span className="text-[var(--color2)]"> for Everyone.</span>
             </h2>
 
             <p className="mt-6 text-lg font-light leading-relaxed text-gray-600">
-              We provide all aspects of general dentistry together with
-              advanced procedures designed to meet a wide range of dental
-              care needs.
+              We provide all aspects of general dentistry together with advanced
+              procedures designed to meet a wide range of dental care needs.
             </p>
           </div>
 
@@ -268,26 +261,27 @@ export default function AboutUs() {
                 "
               >
                 <span className="text-sm text-[var(--color2)]">
-                  0{[...[
-                    "Dental Implants",
-                    "Cavity Prevention",
-                    "Dental Hygiene",
-                    "Family Dentistry",
-                    "Root Canal Treatment",
-                    "Tooth Extraction",
-                    "Crowns & Bridges",
-                    "Orthodontics",
-                    "Invisalign",
-                  ]].indexOf(service) + 1}
+                  0
+                  {[
+                    ...[
+                      "Dental Implants",
+                      "Cavity Prevention",
+                      "Dental Hygiene",
+                      "Family Dentistry",
+                      "Root Canal Treatment",
+                      "Tooth Extraction",
+                      "Crowns & Bridges",
+                      "Orthodontics",
+                      "Invisalign",
+                    ],
+                  ].indexOf(service) + 1}
                 </span>
 
-                <h3 className="mt-4 text-xl font-medium">
-                  {service}
-                </h3>
+                <h3 className="mt-4 text-xl font-medium">{service}</h3>
 
                 <p className="mt-3 text-sm font-light leading-relaxed text-gray-500">
-                  Professional, patient-centred dental care delivered
-                  using modern techniques and personalised treatment.
+                  Professional, patient-centred dental care delivered using
+                  modern techniques and personalised treatment.
                 </p>
               </div>
             ))}
@@ -295,8 +289,104 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* GALLERY */}
+      <section className="w-full px-6 py-20 lg:px-10">
+        <div className="mx-auto max-w-[90vw]">
+          {/* Gallery Heading */}
+          <div className="max-w-3xl">
+            <div className="mb-4 text-sm font-medium text-[var(--color2)]">
+              OUR CLINIC
+            </div>
+
+            <h2
+              className="
+          text-4xl
+          font-medium
+          leading-tight
+          sm:text-5xl
+          lg:text-6xl
+        "
+            >
+              A Look Inside
+              <span className="text-[var(--color2)]"> Our Dental Care.</span>
+            </h2>
+
+            <p className="mt-6 text-lg font-light leading-relaxed text-gray-600">
+              Take a closer look at our clinic, our environment, and the spaces
+              designed to make every dental visit comfortable.
+            </p>
+          </div>
+
+          {/* Gallery */}
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Large Image */}
+            <div className="relative h-[300px] overflow-hidden rounded-3xl sm:col-span-2 sm:h-[380px] lg:row-span-2 lg:h-full">
+              <Image
+                src="/img1.jpg"
+                alt="Dentists at The Place clinic"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Image 2 */}
+            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+              <Image
+                src="/gallery/gallery-2.jpg"
+                alt="Dental treatment room"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Image 3 */}
+            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+              <Image
+                src="/gallery/gallery-3.jpg"
+                alt="Dental care at The Place"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Image 4 */}
+            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+              <Image
+                src="/gallery/gallery-4.jpg"
+                alt="Dentist consultation"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Image 5 */}
+            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+              <Image
+                src="/gallery/gallery-5.jpg"
+                alt="Modern dental clinic"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-2 px-5 py-3 mt-6 text-sm font-medium text-white bg-[var(--color2)] rounded-full transition-colors hover:bg-[var(--color4)]"
+          >
+            View Full Gallery
+            <Image
+              src="/arrow_forward.svg"
+              alt=""
+              width={20}
+              height={20}
+              className="w-5 h-5"
+            />
+          </Link>
+        </div>
+      </section>
+
       {/* INNOVATION */}
-      <section className="min-h-screen w-full px-6 py-20 lg:px-10">
+      <section className="min-h-auto w-full px-6 py-20 lg:px-10">
         <div className="mx-auto grid max-w-[90vw] items-center gap-14 lg:grid-cols-2">
           <div>
             <div className="mb-4 text-sm font-medium text-[var(--color2)]">
@@ -313,24 +403,21 @@ export default function AboutUs() {
               "
             >
               Innovative Therapy &
-              <span className="text-[var(--color2)]">
-                {" "}Qualified Dentists.
-              </span>
+              <span className="text-[var(--color2)]"> Qualified Dentists.</span>
             </h2>
 
             <p className="mt-7 text-lg font-light leading-relaxed text-gray-600">
-              We combine modern dental technology with professional
-              expertise to provide effective, personalised treatment.
-              Our contemporary approach allows us to address both routine
-              dental needs and more advanced procedures while keeping
-              patient comfort at the centre of care.
+              We combine modern dental technology with professional expertise to
+              provide effective, personalised treatment. Our contemporary
+              approach allows us to address both routine dental needs and more
+              advanced procedures while keeping patient comfort at the centre of
+              care.
             </p>
 
             <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
               Whether you are visiting for preventive care, restorative
-              treatment, cosmetic dentistry, or a complete smile
-              transformation, our team is committed to providing care
-              tailored to you.
+              treatment, cosmetic dentistry, or a complete smile transformation,
+              our team is committed to providing care tailored to you.
             </p>
           </div>
 
@@ -378,14 +465,12 @@ export default function AboutUs() {
             "
           >
             Ready to take care of
-            <span className="text-[var(--color2)]">
-              {" "}your smile?
-            </span>
+            <span className="text-[var(--color2)]"> your smile?</span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/70">
-            Get in touch with Dentists @ The Place and let our team help
-            you find the right dental care for your needs.
+            Get in touch with Dentists @ The Place and let our team help you
+            find the right dental care for your needs.
           </p>
 
           <a

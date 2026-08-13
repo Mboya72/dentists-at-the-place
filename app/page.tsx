@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -45,6 +46,120 @@ const services = [
 ];
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    dentist: "",
+    date: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setSuccess("");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setSuccess(
+        "Your appointment request has been sent successfully. We will get back to you shortly."
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        dentist: "",
+        date: "",
+        message: "",
+      });
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to send appointment request."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const handleNewsletterSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    setNewsletterLoading(true);
+    setNewsletterMessage("");
+    setNewsletterError("");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setNewsletterMessage("You're subscribed!");
+      setNewsletterEmail("");
+    } catch (error) {
+      setNewsletterError(
+        error instanceof Error ? error.message : "Failed to subscribe."
+      );
+    } finally {
+      setNewsletterLoading(false);
+    }
+  };
   return (
     <div className="overflow-y-scroll flex flex-col min-h-screen h-screen text-[var(--color2)] font-sans bg-white snap-y snap-mandatory scroll-smooth">
       {/* 1. Full-Screen Hero Image Section */}
@@ -538,20 +653,22 @@ export default function Home() {
       {/* 3. Services Section */}
       <section
         className="
-    h-screen w-full
+    min-h-screen w-full
     snap-start snap-always shrink-0
     flex flex-col items-center justify-center
     px-4
     sm:px-6
+    md:px-8
     lg:px-10
-    py-6
-    sm:py-8
+    py-8
+    sm:py-10
+    md:py-12
     lg:py-10
     overflow-hidden
   "
       >
         {/* Heading */}
-        <div className="mb-5 text-center sm:mb-6 lg:mb-7">
+        <div className="mb-5 text-center sm:mb-6 md:mb-7 lg:mb-7">
           {/* Label */}
           <div
             className="
@@ -600,9 +717,11 @@ export default function Home() {
       lg:grid-cols-3
       gap-3
       sm:gap-4
+      md:gap-5
       lg:gap-5
       w-full
       max-w-[1350px]
+      min-h-0
     "
         >
           {services.map((service) => (
@@ -612,6 +731,7 @@ export default function Home() {
           group
           overflow-hidden
           w-full
+          min-w-0
           bg-[#ccecf1]
           rounded-xl
           transition-all
@@ -624,9 +744,9 @@ export default function Home() {
                 className="
             relative
             w-full
-            h-[130px]
-            sm:h-[145px]
-            md:h-[155px]
+            h-[120px]
+            sm:h-[135px]
+            md:h-[145px]
             lg:h-[150px]
             xl:h-[175px]
             overflow-hidden
@@ -656,9 +776,10 @@ export default function Home() {
             relative
             px-4
             py-3
-            pr-16
-            min-h-[105px]
-            sm:min-h-[110px]
+            pr-14
+            min-h-[100px]
+            sm:min-h-[105px]
+            md:min-h-[110px]
             lg:min-h-[115px]
           "
               >
@@ -670,6 +791,7 @@ export default function Home() {
               font-medium
               leading-tight
               sm:text-lg
+              md:text-lg
               lg:text-xl
             "
                 >
@@ -678,12 +800,13 @@ export default function Home() {
 
                 <p
                   className="
-              max-w-[90%]
+              max-w-[92%]
               text-[var(--color4)]
               text-xs
-              leading-[1.25]
+              leading-[1.3]
               font-light
               sm:text-sm
+              md:text-sm
               lg:text-[15px]
             "
                 >
@@ -703,10 +826,12 @@ export default function Home() {
               flex
               items-center
               justify-center
-              w-10
-              h-10
-              sm:w-11
-              sm:h-11
+              w-9
+              h-9
+              sm:w-10
+              sm:h-10
+              md:w-11
+              md:h-11
               lg:w-12
               lg:h-12
               bg-[var(--color4)]
@@ -723,10 +848,12 @@ export default function Home() {
                     width={24}
                     height={24}
                     className="
-                w-5
-                h-5
-                sm:w-6
-                sm:h-6
+                w-4
+                h-4
+                sm:w-5
+                sm:h-5
+                md:w-5
+                md:h-5
               "
                   />
                 </Link>
@@ -745,6 +872,7 @@ export default function Home() {
       gap-2
       mt-5
       sm:mt-6
+      md:mt-7
       lg:mt-7
       px-2
       pl-4
@@ -1187,18 +1315,26 @@ export default function Home() {
               Dental Appointment Booking
             </h3>
 
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name + Email */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
+                  required
                   className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
                 />
 
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email Address"
+                  required
                   className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
                 />
               </div>
@@ -1207,12 +1343,22 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Phone"
+                  required
                   className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
                 />
 
-                <select className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]">
-                  <option>Select Service</option>
+                <select
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                  className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
+                >
+                  <option value="">Select Service</option>
                   <option>Dental Implants</option>
                   <option>Cavity Prevention</option>
                   <option>Dental Hygiene</option>
@@ -1227,8 +1373,15 @@ export default function Home() {
 
               {/* Doctor + Date */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <select className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]">
-                  <option>Select Dentist</option>
+                <select
+                  name="dentist"
+                  value={formData.dentist}
+                  onChange={handleChange}
+                  required
+                  className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
+                >
+                  <option value="">Select Dentist</option>
+                  <option>Any</option>
                   <option>Dr. Chand Shah</option>
                   <option>Dr. Kunal Shah</option>
                   <option>Dr. Aisha Mohamed</option>
@@ -1236,12 +1389,19 @@ export default function Home() {
 
                 <input
                   type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  required
                   className="px-3 w-full h-12 text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border focus:border-[var(--color2)]"
                 />
               </div>
 
               {/* Message */}
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Type Your Message"
                 rows={5}
                 className="px-3 py-3 w-full text-sm bg-white rounded-md border-[var(--color2)]/20 outline-none border resize-none focus:border-[var(--color2)]"
@@ -1250,33 +1410,47 @@ export default function Home() {
               {/* Submit */}
               <button
                 type="submit"
-                className="px-5 py-2.5 text-white text-sm bg-[var(--color2)] rounded-md transition-colors cursor-pointer hover:bg-[var(--color4)] sm:text-base"
+                disabled={loading}
+                className="px-5 py-2.5 text-white text-sm bg-[var(--color2)] rounded-md transition-colors cursor-pointer hover:bg-[var(--color4)] sm:text-base disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Book Appointment
+                {loading ? "Sending..." : "Book Appointment"}
               </button>
+              {success && (
+                <p className="mt-3 text-sm font-medium text-green-600">
+                  {success}
+                </p>
+              )}
+
+              {error && (
+                <p className="mt-3 text-sm font-medium text-red-600">{error}</p>
+              )}
             </form>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="px-5 pt-12 pb-6 w-full text-white bg-[var(--color2)] snap-end shrink-0 sm:px-8 lg:px-[7vw]">
+      <footer className="px-5 pt-12 pb-6 w-full text-[var(--color4)] bg-[var(--color5)] snap-end shrink-0 sm:px-8 lg:px-[7vw]">
         <div className="mx-auto max-w-[1400px]">
           {/* TOP FOOTER */}
           <div className="grid grid-cols-1 gap-10 gap-16 sm:grid-cols-2 lg:grid-cols-4">
             {/* BRAND */}
             <div>
-              <h2 className="text-2xl font-semibold leading-tight sm:text-3xl">
-                Dentist @
-                <br />
-                The Place
-              </h2>
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt="Dentists @ The Place Logo"
+                  width={60}
+                  height={60}
+                  className="h-10 w-auto"
+                />
+              </Link>
 
               <p className="mt-3 text-base sm:text-lg">
                 Dental Care For Your New Smile
               </p>
 
-              <p className="mt-6 max-w-xs text-sm leading-[1.4] text-white/90">
+              <p className="mt-6 max-w-xs text-sm leading-[1.4] text-[var(--color4)]/70">
                 We provide all aspects of general dentistry together with
                 advanced procedures in a welcoming and comfortable environment
                 where your oral health comes first.
@@ -1287,7 +1461,7 @@ export default function Home() {
             <div>
               <h3 className="mb-4 text-lg font-medium">Quick Links</h3>
 
-              <ul className="text-sm text-white/90 space-y-3">
+              <ul className="text-sm text-[var(--color4)]/70 space-y-3">
                 <li>
                   <Link href="/">· Home</Link>
                 </li>
@@ -1301,7 +1475,7 @@ export default function Home() {
                   <Link href="/dentists">· Our Doctors</Link>
                 </li>
                 <li>
-                  <Link href="/contact">· Contact Us</Link>
+                  <Link href="/#contact">· Contact Us</Link>
                 </li>
                 <li>
                   <Link href="/testimonials">· Testimonials</Link>
@@ -1313,7 +1487,7 @@ export default function Home() {
             <div>
               <h3 className="mb-4 text-lg font-medium">Services</h3>
 
-              <ul className="text-sm text-white/90 space-y-3">
+              <ul className="text-sm text-[var(--color4)]/70 space-y-3">
                 <li>· Dental Implants</li>
                 <li>· Cavity Prevention</li>
                 <li>· Dental Hygiene</li>
@@ -1330,7 +1504,7 @@ export default function Home() {
             <div>
               <h3 className="mb-4 text-lg font-medium">Legal</h3>
 
-              <ul className="text-sm text-white/90 space-y-3">
+              <ul className="text-sm text-[var(--color4)]/70 space-y-3">
                 <li>· Privacy Policy</li>
                 <li>· Terms of Services</li>
                 <li>· Cookies</li>
@@ -1339,30 +1513,52 @@ export default function Home() {
               <div className="mt-7">
                 <h3 className="text-lg font-medium">Newsletter</h3>
 
-                <p className="mt-2 text-sm text-white/90">
+                <p className="mt-2 text-sm text-[var(--color4)]/70">
                   Join the Community and receive our monthly newsletter straight
                   to your inbox.
                 </p>
 
-                <div className="flex flex-col gap-2 mt-4 sm:flex-row">
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="flex flex-col gap-2 mt-4 sm:flex-row"
+                >
                   <input
                     type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Enter Your Email Address"
+                    required
                     className="flex-1 px-3 h-11 text-[var(--color4)] text-sm bg-white rounded-md outline-none"
                   />
 
-                  <button className="px-6 h-11 text-[var(--color2)] font-medium bg-white rounded-md transition-colors cursor-pointer hover:bg-gray-100">
-                    Join
+                  <button
+                    type="submit"
+                    disabled={newsletterLoading}
+                    className="px-6 h-11 text-[var(--color2)] font-medium bg-white rounded-md transition-colors cursor-pointer hover:bg-gray-100 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {newsletterLoading ? "Joining..." : "Join"}
                   </button>
-                </div>
+                </form>
+
+                {newsletterMessage && (
+                  <p className="mt-2 text-sm font-medium text-green-600">
+                    {newsletterMessage}
+                  </p>
+                )}
+
+                {newsletterError && (
+                  <p className="mt-2 text-sm font-medium text-red-600">
+                    {newsletterError}
+                  </p>
+                )}
               </div>
             </div>
           </div>
 
           {/* CONTACT BAR */}
-          <div className="grid grid-cols-1 gap-60 mt-12 pt-6 text-sm border-t border-white/20 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-60 mt-12 pt-6 text-sm border-t border-[var(--color4)]/15 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <p className="text-white/70">Visit Our Clinic</p>
+              <p className="text-[var(--color4)]/50">Visit Our Clinic</p>
 
               <p className="font-medium">
                 The Place, General Mathenge Rd, next to Autoexpress and
@@ -1371,13 +1567,13 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-white/70">General Inquiries</p>
+              <p className="text-[var(--color4)]/50">General Inquiries</p>
 
               <p className="font-medium">dentists@theplace.co.ke</p>
             </div>
 
             <div>
-              <p className="text-white/70">Call Us</p>
+              <p className="text-[var(--color4)]/50">Call Us</p>
 
               <p className="font-medium">
                 0725 272727
