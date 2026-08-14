@@ -332,7 +332,7 @@ export default function AboutUs() {
             {/* Image 2 */}
             <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
               <Image
-                src="/gallery/gallery-2.jpg"
+                src="/img2.jpg"
                 alt="Dental treatment room"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -342,7 +342,7 @@ export default function AboutUs() {
             {/* Image 3 */}
             <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
               <Image
-                src="/gallery/gallery-3.jpg"
+                src="/img3.jpg"
                 alt="Dental care at The Place"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -352,7 +352,7 @@ export default function AboutUs() {
             {/* Image 4 */}
             <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
               <Image
-                src="/gallery/gallery-4.jpg"
+                src="/img4.jpg"
                 alt="Dentist consultation"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -362,7 +362,7 @@ export default function AboutUs() {
             {/* Image 5 */}
             <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
               <Image
-                src="/gallery/gallery-5.jpg"
+                src="/img5.jpg"
                 alt="Modern dental clinic"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
