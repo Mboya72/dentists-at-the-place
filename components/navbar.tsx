@@ -14,7 +14,7 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/aboutus", label: "About Us" },
     { href: "/services", label: "Services" },
-    { href: "/dentists", label: "The Dentists" },
+    { href: "/the_team", label: "Our Team" },
     { href: "/testimonials", label: "Testimonials" },
   ];
 

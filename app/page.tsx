@@ -6,6 +6,24 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
 
+const doctors = [
+  {
+    name: "Dr. Chand Shah",
+    specialty: "Dental Surgeon",
+    image: null,
+  },
+  {
+    name: "Dr. Kunal Shah",
+    specialty: "Dental Surgeon & Implantologist",
+    image: null,
+  },
+  {
+    name: "Dr. Aisha Mohamed",
+    specialty: "Dental Surgeon & Paediatric Dentist",
+    image: null,
+  },
+];
+
 const services = [
   {
     title: "General Dentistry",
@@ -599,54 +617,59 @@ export default function Home() {
 
           {/* BUTTON */}
           <Link
-            href="/aboutus"
-            className="
-        group
-        flex
-        shrink-0
-        items-center
-        gap-2
-        rounded-full
-        bg-[var(--color2)]
-        py-1
-        pl-5
-        pr-1
-        text-sm
-        font-medium
-        text-[var(--color1)]
-        transition-all
-        duration-300
-        hover:bg-[var(--color4)]
-        sm:text-base
-      "
-          >
-            <span>More About Us</span>
+  href="/aboutus"
+  className="
+    group
+    flex
+    shrink-0
+    items-center
+    gap-2
+    rounded-full
+    bg-[var(--color2)]
+    py-1
+    pl-5
+    pr-1
+    text-sm
+    font-medium
+    text-[var(--color1)]
+    sm:text-base
+  "
+>
+  <span>More About Us</span>
 
-            <span
-              className="
-          flex
-          h-8
-          w-8
-          items-center
-          justify-center
-          rounded-full
-          bg-[var(--color1)]
-          transition-transform
-          duration-300
-          group-hover:translate-x-1
-          sm:h-9
-          sm:w-9
-        "
-            >
-              <Image
-                src="/arrow_forward.svg"
-                alt=""
-                width={24}
-                height={24}
-                className="h-5 w-5"
-              />
-            </span>
-          </Link>
+  <span
+    className="
+      flex
+      h-8
+      w-8
+      items-center
+      justify-center
+      rounded-full
+      bg-[var(--color1)]
+      text-[var(--color2)]
+      transition-transform
+      duration-300
+      ease-out
+      group-hover:rotate-45
+      sm:h-9
+      sm:w-9
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-5 w-5"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  </span>
+</Link>
         </div>
       </section>
 
@@ -820,42 +843,35 @@ export default function Home() {
                     .replace(/\s+/g, "-")}`}
                   aria-label={`Learn more about ${service.title}`}
                   className="
-              absolute
-              right-3
-              bottom-3
-              flex
-              items-center
-              justify-center
-              w-9
-              h-9
-              sm:w-10
-              sm:h-10
-              md:w-11
-              md:h-11
-              lg:w-12
-              lg:h-12
-              bg-[var(--color4)]
-              rounded-full
-              transition-all
-              duration-300
-              hover:bg-[var(--color2)]
-              hover:scale-105
-            "
+    group/arrow
+    absolute right-3 bottom-3
+    flex items-center justify-center
+    w-9 h-9
+    sm:w-10 sm:h-10
+    md:w-11 md:h-11
+    lg:w-12 lg:h-12
+    rounded-full
+    bg-[var(--color4)]
+    text-[var(--color1)]
+    transition-all duration-300 ease-out
+    hover:bg-[var(--color2)]
+    hover:text-white
+    hover:scale-105
+  "
                 >
-                  <Image
-                    src="/arrow_forward.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="
-                w-4
-                h-4
-                sm:w-5
-                sm:h-5
-                md:w-5
-                md:h-5
-              "
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
                 </Link>
               </div>
             </div>
@@ -864,59 +880,51 @@ export default function Home() {
 
         {/* ALL SERVICES BUTTON */}
         <Link
-          href="/services"
-          className="
-      group
-      flex
-      items-center
-      gap-2
-      mt-5
-      sm:mt-6
-      md:mt-7
-      lg:mt-7
-      px-2
-      pl-4
-      py-1.5
-      rounded-full
-      bg-[var(--color2)]
-      text-[var(--color1)]
-      text-sm
-      sm:text-base
-      font-medium
-      transition-all
-      duration-300
-      hover:bg-[var(--color4)]
-      hover:scale-[1.02]
-      shrink-0
-    "
-        >
-          <span>All Services</span>
+  href="/services"
+  className="
+    group
+    flex items-center gap-2
+    mt-5 sm:mt-6 md:mt-7 lg:mt-7
+    pl-4 pr-2 py-1.5
+    rounded-full
+    bg-[var(--color2)]
+    text-[var(--color1)]
+    text-sm sm:text-base
+    font-medium
+    shrink-0
+  "
+>
+  <span>All Services</span>
 
-          <span
-            className="
-        flex
-        items-center
-        justify-center
-        w-8
-        h-8
-        sm:w-9
-        sm:h-9
-        rounded-full
-        bg-[var(--color1)]
-        transition-transform
-        duration-300
-        group-hover:translate-x-1
-      "
-          >
-            <Image
-              src="/arrow_forward.svg"
-              alt=""
-              width={22}
-              height={22}
-              className="w-4 h-4 sm:w-5 sm:h-5"
-            />
-          </span>
-        </Link>
+  <span
+    className="
+      flex items-center justify-center
+      w-8 h-8
+      sm:w-9 sm:h-9
+      rounded-full
+      bg-[var(--color1)]
+      text-[var(--color2)]
+      transition-transform
+      duration-300
+      ease-out
+      group-hover:rotate-45
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-4 h-4 sm:w-5 sm:h-5"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  </span>
+</Link>
       </section>
 
       {/* 4. Doctors Section */}
@@ -929,160 +937,136 @@ export default function Home() {
 
         {/* MAIN HEADING */}
         <h2 className="max-w-4xl text-center text-[var(--color4)] font-medium leading-[1.05] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-          Meet the Doctors Who Keeps
+          Meet the Doctors Who Keep
           <br />
           Your <span className="text-[var(--color2)]">Smiles Healthy.</span>
         </h2>
 
         {/* DOCTORS */}
-        <div className="grid grid-cols-1 gap-6 gap-7 mt-10 mt-12 w-full max-w-[1400px] sm:grid-cols-2 lg:grid-cols-4">
-          {/* DOCTOR 1 */}
-          <div className="w-full">
-            {/* IMAGE */}
-            <div className="overflow-hidden relative w-full rounded-[24px] aspect-[4/5]">
-              <Image
-                src="/doctor1.png"
-                alt="Dr. Lawson B"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* INFO */}
-            <div className="flex items-center justify-between mt-4">
-              <div>
-                <h3 className="text-[var(--color4)] text-xl leading-none font-medium sm:text-2xl lg:text-2xl">
-                  Dr. Lawson.B
-                </h3>
-
-                <p className="mt-1 text-[var(--color4)] text-sm sm:text-base">
-                  Dentist
-                </p>
+        <div className="grid grid-cols-1 gap-6 mt-10 w-full max-w-[1200px] sm:grid-cols-2 lg:grid-cols-3">
+          {doctors.map((doctor) => (
+            <div key={doctor.name} className="w-full">
+              {/* IMAGE / PLACEHOLDER */}
+              <div className="overflow-hidden relative flex items-center justify-center w-full bg-[var(--color5)] rounded-[24px] aspect-[4/5]">
+                {doctor.image ? (
+                  <Image
+                    src={doctor.image}
+                    alt={doctor.name}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center w-24 h-24 text-[var(--color2)] bg-white/70 rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="w-14 h-14"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0"
+                      />
+                    </svg>
+                  </div>
+                )}
               </div>
 
-              {/* ARROW */}
-              <button className="flex items-center justify-center w-14 h-14 h-16 bg-[var(--color5)] rounded-full transition-colors cursor-pointer shrink-0 hover:bg-[var(--color2)] sm:w-16">
-                <Image
-                  src="/arrow_forward.svg"
-                  alt="View doctor"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6"
-                />
-              </button>
-            </div>
-          </div>
+              {/* INFO */}
+              <div className="flex items-center justify-between mt-4">
+                <div className="pr-3">
+                  <h3 className="text-[var(--color4)] text-xl leading-none font-medium sm:text-2xl">
+                    {doctor.name}
+                  </h3>
 
-          {/* DOCTOR 2 */}
-          <div className="w-full">
-            <div className="overflow-hidden relative w-full rounded-[24px] aspect-[4/5]">
-              <Image
-                src="/doctor2.png"
-                alt="Dr. Miles P"
-                fill
-                className="object-cover"
-              />
-            </div>
+                  <p className="mt-1 text-[var(--color4)] text-sm sm:text-base">
+                    {doctor.specialty}
+                  </p>
+                </div>
 
-            <div className="flex items-center justify-between mt-4">
-              <div>
-                <h3 className="text-[var(--color4)] text-xl leading-none font-medium sm:text-2xl lg:text-2xl">
-                  Dr. Miles.P
-                </h3>
-
-                <p className="mt-1 text-[var(--color4)] text-sm sm:text-base">
-                  Surgeon
-                </p>
+                <Link
+                  href="/dentists"
+                  className="group flex items-center justify-center w-14 h-14 h-16 bg-[var(--color5)] rounded-full transition-colors duration-300 cursor-pointer shrink-0 hover:bg-[var(--color2)] sm:w-16"
+                  aria-label={`View ${doctor.name}`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-6 h-6 text-[var(--color4)] transition-colors duration-300 group-hover:text-white"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </Link>
               </div>
-
-              <button className="flex items-center justify-center w-14 h-14 h-16 bg-[var(--color5)] rounded-full transition-colors cursor-pointer shrink-0 hover:bg-[var(--color2)] sm:w-16">
-                <Image
-                  src="/arrow_forward.svg"
-                  alt="View doctor"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6"
-                />
-              </button>
             </div>
-          </div>
-
-          {/* DOCTOR 3 */}
-          <div className="w-full">
-            <div className="overflow-hidden relative w-full rounded-[24px] aspect-[4/5]">
-              <Image
-                src="/doctor3.png"
-                alt="Dr. Bruno G"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div>
-                <h3 className="text-[var(--color4)] text-xl leading-none font-medium sm:text-2xl lg:text-2xl">
-                  Dr. Bruno.G
-                </h3>
-
-                <p className="mt-1 text-[var(--color4)] text-sm sm:text-base">
-                  Neurologist
-                </p>
-              </div>
-
-              <button className="flex items-center justify-center w-14 h-14 h-16 bg-[var(--color5)] rounded-full transition-colors cursor-pointer shrink-0 hover:bg-[var(--color2)] sm:w-16">
-                <Image
-                  src="/arrow_forward.svg"
-                  alt="View doctor"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6"
-                />
-              </button>
-            </div>
-          </div>
-
-          {/* DOCTOR 4 */}
-          <div className="w-full">
-            <div className="overflow-hidden relative w-full rounded-[24px] aspect-[4/5]">
-              <Image
-                src="/doctor4.png"
-                alt="Dr. Carthy L"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div>
-                <h3 className="text-[var(--color4)] text-xl leading-none font-medium sm:text-2xl lg:text-2xl">
-                  Dr. Carthy.L
-                </h3>
-
-                <p className="mt-1 text-[var(--color4)] text-sm sm:text-base">
-                  Dentist
-                </p>
-              </div>
-
-              <button className="flex items-center justify-center w-14 h-14 h-16 bg-[var(--color5)] rounded-full transition-colors cursor-pointer shrink-0 hover:bg-[var(--color2)] sm:w-16">
-                <Image
-                  src="/arrow_forward.svg"
-                  alt="View doctor"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6"
-                />
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* SEE ALL BUTTON */}
         <Link
-          href="/dentists"
-          className="flex items-center justify-center px-6 py-3 mt-8 text-base text-[var(--color1)] bg-[var(--color2)] rounded-full transition-colors cursor-pointer hover:bg-[var(--color4)] sm:text-lg lg:mt-10"
-        >
-          See All Doctors
-        </Link>
+  href="/dentists"
+  className="
+    group
+    flex
+    items-center
+    gap-2
+    px-2
+    pl-4
+    py-1.5
+    mt-8
+    text-base
+    font-medium
+    text-[var(--color1)]
+    bg-[var(--color2)]
+    rounded-full
+    sm:text-lg
+    lg:mt-10
+  "
+>
+  <span>All The Team</span>
+
+  <span
+    className="
+      flex
+      items-center
+      justify-center
+      w-8
+      h-8
+      text-[var(--color2)]
+      bg-[var(--color1)]
+      rounded-full
+      transition-transform
+      duration-300
+      ease-out
+      group-hover:rotate-45
+      sm:w-9
+      sm:h-9
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-5 h-5"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  </span>
+</Link>
       </section>
 
       {/* 5. Testimonials Section */}
