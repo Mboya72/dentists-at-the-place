@@ -178,22 +178,30 @@ export default function Home() {
       setNewsletterLoading(false);
     }
   };
+
   return (
     <div
       className="
-        overflow-y-scroll flex flex-col
-        min-h-[100dvh] h-screen
+        flex flex-col
+        w-full
+        min-h-screen
         text-[var(--color2)] font-sans
         bg-white
-        snap-y snap-mandatory scroll-smooth
+        snap-y snap-proximity
+        scroll-smooth
       "
     >
-      {/* 1. Full-Screen Hero Image Section */}
+      {/* =========================================================
+          1. HERO SECTION
+      ========================================================= */}
       <section
         className="
+          relative
+          h-[100dvh]
+          w-full
+          shrink-0
+          snap-start
           overflow-hidden
-          w-full h-screen
-          relative snap-start snap-always shrink-0
         "
       >
         {/* Background Image */}
@@ -202,45 +210,52 @@ export default function Home() {
           alt="Landing page hero image"
           fill
           priority
-          className="
-            object-cover object-center
-          "
+          className="object-cover object-center"
         />
 
-        {/* Dark Tint Overlay */}
+        {/* Dark Overlay */}
         <div
           className="
+            absolute inset-0
             z-0
             bg-black/15
             pointer-events-none
-            absolute inset-0
           "
         />
 
-        {/* Navigation Bar Header */}
+        {/* Navigation */}
         <header
           className="
-            z-50 flex
-            py-6 mx-auto
-            absolute top-0 left-0 right-0 items-center justify-between
+            absolute top-0 left-0 right-0
+            z-50
+            flex
+            items-center
+            justify-between
+            py-6
+            mx-auto
           "
         >
           <Navbar />
         </header>
 
-        {/* Hero Title & Typography Overlay */}
+        {/* Hero Content */}
         <div
           className="
-            max-w-[90vw]
+            absolute
+            top-1/6
+            left-0
+            right-0
             mx-auto
+            max-w-[90vw]
             text-white
-            absolute top-1/6 left-0 right-0
             sm:top-1/5
           "
         >
           <h2
             className="
-              text-2xl font-normal tracking-tight
+              text-2xl
+              font-normal
+              tracking-tight
               sm:text-4xl
               md:text-3xl
             "
@@ -250,46 +265,65 @@ export default function Home() {
 
           <h1
             className="
-              text-[65px]/[1] font-semibold text-white/90 tracking-tight
+              text-[65px]/[1]
+              font-semibold
+              tracking-tight
+              text-white/90
               sm:text-[150px]/[1]
             "
           >
-            Your <br /> New Smile
+            Your
+            <br />
+            New Smile
           </h1>
 
           <p
             className="
-              max-w-180
               mt-2
-              text-md font-light leading-relaxed text-white text-xl
+              max-w-180
+              text-xl
+              font-light
+              leading-relaxed
+              text-white
               sm:max-w-160
               lg:text-xl
             "
           >
-            We provide all aspects of general dentistry together with advanced
-            procedures, delivered with a contemporary and conservative approach
-            to oral health care.
+            We provide all aspects of general dentistry together with
+            advanced procedures, delivered with a contemporary and
+            conservative approach to oral health care.
           </p>
 
+          {/* Hero Buttons */}
           <div
             className="
-              flex flex-wrap
+              flex
+              flex-wrap
               max-w-240
               mt-5
-              justify-between gap-3
+              justify-between
+              gap-3
               sm:max-w-175
             "
           >
             <Link href="#contact">
-              <button
+              <span
                 className="
-                  z-30 flex
-                  px-3 py-3
-                  text-[#0399B0] text-sm font-medium
-                  bg-white
+                  z-30
+                  flex
+                  cursor-pointer
+                  items-center
+                  gap-4
                   rounded-full
-                  transition-colors cursor-pointer
-                  items-center gap-4 hover:bg-[var(--color2)] hover:text-[var(--color1)]
+                  bg-white
+                  px-3
+                  py-3
+                  text-sm
+                  font-medium
+                  text-[#0399B0]
+                  transition-colors
+                  hover:bg-[var(--color2)]
+                  hover:text-[var(--color1)]
                   sm:text-xl
                 "
               >
@@ -301,27 +335,38 @@ export default function Home() {
                   width={40}
                   height={40}
                   className="
-                    w-6 h-6 h-8 h-10
-                    p-1
-                    bg-[var(--color2)]
+                    h-6
+                    w-6
                     rounded-full
+                    bg-[var(--color2)]
+                    p-1
+                    sm:h-8
                     sm:w-8
+                    md:h-10
                     md:w-10
                   "
                 />
-              </button>
+              </span>
             </Link>
 
             <Link href="/services">
-              <button
+              <span
                 className="
-                  z-30 flex
-                  px-3 py-3
-                  text-[var(--color1)] text-sm font-medium
-                  bg-[var(--color2)]
+                  z-30
+                  flex
+                  cursor-pointer
+                  items-center
+                  gap-4
                   rounded-full
-                  transition-colors cursor-pointer
-                  items-center gap-4 hover:bg-[var(--color1)] hover:text-[var(--color2)]
+                  bg-[var(--color2)]
+                  px-3
+                  py-3
+                  text-sm
+                  font-medium
+                  text-[var(--color1)]
+                  transition-colors
+                  hover:bg-[var(--color1)]
+                  hover:text-[var(--color2)]
                   sm:text-xl
                 "
               >
@@ -333,62 +378,63 @@ export default function Home() {
                   width={40}
                   height={40}
                   className="
-                    w-6 h-6 h-8 h-10
-                    p-1
-                    bg-[var(--color2)]
+                    h-6
+                    w-6
                     rounded-full
+                    bg-[var(--color2)]
+                    p-1
+                    sm:h-8
                     sm:w-8
+                    md:h-10
                     md:w-10
                   "
                 />
-              </button>
+              </span>
             </Link>
           </div>
 
+          {/* Hero Information Cards */}
           <div
             className="
-              flex
               mt-9
-              justify-between gap-2
+              flex
+              justify-between
+              gap-2
             "
           >
+            {/* Working Hours */}
             <div
               className="
                 w-60
+                rounded-2xl
+                border
+                border-white/30
+                bg-white/20
                 p-5
                 text-neutral-800
-                bg-white/20
-                border-[var(--color2)] rounded-2xl border-white/30 border
                 shadow-xl
-                dark:bg-black/30 backdrop-blur-xl dark:border-white/10 dark:text-neutral-100
+                backdrop-blur-xl
+                dark:border-white/10
+                dark:bg-black/30
+                dark:text-neutral-100
                 sm:w-70
               "
             >
-              <h1
-                className="
-                  text-2xl
-                  sm:text-3xl
-                "
-              >
-                Working <br /> Hours
+              <h1 className="text-2xl sm:text-3xl">
+                Working
+                <br />
+                Hours
               </h1>
 
-              <div
-                className="
-                  flex
-                  mt-2
-                  items-center gap-4
-                "
-              >
-                <Image src="/clock.svg" alt="clock" width={45} height={45} />
+              <div className="mt-2 flex items-center gap-4">
+                <Image
+                  src="/clock.svg"
+                  alt="clock"
+                  width={45}
+                  height={45}
+                />
 
-                <div
-                  className="
-                    flex flex-col
-                    text-sm
-                    sm:text-sm
-                  "
-                >
+                <div className="flex flex-col text-sm">
                   <p>MON - FRI</p>
                   <p>8:30 AM - 5:30 PM</p>
                   <p>SAT: 8:30 AM - 1:00 PM</p>
@@ -396,34 +442,31 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Clinic Location */}
             <div
               className="
                 w-60
+                rounded-2xl
+                border
+                border-white/30
+                bg-white/20
                 p-5
                 text-neutral-800
-                bg-white/20
-                border-[var(--color2)] rounded-2xl border-white/30 border
                 shadow-xl
-                dark:bg-black/30 backdrop-blur-xl dark:border-white/10 dark:text-neutral-100
+                backdrop-blur-xl
+                dark:border-white/10
+                dark:bg-black/30
+                dark:text-neutral-100
                 sm:w-70
               "
             >
-              <h1
-                className="
-                  text-2xl
-                  sm:text-3xl
-                "
-              >
-                Visit Our <br /> Clinic
+              <h1 className="text-2xl sm:text-3xl">
+                Visit Our
+                <br />
+                Clinic
               </h1>
 
-              <div
-                className="
-                  flex
-                  mt-2
-                  items-center gap-2
-                "
-              >
+              <div className="mt-2 flex items-center gap-2">
                 <Image
                   src="/location.svg"
                   alt="location"
@@ -431,88 +474,79 @@ export default function Home() {
                   height={65}
                 />
 
-                <div>
-                  <p
-                    className="
-                      text-sm
-                      sm:text-sm
-                    "
-                  >
-                    The Place, General Mathenge Rd, next to Autoexpress and
-                    Zucchini, Westlands, Nairobi.
-                  </p>
-                </div>
+                <p className="text-sm">
+                  The Place, General Mathenge Rd, next to Autoexpress and
+                  Zucchini, Westlands, Nairobi.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. About Section */}
+      {/* =========================================================
+          2. ABOUT SECTION
+      ========================================================= */}
       <section
         data-nav-theme="light"
         className="
-          flex flex-col
-          w-full min-h-[100dvh] max-w-[90vw]
-          mx-auto py-10
-          items-center justify-center snap-start snap-always shrink-0
+          flex
+          min-h-[100dvh]
+          w-full
+          max-w-[90vw]
+          shrink-0
+          snap-start
+          flex-col
+          items-center
+          justify-center
+          mx-auto
+          py-10
           lg:py-12
         "
       >
-        {/* WHO WE ARE */}
-        <div
-          className="
-            mb-6
-            text-center
-            shrink-0
-            lg:mb-8
-          "
-        >
+        {/* Label */}
+        <div className="mb-6 shrink-0 text-center lg:mb-8">
           <div
             className="
               inline-flex
-              px-4 py-1.5
-              text-sm font-medium text-[var(--color4)]
-              bg-[var(--color5)]
-              rounded-full
               items-center
+              rounded-full
+              bg-[var(--color5)]
+              px-4
+              py-1.5
+              text-sm
+              font-medium
+              text-[var(--color4)]
               sm:text-base
             "
           >
-            <span
-              className="
-                mr-2
-                text-[var(--color2)]
-              "
-            >
-              •
-            </span>
+            <span className="mr-2 text-[var(--color2)]">•</span>
             Who We Are
           </div>
         </div>
 
-        {/* MAIN CONTENT */}
+        {/* Main Content */}
         <div
           className="
-            flex flex-col
+            flex
             w-full
-            items-center justify-center gap-8
-            lg:flex-row lg:gap-12
+            flex-col
+            items-center
+            justify-center
+            gap-8
+            lg:flex-row
+            lg:gap-12
             xl:gap-16
           "
         >
-          {/* TEXT CONTENT */}
-          <div
-            className="
-              flex flex-col
-              w-full
-              lg:w-[55%]
-            "
-          >
-            {/* Heading */}
+          {/* Text */}
+          <div className="flex w-full flex-col lg:w-[55%]">
             <h2
               className="
-                text-[var(--color4)] text-2xl font-medium leading-[1.05]
+                text-2xl
+                font-medium
+                leading-[1.05]
+                text-[var(--color4)]
                 sm:text-3xl
                 md:text-4xl
                 lg:text-5xl
@@ -521,201 +555,143 @@ export default function Home() {
             >
               Multidisciplinary Dental Care
               <br />
-              <span
-                className="
-                  text-[var(--color2)]
-                "
-              >
+              <span className="text-[var(--color2)]">
                 Designed Around You.
               </span>
             </h2>
 
-            {/* Main Description */}
             <p
               className="
-                max-w-3xl
                 mt-6
-                text-base font-light leading-[1.5] text-[var(--color4)]
+                max-w-3xl
+                text-base
+                font-light
+                leading-[1.5]
+                text-[var(--color4)]
                 sm:text-lg
                 md:text-xl
-                lg:text-[24px] lg:leading-[1.35]
+                lg:text-[24px]
+                lg:leading-[1.35]
                 xl:text-[27px]
               "
             >
               Dentists @ The Place is a{" "}
-              <span
-                className="
-                  font-semibold text-[var(--color2)]
-                "
-              >
+              <span className="font-semibold text-[var(--color2)]">
                 multidisciplinary dental clinic
               </span>{" "}
               in the heart of Westlands, Nairobi, providing accessible,
               high-quality dental care in a welcoming and modern environment.
             </p>
 
-            {/* Secondary Description */}
             <p
               className="
-                max-w-3xl
                 mt-4
-                text-sm font-light leading-[1.6] text-[var(--color4)]/70
+                max-w-3xl
+                text-sm
+                font-light
+                leading-[1.6]
+                text-[var(--color4)]/70
                 sm:text-base
                 lg:text-lg
               "
             >
-              We provide all aspects of general dentistry together with advanced
-              procedures, combining qualified dental professionals, innovative
-              therapy, and a contemporary approach to oral health care.
+              We provide all aspects of general dentistry together with
+              advanced procedures, combining qualified dental professionals,
+              innovative therapy, and a contemporary approach to oral health
+              care.
             </p>
 
-            {/* SERVICES / HIGHLIGHTS */}
+            {/* Highlights */}
             <div
               className="
-                grid grid-cols-2
                 mt-7
+                grid
+                grid-cols-2
                 gap-3
-                sm:grid-cols-3 sm:gap-4
+                sm:grid-cols-3
+                sm:gap-4
                 lg:mt-8
               "
             >
-              {/* General Dentistry */}
               <div
                 className="
-                  p-4
-                  bg-[var(--color5)]
                   rounded-xl
+                  bg-[var(--color5)]
+                  p-4
                   sm:p-5
                 "
               >
-                <span
-                  className="
-                    text-2xl text-[var(--color2)]
-                    sm:text-3xl
-                  "
-                >
+                <span className="text-2xl text-[var(--color2)] sm:text-3xl">
                   01
                 </span>
 
-                <h3
-                  className="
-                    mt-3
-                    text-sm font-medium text-[var(--color4)]
-                    sm:text-base
-                  "
-                >
+                <h3 className="mt-3 text-sm font-medium text-[var(--color4)] sm:text-base">
                   General Dentistry
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-xs font-light leading-[1.4] text-[var(--color4)]/60
-                    sm:text-sm
-                  "
-                >
+                <p className="mt-1 text-xs font-light leading-[1.4] text-[var(--color4)]/60 sm:text-sm">
                   Everyday dental care for healthy smiles.
                 </p>
               </div>
 
-              {/* Advanced Procedures */}
               <div
                 className="
-                  p-4
-                  bg-[var(--color3)]
                   rounded-xl
+                  bg-[var(--color3)]
+                  p-4
                   sm:p-5
                 "
               >
-                <span
-                  className="
-                    text-2xl text-white
-                    sm:text-3xl
-                  "
-                >
+                <span className="text-2xl text-white sm:text-3xl">
                   02
                 </span>
 
-                <h3
-                  className="
-                    mt-3
-                    text-sm font-medium text-white
-                    sm:text-base
-                  "
-                >
+                <h3 className="mt-3 text-sm font-medium text-white sm:text-base">
                   Advanced Procedures
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-xs font-light leading-[1.4] text-white/70
-                    sm:text-sm
-                  "
-                >
+                <p className="mt-1 text-xs font-light leading-[1.4] text-white/70 sm:text-sm">
                   Modern solutions for complex dental needs.
                 </p>
               </div>
 
-              {/* Comprehensive Care */}
               <div
                 className="
-                  p-4
-                  bg-[var(--color5)]
-                  rounded-xl
                   col-span-2
-                  sm:p-5 sm:col-span-1
+                  rounded-xl
+                  bg-[var(--color5)]
+                  p-4
+                  sm:col-span-1
+                  sm:p-5
                 "
               >
-                <span
-                  className="
-                    text-2xl text-[var(--color2)]
-                    sm:text-3xl
-                  "
-                >
+                <span className="text-2xl text-[var(--color2)] sm:text-3xl">
                   03
                 </span>
 
-                <h3
-                  className="
-                    mt-3
-                    text-sm font-medium text-[var(--color4)]
-                    sm:text-base
-                  "
-                >
+                <h3 className="mt-3 text-sm font-medium text-[var(--color4)] sm:text-base">
                   Comprehensive Care
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-xs font-light leading-[1.4] text-[var(--color4)]/60
-                    sm:text-sm
-                  "
-                >
+                <p className="mt-1 text-xs font-light leading-[1.4] text-[var(--color4)]/60 sm:text-sm">
                   From prevention to complete smile rehabilitation.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* IMAGE */}
-          <div
-            className="
-              flex
-              w-full
-              items-center justify-center
-              lg:w-[45%]
-            "
-          >
+          {/* Image */}
+          <div className="flex w-full items-center justify-center lg:w-[45%]">
             <Image
               src="/aboutus.png"
               width={1050}
               height={1050}
               alt="Dental care at Dentists @ The Place"
               className="
+                h-auto
+                w-[70vw]
+                max-w-[520px]
                 object-contain
-                h-auto w-[70vw] max-w-[520px]
                 sm:w-[60vw]
                 md:w-[50vw]
                 lg:w-[42vw]
@@ -725,68 +701,66 @@ export default function Home() {
           </div>
         </div>
 
-        {/* BOTTOM CONTENT */}
+        {/* Bottom Content */}
         <div
           className="
-            flex flex-col
-            w-full
             mt-7
-            items-start justify-between gap-5
-            lg:flex-row lg:mt-8 lg:items-center
+            flex
+            w-full
+            flex-col
+            items-start
+            justify-between
+            gap-5
+            lg:mt-8
+            lg:flex-row
+            lg:items-center
           "
         >
-          {/* Location */}
-          <div
-            className="
-              flex
-              items-start gap-3
-            "
-          >
+          <div className="flex items-start gap-3">
             <div
               className="
                 flex
-                h-10 w-10
-                text-[var(--color2)]
-                bg-[var(--color5)]
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
                 rounded-full
-                shrink-0 items-center justify-center
+                bg-[var(--color5)]
+                text-[var(--color2)]
               "
             >
               •
             </div>
 
             <div>
-              <p
-                className="
-                  text-sm font-medium text-[var(--color4)]
-                "
-              >
+              <p className="text-sm font-medium text-[var(--color4)]">
                 Visit Us
               </p>
 
-              <p
-                className="
-                  mt-1
-                  text-xs font-light text-[var(--color4)]/60
-                  sm:text-sm
-                "
-              >
+              <p className="mt-1 text-xs font-light text-[var(--color4)]/60 sm:text-sm">
                 General Mathenge Rd, next to Autoexpress and Zucchini,
                 Westlands, Nairobi.
               </p>
             </div>
           </div>
 
-          {/* BUTTON */}
           <Link
             href="/aboutus"
             className="
+              group
               flex
-              py-1 pl-5 pr-1
-              text-sm font-medium text-[var(--color1)]
-              bg-[var(--color2)]
+              shrink-0
+              items-center
+              gap-2
               rounded-full
-              group shrink-0 items-center gap-2
+              bg-[var(--color2)]
+              py-1
+              pl-5
+              pr-1
+              text-sm
+              font-medium
+              text-[var(--color1)]
               sm:text-base
             "
           >
@@ -795,13 +769,19 @@ export default function Home() {
             <span
               className="
                 flex
-                h-8 w-8
-                text-[var(--color2)]
-                bg-[var(--color1)]
+                h-8
+                w-8
+                items-center
+                justify-center
                 rounded-full
+                bg-[var(--color1)]
+                text-[var(--color2)]
                 transition-transform
-                items-center justify-center duration-300 ease-out group-hover:rotate-45
-                sm:h-9 sm:w-9
+                duration-300
+                ease-out
+                group-hover:rotate-45
+                sm:h-9
+                sm:w-9
               "
             >
               <svg
@@ -812,9 +792,7 @@ export default function Home() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="
-                  h-5 w-5
-                "
+                className="h-5 w-5"
               >
                 <path d="M5 12h14" />
                 <path d="m13 6 6 6-6 6" />
@@ -824,54 +802,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Services Section */}
+      {/* =========================================================
+          3. SERVICES SECTION
+      ========================================================= */}
       <section
         className="
-          flex flex-col overflow-hidden
-          min-h-screen w-full
-          px-4 py-8
-          snap-start snap-always shrink-0 items-center justify-center
-          sm:px-6 sm:py-10
-          md:px-8 md:py-12
-          lg:px-10 lg:py-10
+          flex
+          min-h-[100dvh]
+          w-full
+          shrink-0
+          snap-start
+          flex-col
+          items-center
+          justify-start
+          px-4
+          py-10
+          sm:px-6
+          sm:py-10
+          md:px-8
+          md:py-12
+          lg:px-10
+          lg:py-10
+          lg:justify-center
         "
       >
         {/* Heading */}
-        <div
-          className="
-            mb-5
-            text-center
-            sm:mb-6
-            md:mb-7
-            lg:mb-7
-          "
-        >
-          {/* Label */}
+        <div className="mb-5 text-center sm:mb-6 md:mb-7 lg:mb-7">
           <div
             className="
+              mb-2
               inline-flex
-              px-3 py-1 mb-2
-              text-xs font-medium text-[var(--color4)]
-              bg-gray-100
-              rounded-full
               items-center
-              sm:px-4 sm:text-sm
+              rounded-full
+              bg-gray-100
+              px-3
+              py-1
+              text-xs
+              font-medium
+              text-[var(--color4)]
+              sm:px-4
+              sm:text-sm
             "
           >
-            <span
-              className="
-                mr-1
-              "
-            >
-              •
-            </span>
+            <span className="mr-1">•</span>
             Dental Services
           </div>
 
-          {/* Main Heading */}
           <h2
             className="
-              text-[var(--color4)] font-medium tracking-tight leading-[1.05] text-3xl
+              text-3xl
+              font-medium
+              leading-[1.05]
+              tracking-tight
+              text-[var(--color4)]
               sm:text-4xl
               md:text-5xl
               lg:text-6xl
@@ -881,11 +864,7 @@ export default function Home() {
             Comprehensive Dental Care
             <br />
             for{" "}
-            <span
-              className="
-                text-[var(--color2)]
-              "
-            >
+            <span className="text-[var(--color2)]">
               Every Smile
             </span>
           </h2>
@@ -894,32 +873,41 @@ export default function Home() {
         {/* Services Grid */}
         <div
           className="
-            grid grid-cols-1
-            w-full max-w-[1350px] min-h-0
+            grid
+            min-h-0
+            w-full
+            max-w-[1350px]
+            grid-cols-1
             gap-3
-            sm:grid-cols-2 sm:gap-4
+            sm:grid-cols-2
+            sm:gap-4
             md:gap-5
-            lg:grid-cols-3 lg:gap-5
+            lg:grid-cols-3
+            lg:gap-5
           "
         >
           {services.map((service) => (
             <div
               key={service.title}
               className="
+                group
+                w-full
+                min-w-0
                 overflow-hidden
-                w-full min-w-0
-                bg-[#ccecf1]
                 rounded-xl
+                bg-[#ccecf1]
                 transition-all
-                group duration-300 hover:-translate-y-1
+                duration-300
+                hover:-translate-y-1
               "
             >
               {/* Image */}
               <div
                 className="
-                  overflow-hidden
-                  w-full h-[120px]
                   relative
+                  h-[120px]
+                  w-full
+                  overflow-hidden
                   sm:h-[135px]
                   md:h-[145px]
                   lg:h-[150px]
@@ -931,24 +919,27 @@ export default function Home() {
                   alt={service.title}
                   fill
                   sizes="
-              (max-width: 640px) 100vw,
-              (max-width: 1024px) 50vw,
-              33vw
-            "
+                    (max-width: 640px) 100vw,
+                    (max-width: 1024px) 50vw,
+                    33vw
+                  "
                   className="
                     object-cover
                     transition-transform
-                    duration-500 group-hover:scale-105
+                    duration-500
+                    group-hover:scale-105
                   "
                 />
               </div>
 
-              {/* Card Content */}
+              {/* Content */}
               <div
                 className="
-                  min-h-[100px]
-                  px-4 py-3 pr-14
                   relative
+                  min-h-[100px]
+                  px-4
+                  py-3
+                  pr-14
                   sm:min-h-[105px]
                   md:min-h-[110px]
                   lg:min-h-[115px]
@@ -957,7 +948,10 @@ export default function Home() {
                 <h3
                   className="
                     mb-1.5
-                    text-[var(--color4)] text-base font-medium leading-tight
+                    text-base
+                    font-medium
+                    leading-tight
+                    text-[var(--color4)]
                     sm:text-lg
                     md:text-lg
                     lg:text-xl
@@ -969,7 +963,10 @@ export default function Home() {
                 <p
                   className="
                     max-w-[92%]
-                    text-[var(--color4)] text-xs leading-[1.3] font-light
+                    text-xs
+                    font-light
+                    leading-[1.3]
+                    text-[var(--color4)]
                     sm:text-sm
                     md:text-sm
                     lg:text-[15px]
@@ -978,23 +975,36 @@ export default function Home() {
                   {service.description}
                 </p>
 
-                {/* Arrow Button */}
                 <Link
                   href={`/services/${service.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
                   aria-label={`Learn more about ${service.title}`}
                   className="
+                    group/arrow
+                    absolute
+                    bottom-3
+                    right-3
                     flex
-                    w-9 h-9
-                    text-[var(--color1)]
-                    bg-[var(--color4)]
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
                     rounded-full
+                    bg-[var(--color4)]
+                    text-[var(--color1)]
                     transition-all
-                    group/arrow absolute right-3 bottom-3 items-center justify-center duration-300 ease-out hover:bg-[var(--color2)] hover:text-white hover:scale-105
-                    sm:w-10 sm:h-10
-                    md:w-11 md:h-11
-                    lg:w-12 lg:h-12
+                    duration-300
+                    ease-out
+                    hover:scale-105
+                    hover:bg-[var(--color2)]
+                    hover:text-white
+                    sm:h-10
+                    sm:w-10
+                    md:h-11
+                    md:w-11
+                    lg:h-12
+                    lg:w-12
                   "
                 >
                   <svg
@@ -1005,12 +1015,7 @@ export default function Home() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="
-                      w-4 h-4
-                      transition-colors
-                      duration-300
-                      sm:w-5 sm:h-5
-                    "
+                    className="h-4 w-4 sm:h-5 sm:w-5"
                   >
                     <path d="M5 12h14" />
                     <path d="m13 6 6 6-6 6" />
@@ -1021,17 +1026,26 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ALL SERVICES BUTTON */}
+        {/* All Services */}
         <Link
           href="/services"
           className="
+            group
+            mt-5
             flex
-            mt-5 pl-4 pr-2 py-1.5
-            text-[var(--color1)] text-sm font-medium
-            bg-[var(--color2)]
+            shrink-0
+            items-center
+            gap-2
             rounded-full
-            group items-center gap-2 shrink-0
-            sm:mt-6 sm:text-base
+            bg-[var(--color2)]
+            py-1.5
+            pl-4
+            pr-2
+            text-sm
+            font-medium
+            text-[var(--color1)]
+            sm:mt-6
+            sm:text-base
             md:mt-7
             lg:mt-7
           "
@@ -1041,13 +1055,19 @@ export default function Home() {
           <span
             className="
               flex
-              w-8 h-8
-              text-[var(--color2)]
-              bg-[var(--color1)]
+              h-8
+              w-8
+              items-center
+              justify-center
               rounded-full
+              bg-[var(--color1)]
+              text-[var(--color2)]
               transition-transform
-              items-center justify-center duration-300 ease-out group-hover:rotate-45
-              sm:w-9 sm:h-9
+              duration-300
+              ease-out
+              group-hover:rotate-45
+              sm:h-9
+              sm:w-9
             "
           >
             <svg
@@ -1058,10 +1078,7 @@ export default function Home() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="
-                w-4 h-4
-                sm:w-5 sm:h-5
-              "
+              className="h-4 w-4 sm:h-5 sm:w-5"
             >
               <path d="M5 12h14" />
               <path d="m13 6 6 6-6 6" />
@@ -1070,44 +1087,55 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* 4. Doctors Section */}
+      {/* =========================================================
+          4. DOCTORS SECTION
+      ========================================================= */}
       <section
         className="
-          flex flex-col
-          min-h-[100dvh] w-full
-          px-5 py-10 py-12
-          justify-center items-center snap-start snap-always shrink-0
+          flex
+          min-h-[100dvh]
+          w-full
+          shrink-0
+          snap-start
+          flex-col
+          items-center
+          justify-start
+          px-5
+          py-10
           sm:px-8
           lg:px-12
+          lg:justify-center
         "
       >
-        {/* SECTION LABEL */}
+        {/* Label */}
         <div
           className="
+            mb-4
             inline-flex
-            px-4 py-1 mb-4
-            text-sm font-medium text-[var(--color4)]
-            bg-gray-100
-            rounded-full
             items-center
+            rounded-full
+            bg-gray-100
+            px-4
+            py-1
+            text-sm
+            font-medium
+            text-[var(--color4)]
             sm:text-base
           "
         >
-          <span
-            className="
-              mr-1
-            "
-          >
-            •
-          </span>
+          <span className="mr-1">•</span>
           Meet the Dentists
         </div>
 
-        {/* MAIN HEADING */}
+        {/* Heading */}
         <h2
           className="
             max-w-4xl
-            text-center text-[var(--color4)] font-medium leading-[1.05] text-3xl
+            text-center
+            text-3xl
+            font-medium
+            leading-[1.05]
+            text-[var(--color4)]
             sm:text-4xl
             md:text-5xl
             lg:text-6xl
@@ -1117,41 +1145,38 @@ export default function Home() {
           Meet the Doctors Who Keep
           <br />
           Your{" "}
-          <span
-            className="
-              text-[var(--color2)]
-            "
-          >
+          <span className="text-[var(--color2)]">
             Smiles Healthy.
           </span>
         </h2>
 
-        {/* DOCTORS */}
+        {/* Doctors */}
         <div
           className="
-            grid grid-cols-1
-            w-full max-w-[1200px]
             mt-10
+            grid
+            w-full
+            max-w-[1200px]
+            grid-cols-1
             gap-6
             sm:grid-cols-2
             lg:grid-cols-3
           "
         >
           {doctors.map((doctor) => (
-            <div
-              key={doctor.name}
-              className="
-                w-full
-              "
-            >
-              {/* IMAGE / PLACEHOLDER */}
+            <div key={doctor.name} className="w-full">
+              {/* Image */}
               <div
                 className="
-                  overflow-hidden flex
+                  relative
+                  flex
+                  aspect-[4/5]
                   w-full
-                  bg-[var(--color5)]
+                  items-center
+                  justify-center
+                  overflow-hidden
                   rounded-[24px]
-                  relative items-center justify-center aspect-[4/5]
+                  bg-[var(--color5)]
                 "
               >
                 {doctor.image ? (
@@ -1159,19 +1184,19 @@ export default function Home() {
                     src={doctor.image}
                     alt={doctor.name}
                     fill
-                    className="
-                      object-cover
-                    "
+                    className="object-cover"
                   />
                 ) : (
                   <div
                     className="
                       flex
-                      w-24 h-24
-                      text-[var(--color2)]
-                      bg-white/70
+                      h-24
+                      w-24
+                      items-center
+                      justify-center
                       rounded-full
-                      items-center justify-center
+                      bg-white/70
+                      text-[var(--color2)]
                     "
                   >
                     <svg
@@ -1180,9 +1205,7 @@ export default function Home() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="1.5"
-                      className="
-                        w-14 h-14
-                      "
+                      className="h-14 w-14"
                     >
                       <path
                         strokeLinecap="round"
@@ -1194,35 +1217,22 @@ export default function Home() {
                 )}
               </div>
 
-              {/* INFO */}
-              <div
-                className="
-                  flex
-                  mt-4
-                  items-center justify-between
-                "
-              >
-                <div
-                  className="
-                    pr-3
-                  "
-                >
+              {/* Info */}
+              <div className="mt-4 flex items-center justify-between">
+                <div className="pr-3">
                   <h3
                     className="
-                      text-[var(--color4)] text-xl leading-none font-medium
+                      text-xl
+                      font-medium
+                      leading-none
+                      text-[var(--color4)]
                       sm:text-2xl
                     "
                   >
                     {doctor.name}
                   </h3>
 
-                  <p
-                    className="
-                      mt-1
-                      text-[var(--color4)] text-sm
-                      sm:text-base
-                    "
-                  >
+                  <p className="mt-1 text-sm text-[var(--color4)] sm:text-base">
                     {doctor.specialty}
                   </p>
                 </div>
@@ -1231,12 +1241,20 @@ export default function Home() {
                   href="/dentists"
                   aria-label={`View ${doctor.name}`}
                   className="
+                    group
                     flex
-                    w-14 h-14 h-16
-                    bg-[var(--color5)]
+                    h-14
+                    w-14
+                    shrink-0
+                    cursor-pointer
+                    items-center
+                    justify-center
                     rounded-full
-                    transition-colors cursor-pointer
-                    group items-center justify-center duration-300 shrink-0 hover:bg-[var(--color2)]
+                    bg-[var(--color5)]
+                    transition-colors
+                    duration-300
+                    hover:bg-[var(--color2)]
+                    sm:h-16
                     sm:w-16
                   "
                 >
@@ -1249,10 +1267,12 @@ export default function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="
-                      w-6 h-6
+                      h-6
+                      w-6
                       text-[var(--color4)]
                       transition-colors
-                      duration-300 group-hover:text-white
+                      duration-300
+                      group-hover:text-white
                     "
                   >
                     <path d="M5 12h14" />
@@ -1264,16 +1284,23 @@ export default function Home() {
           ))}
         </div>
 
-        {/* SEE ALL BUTTON */}
+        {/* All Team */}
         <Link
           href="/dentists"
           className="
+            group
+            mt-8
             flex
-            px-2 pl-4 py-1.5 mt-8
-            text-base font-medium text-[var(--color1)]
-            bg-[var(--color2)]
+            items-center
+            gap-2
             rounded-full
-            group items-center gap-2
+            bg-[var(--color2)]
+            py-1.5
+            pl-4
+            pr-2
+            text-base
+            font-medium
+            text-[var(--color1)]
             sm:text-lg
             lg:mt-10
           "
@@ -1283,13 +1310,19 @@ export default function Home() {
           <span
             className="
               flex
-              w-8 h-8
-              text-[var(--color2)]
-              bg-[var(--color1)]
+              h-8
+              w-8
+              items-center
+              justify-center
               rounded-full
+              bg-[var(--color1)]
+              text-[var(--color2)]
               transition-transform
-              items-center justify-center duration-300 ease-out group-hover:rotate-45
-              sm:w-9 sm:h-9
+              duration-300
+              ease-out
+              group-hover:rotate-45
+              sm:h-9
+              sm:w-9
             "
           >
             <svg
@@ -1300,9 +1333,7 @@ export default function Home() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="
-                w-5 h-5
-              "
+              className="h-5 w-5"
             >
               <path d="M5 12h14" />
               <path d="m13 6 6 6-6 6" />
@@ -1311,43 +1342,42 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* 5. Testimonials Section */}
+      {/* =========================================================
+          5. TESTIMONIALS SECTION
+      ========================================================= */}
       <section
         className="
-          flex flex-col
-          min-h-[100dvh] w-full
-          px-5 py-12 py-10
-          justify-center snap-start snap-always shrink-0
+          flex
+          min-h-[100dvh]
+          w-full
+          shrink-0
+          snap-start
+          flex-col
+          justify-start
+          px-5
+          py-10
           sm:px-8
           lg:px-[7vw]
+          lg:justify-center
         "
       >
-        {/* Section Label */}
-        <div
-          className="
-            mb-8
-            text-center
-            lg:mb-10
-          "
-        >
+        {/* Label */}
+        <div className="mb-8 text-center lg:mb-10">
           <div
             className="
               inline-flex
-              px-4 py-1
-              text-sm font-medium text-[var(--color4)]
-              bg-gray-100
-              rounded-full
               items-center
+              rounded-full
+              bg-gray-100
+              px-4
+              py-1
+              text-sm
+              font-medium
+              text-[var(--color4)]
               sm:text-base
             "
           >
-            <span
-              className="
-                mr-1
-              "
-            >
-              •
-            </span>
+            <span className="mr-1">•</span>
             What Our Patients Say
           </div>
         </div>
@@ -1355,18 +1385,24 @@ export default function Home() {
         {/* Main Content */}
         <div
           className="
-            grid grid-cols-1
-            w-full max-w-[1400px]
             mx-auto
-            items-center gap-10 gap-16
+            grid
+            w-full
+            max-w-[1400px]
+            grid-cols-1
+            items-center
+            gap-10
             lg:grid-cols-[0.9fr_1.1fr]
           "
         >
-          {/* LEFT CONTENT */}
+          {/* Left */}
           <div>
             <h2
               className="
-                text-[var(--color4)] font-medium leading-[1.05] text-4xl
+                text-4xl
+                font-medium
+                leading-[1.05]
+                text-[var(--color4)]
                 sm:text-5xl
                 md:text-6xl
                 lg:text-7xl
@@ -1380,9 +1416,11 @@ export default function Home() {
 
             <p
               className="
-                max-w-lg
                 mt-6
-                text-[var(--color4)] text-base leading-[1.35]
+                max-w-lg
+                text-base
+                leading-[1.35]
+                text-[var(--color4)]
                 sm:text-lg
                 lg:text-xl
               "
@@ -1395,9 +1433,11 @@ export default function Home() {
 
             <p
               className="
-                max-w-lg
                 mt-3
-                text-[var(--color4)] text-base leading-[1.35]
+                max-w-lg
+                text-base
+                leading-[1.35]
+                text-[var(--color4)]
                 sm:text-lg
                 lg:text-xl
               "
@@ -1408,11 +1448,15 @@ export default function Home() {
 
             <button
               className="
-                mt-6 px-5 py-2.5
-                text-[var(--color1)] text-sm
-                bg-[var(--color2)]
+                mt-6
+                cursor-pointer
                 rounded-md
-                transition-colors cursor-pointer
+                bg-[var(--color2)]
+                px-5
+                py-2.5
+                text-sm
+                text-[var(--color1)]
+                transition-colors
                 hover:bg-[var(--color4)]
                 sm:text-base
               "
@@ -1421,67 +1465,54 @@ export default function Home() {
             </button>
           </div>
 
-          {/* RIGHT TESTIMONIALS */}
-          <div
-            className="
-              flex flex-col
-              gap-4
-              lg:gap-5
-            "
-          >
-            {/* TESTIMONIAL 1 */}
+          {/* Testimonials */}
+          <div className="flex flex-col gap-4 lg:gap-5">
+            {/* Testimonial 1 */}
             <div
               className="
+                relative
                 flex
-                p-4 ml-0 p-5
+                items-center
+                gap-4
+                rounded-lg
+                border
+                border-[var(--color5)]
                 bg-white
-                border-[var(--color5)] rounded-lg border
+                p-5
                 shadow-sm
-                relative items-center gap-4
                 sm:gap-5
                 lg:ml-16
               "
             >
               <div
                 className="
+                  absolute
+                  bottom-0
+                  left-0
+                  top-0
                   w-2
-                  bg-[var(--color5)]
                   rounded-l-lg
-                  absolute left-0 top-0 bottom-0
+                  bg-[var(--color5)]
                 "
               />
 
               <div
                 className="
-                  w-16 h-16 h-20
-                  bg-[var(--color5)]
-                  rounded-full
+                  h-20
+                  w-20
                   shrink-0
+                  rounded-full
+                  bg-[var(--color5)]
                   sm:w-20
                 "
               />
 
-              <div
-                className="
-                  flex-1
-                "
-              >
-                <h3
-                  className="
-                    text-[var(--color4)] text-lg font-medium
-                    sm:text-xl
-                  "
-                >
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-[var(--color4)] sm:text-xl">
                   Sarah W.
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-[var(--color2)] text-xs leading-[1.3]
-                    sm:text-sm
-                  "
-                >
+                <p className="mt-1 text-xs leading-[1.3] text-[var(--color2)] sm:text-sm">
                   &quot;From the moment I walked in, I felt welcomed and cared
                   for. The staff were incredibly friendly, and the dentist
                   explained every step of my treatment. I couldn&apos;t be
@@ -1491,8 +1522,12 @@ export default function Home() {
 
               <span
                 className="
-                  text-4xl text-[var(--color2)] leading-none
-                  absolute right-4 top-2
+                  absolute
+                  right-4
+                  top-2
+                  text-4xl
+                  leading-none
+                  text-[var(--color2)]
                   sm:text-5xl
                 "
               >
@@ -1500,70 +1535,67 @@ export default function Home() {
               </span>
             </div>
 
-            {/* TESTIMONIAL 2 */}
+            {/* Testimonial 2 */}
             <div
               className="
+                relative
                 flex
-                p-4 p-5
+                items-center
+                gap-4
+                rounded-lg
+                border
+                border-[var(--color2)]
                 bg-white
-                border-[var(--color2)] rounded-lg border
+                p-5
                 shadow-sm
-                relative items-center gap-4
                 sm:gap-5
                 lg:mr-24
               "
             >
               <div
                 className="
+                  absolute
+                  bottom-0
+                  left-0
+                  top-0
                   w-2
-                  bg-[var(--color2)]
                   rounded-l-lg
-                  absolute left-0 top-0 bottom-0
+                  bg-[var(--color2)]
                 "
               />
 
               <div
                 className="
-                  w-16 h-16 h-20
-                  bg-[var(--color2)]
-                  rounded-full
+                  h-20
+                  w-20
                   shrink-0
+                  rounded-full
+                  bg-[var(--color2)]
                   sm:w-20
                 "
               />
 
-              <div
-                className="
-                  flex-1
-                "
-              >
-                <h3
-                  className="
-                    text-[var(--color4)] text-lg font-medium
-                    sm:text-xl
-                  "
-                >
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-[var(--color4)] sm:text-xl">
                   David M.
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-[var(--color4)] text-xs leading-[1.3]
-                    sm:text-sm
-                  "
-                >
-                  &quot;I used to be nervous about visiting the dentist, but the
-                  team made the entire experience comfortable and stress-free.
-                  Their professionalism and genuine care exceeded my
-                  expectations.&quot;
+                <p className="mt-1 text-xs leading-[1.3] text-[var(--color4)] sm:text-sm">
+                  &quot;I used to be nervous about visiting the dentist, but
+                  the team made the entire experience comfortable and
+                  stress-free. Their professionalism and genuine care exceeded
+                  my expectations.&quot;
                 </p>
               </div>
 
               <span
                 className="
-                  text-4xl text-[var(--color2)] leading-none
-                  absolute right-4 top-2
+                  absolute
+                  right-4
+                  top-2
+                  text-4xl
+                  leading-none
+                  text-[var(--color2)]
                   sm:text-5xl
                 "
               >
@@ -1571,59 +1603,52 @@ export default function Home() {
               </span>
             </div>
 
-            {/* TESTIMONIAL 3 */}
+            {/* Testimonial 3 */}
             <div
               className="
+                relative
                 flex
-                p-4 p-5
+                items-center
+                gap-4
+                rounded-lg
+                border
+                border-[var(--color5)]
                 bg-white
-                border-[var(--color5)] rounded-lg border
+                p-5
                 shadow-sm
-                relative items-center gap-4
                 sm:gap-5
                 lg:ml-16
               "
             >
               <div
                 className="
+                  absolute
+                  bottom-0
+                  left-0
+                  top-0
                   w-2
-                  bg-[var(--color5)]
                   rounded-l-lg
-                  absolute left-0 top-0 bottom-0
+                  bg-[var(--color5)]
                 "
               />
 
               <div
                 className="
-                  w-16 h-16 h-20
-                  bg-[var(--color5)]
-                  rounded-full
+                  h-20
+                  w-20
                   shrink-0
+                  rounded-full
+                  bg-[var(--color5)]
                   sm:w-20
                 "
               />
 
-              <div
-                className="
-                  flex-1
-                "
-              >
-                <h3
-                  className="
-                    text-[var(--color4)] text-lg font-medium
-                    sm:text-xl
-                  "
-                >
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-[var(--color4)] sm:text-xl">
                   Grace K.
                 </h3>
 
-                <p
-                  className="
-                    mt-1
-                    text-[var(--color2)] text-xs leading-[1.3]
-                    sm:text-sm
-                  "
-                >
+                <p className="mt-1 text-xs leading-[1.3] text-[var(--color2)] sm:text-sm">
                   &quot;The clinic is clean, modern, and equipped with the
                   latest technology. My treatment was painless, and the results
                   were amazing. I highly recommend them to anyone looking for
@@ -1633,8 +1658,12 @@ export default function Home() {
 
               <span
                 className="
-                  text-4xl text-[var(--color2)] leading-none
-                  absolute right-4 top-2
+                  absolute
+                  right-4
+                  top-2
+                  text-4xl
+                  leading-none
+                  text-[var(--color2)]
                   sm:text-5xl
                 "
               >
@@ -1645,63 +1674,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Contact Us Section */}
+      {/* =========================================================
+          6. CONTACT SECTION
+      ========================================================= */}
       <section
         id="contact"
         className="
-          flex flex-col
-          min-h-screen w-full
-          px-5 py-12 py-10
-          justify-center snap-start snap-always shrink-0
+          flex
+          min-h-[100dvh]
+          w-full
+          shrink-0
+          snap-start
+          flex-col
+          justify-start
+          px-5
+          py-10
           sm:px-8
           lg:px-[7vw]
+          lg:justify-center
         "
       >
-        {/* Section Label */}
-        <div
-          className="
-            mb-8
-            text-center
-            lg:mb-10
-          "
-        >
+        {/* Label */}
+        <div className="mb-8 text-center lg:mb-10">
           <div
             className="
               inline-flex
-              px-4 py-1
-              text-sm font-medium text-[var(--color4)]
-              bg-gray-100
-              rounded-full
               items-center
+              rounded-full
+              bg-gray-100
+              px-4
+              py-1
+              text-sm
+              font-medium
+              text-[var(--color4)]
               sm:text-base
             "
           >
-            <span
-              className="
-                mr-1
-              "
-            >
-              •
-            </span>
+            <span className="mr-1">•</span>
             Contact Us
           </div>
         </div>
 
-        {/* CONTENT */}
+        {/* Content */}
         <div
           className="
-            grid grid-cols-1
-            w-full max-w-[1400px]
             mx-auto
-            items-center gap-10 gap-16
+            grid
+            w-full
+            max-w-[1400px]
+            grid-cols-1
+            items-center
+            gap-10
             lg:grid-cols-2
           "
         >
-          {/* LEFT */}
+          {/* Left */}
           <div>
             <h2
               className="
-                text-[var(--color4)] font-medium leading-[1.05] text-4xl
+                text-4xl
+                font-medium
+                leading-[1.05]
+                text-[var(--color4)]
                 sm:text-5xl
                 md:text-6xl
                 lg:text-7xl
@@ -1710,57 +1744,47 @@ export default function Home() {
             >
               Schedule Your Next
               <br />
-              <span
-                className="
-                  text-[var(--color2)]
-                "
-              >
+              <span className="text-[var(--color2)]">
                 Dental Appointment
               </span>
             </h2>
 
-            {/* Calendar + Opening Hours */}
+            {/* Calendar + Hours */}
             <div
               className="
-                flex flex-col
                 mt-8
-                items-center gap-6
+                flex
+                flex-col
+                items-center
+                gap-6
                 sm:flex-row
               "
             >
-              {/* Calendar Image */}
-              <div
-                className="
-                  shrink-0
-                "
-              >
+              <div className="shrink-0">
                 <Image
                   src="/calendar.png"
                   width={300}
                   height={300}
                   alt="Dental appointment calendar"
                   className="
+                    h-auto
+                    w-44
                     object-contain
-                    w-44 h-auto
                     sm:w-48
                     lg:w-56
                   "
                 />
               </div>
 
-              {/* Hours */}
-              <div
-                className="
-                  w-full max-w-sm
-                "
-              >
+              <div className="w-full max-w-sm">
                 <div
                   className="
                     flex
+                    justify-between
+                    border-b
+                    border-[var(--color5)]
                     py-3
                     text-sm
-                    border-b border-[var(--color5)]
-                    justify-between
                     sm:text-base
                   "
                 >
@@ -1771,10 +1795,11 @@ export default function Home() {
                 <div
                   className="
                     flex
+                    justify-between
+                    border-b
+                    border-[var(--color5)]
                     py-3
                     text-sm
-                    border-b border-[var(--color5)]
-                    justify-between
                     sm:text-base
                   "
                 >
@@ -1782,71 +1807,47 @@ export default function Home() {
                   <span>8:30 AM - 1:00 PM</span>
                 </div>
 
-                <div
-                  className="
-                    flex
-                    py-3
-                    text-sm
-                    justify-between
-                    sm:text-base
-                  "
-                >
+                <div className="flex justify-between py-3 text-sm sm:text-base">
                   <span>Sunday</span>
                   <span>Closed</span>
                 </div>
               </div>
             </div>
 
-            {/* CONTACT DETAILS */}
+            {/* Contact Details */}
             <div
               className="
-                grid grid-cols-1
                 mt-8
+                grid
+                grid-cols-1
                 gap-5
                 sm:grid-cols-2
               "
             >
               {/* Location */}
-              <div
-                className="
-                  flex
-                  items-center gap-3
-                "
-              >
+              <div className="flex items-center gap-3">
                 <div
                   className="
                     flex
-                    w-10 h-10
-                    text-white
-                    bg-[var(--color2)]
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
                     rounded-md
-                    items-center justify-center
+                    bg-[var(--color2)]
+                    text-white
                   "
                 >
-                  <span
-                    className="
-                      text-xl
-                    "
-                  >
-                    ⌖
-                  </span>
+                  <span className="text-xl">⌖</span>
                 </div>
 
                 <div>
-                  <p
-                    className="
-                      text-xs text-[var(--color2)]
-                    "
-                  >
+                  <p className="text-xs text-[var(--color2)]">
                     Visit Our Clinic
                   </p>
 
-                  <p
-                    className="
-                      text-sm font-medium text-[var(--color2)]
-                      sm:text-base
-                    "
-                  >
+                  <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
                     The Place, General Mathenge Rd, next to Autoexpress and
                     Zucchini, Westlands, Nairobi.
                   </p>
@@ -1854,93 +1855,60 @@ export default function Home() {
               </div>
 
               {/* Phone */}
-              <div
-                className="
-                  flex
-                  items-center gap-3
-                "
-              >
+              <div className="flex items-center gap-3">
                 <div
                   className="
                     flex
-                    w-10 h-10
-                    text-white
-                    bg-[var(--color2)]
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
                     rounded-md
-                    items-center justify-center
+                    bg-[var(--color2)]
+                    text-white
                   "
                 >
-                  <span
-                    className="
-                      text-xl
-                    "
-                  >
-                    ☎
-                  </span>
+                  <span className="text-xl">☎</span>
                 </div>
 
                 <div>
-                  <p
-                    className="
-                      text-xs text-[var(--color2)]
-                    "
-                  >
+                  <p className="text-xs text-[var(--color2)]">
                     Need Dental Services
                   </p>
 
-                  <p
-                    className="
-                      text-sm font-medium text-[var(--color2)]
-                      sm:text-base
-                    "
-                  >
+                  <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
                     0725 272727
                     <br />
                     0754 272727
                   </p>
                 </div>
               </div>
+
               {/* Email */}
-              <div
-                className="
-                  flex
-                  items-center gap-3
-                "
-              >
+              <div className="flex items-center gap-3">
                 <div
                   className="
                     flex
-                    w-10 h-10
-                    text-white
-                    bg-[var(--color2)]
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
                     rounded-md
-                    items-center justify-center
+                    bg-[var(--color2)]
+                    text-white
                   "
                 >
-                  <span
-                    className="
-                      text-xl
-                    "
-                  >
-                    @
-                  </span>
+                  <span className="text-xl">@</span>
                 </div>
 
                 <div>
-                  <p
-                    className="
-                      text-xs text-[var(--color2)]
-                    "
-                  >
+                  <p className="text-xs text-[var(--color2)]">
                     Email Us
                   </p>
 
-                  <p
-                    className="
-                      text-sm font-medium text-[var(--color2)]
-                      sm:text-base
-                    "
-                  >
+                  <p className="text-sm font-medium text-[var(--color2)] sm:text-base">
                     dentists@theplace.co.ke
                   </p>
                 </div>
@@ -1948,12 +1916,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* RIGHT — BOOKING FORM */}
+          {/* Booking Form */}
           <div
             className="
-              p-5
-              bg-[var(--color5)]
               rounded-xl
+              bg-[var(--color5)]
+              p-5
               sm:p-6
               lg:p-7
             "
@@ -1961,7 +1929,9 @@ export default function Home() {
             <h3
               className="
                 mb-5
-                text-[var(--color4)] text-2xl font-medium
+                text-2xl
+                font-medium
+                text-[var(--color4)]
                 sm:text-3xl
                 lg:text-4xl
               "
@@ -1969,20 +1939,9 @@ export default function Home() {
               Dental Appointment Booking
             </h3>
 
-            <form
-              onSubmit={handleSubmit}
-              className="
-                space-y-4
-              "
-            >
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name + Email */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="text"
                   name="name"
@@ -1991,12 +1950,16 @@ export default function Home() {
                   placeholder="Your Name"
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 />
 
@@ -2008,24 +1971,22 @@ export default function Home() {
                   placeholder="Email Address"
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 />
               </div>
 
-              {/* Phone + Department */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
+              {/* Phone + Service */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="tel"
                   name="phone"
@@ -2034,12 +1995,16 @@ export default function Home() {
                   placeholder="Phone"
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 />
 
@@ -2049,12 +2014,16 @@ export default function Home() {
                   onChange={handleChange}
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 >
                   <option value="">Select Service</option>
@@ -2070,26 +2039,24 @@ export default function Home() {
                 </select>
               </div>
 
-              {/* Doctor + Date */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
+              {/* Dentist + Date */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <select
                   name="dentist"
                   value={formData.dentist}
                   onChange={handleChange}
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 >
                   <option value="">Select Dentist</option>
@@ -2106,12 +2073,16 @@ export default function Home() {
                   onChange={handleChange}
                   required
                   className="
-                    w-full h-12
+                    h-12
+                    w-full
+                    rounded-md
+                    border
+                    border-[var(--color2)]/20
+                    bg-white
                     px-3
                     text-sm
-                    bg-white
-                    rounded-md border-[var(--color2)]/20 border
-                    outline-none focus:border-[var(--color2)]
+                    outline-none
+                    focus:border-[var(--color2)]
                   "
                 />
               </div>
@@ -2125,12 +2096,16 @@ export default function Home() {
                 rows={5}
                 className="
                   w-full
-                  px-3 py-3
-                  text-sm
-                  bg-white
-                  rounded-md border-[var(--color2)]/20 border
                   resize-none
-                  outline-none focus:border-[var(--color2)]
+                  rounded-md
+                  border
+                  border-[var(--color2)]/20
+                  bg-white
+                  px-3
+                  py-3
+                  text-sm
+                  outline-none
+                  focus:border-[var(--color2)]
                 "
               />
 
@@ -2139,35 +2114,31 @@ export default function Home() {
                 type="submit"
                 disabled={loading}
                 className="
-                  px-5 py-2.5
-                  text-white text-sm
-                  bg-[var(--color2)]
+                  cursor-pointer
                   rounded-md
-                  transition-colors cursor-pointer
-                  hover:bg-[var(--color4)] disabled:opacity-60 disabled:cursor-not-allowed
+                  bg-[var(--color2)]
+                  px-5
+                  py-2.5
+                  text-sm
+                  text-white
+                  transition-colors
+                  hover:bg-[var(--color4)]
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
                   sm:text-base
                 "
               >
                 {loading ? "Sending..." : "Book Appointment"}
               </button>
+
               {success && (
-                <p
-                  className="
-                    mt-3
-                    text-sm font-medium text-green-600
-                  "
-                >
+                <p className="mt-3 text-sm font-medium text-green-600">
                   {success}
                 </p>
               )}
 
               {error && (
-                <p
-                  className="
-                    mt-3
-                    text-sm font-medium text-red-600
-                  "
-                >
+                <p className="mt-3 text-sm font-medium text-red-600">
                   {error}
                 </p>
               )}
@@ -2176,273 +2147,293 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-<footer
-  className="
-    w-full
-    shrink-0 snap-end
-    bg-[var(--color5)]
-    px-5 pt-12 pb-6
-    text-[var(--color4)]
-    sm:px-8
-    lg:px-[7vw]
-  "
->
-  <div className="mx-auto max-w-[1400px]">
-
-    {/* TOP FOOTER */}
-    <div
-      className="
-        grid grid-cols-1
-        gap-10
-        sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12
-        lg:grid-cols-4 lg:gap-16
-      "
-    >
-      {/* BRAND */}
-      <div>
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/logo.png"
-            alt="Dentists @ The Place Logo"
-            width={60}
-            height={60}
-            className="h-10 w-auto"
-          />
-        </Link>
-
-        <p className="mt-3 text-base sm:text-lg">
-          Dental Care For Your New Smile
-        </p>
-
-        <p
-          className="
-            mt-5 max-w-xs
-            text-sm leading-[1.5]
-            text-[var(--color4)]/70
-          "
-        >
-          We provide all aspects of general dentistry together with
-          advanced procedures in a welcoming and comfortable environment
-          where your oral health comes first.
-        </p>
-      </div>
-
-      {/* QUICK LINKS */}
-      <div>
-        <h3 className="mb-4 text-lg font-medium">
-          Quick Links
-        </h3>
-
-        <ul
-          className="
-            space-y-3
-            text-sm text-[var(--color4)]/70
-          "
-        >
-          <li>
-            <Link href="/">· Home</Link>
-          </li>
-          <li>
-            <Link href="/aboutus">· About Us</Link>
-          </li>
-          <li>
-            <Link href="/services">· Services</Link>
-          </li>
-          <li>
-            <Link href="/dentists">· Our Doctors</Link>
-          </li>
-          <li>
-            <Link href="/#contact">· Contact Us</Link>
-          </li>
-          <li>
-            <Link href="/testimonials">· Testimonials</Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* SERVICES */}
-      <div>
-        <h3 className="mb-4 text-lg font-medium">
-          Services
-        </h3>
-
-        <ul
-          className="
-            space-y-3
-            text-sm text-[var(--color4)]/70
-          "
-        >
-          <li>· Dental Implants</li>
-          <li>· Cavity Prevention</li>
-          <li>· Dental Hygiene</li>
-          <li>· Family Dentistry</li>
-          <li>· Root Canal Treatment</li>
-          <li>· Tooth Extraction</li>
-          <li>· Crowns & Bridges</li>
-          <li>· Orthodontics</li>
-          <li>· Invisalign</li>
-        </ul>
-      </div>
-
-      {/* LEGAL + NEWSLETTER */}
-      <div>
-        <h3 className="mb-4 text-lg font-medium">
-          Legal
-        </h3>
-
-        <ul
-          className="
-            space-y-3
-            text-sm text-[var(--color4)]/70
-          "
-        >
-          <li>· Privacy Policy</li>
-          <li>· Terms of Services</li>
-          <li>· Cookies</li>
-        </ul>
-
-        <div className="mt-7">
-          <h3 className="text-lg font-medium">
-            Newsletter
-          </h3>
-
-          <p
+      {/* =========================================================
+          FOOTER
+          
+          IMPORTANT:
+          snap-start is included here so the footer itself is
+          recognized as a valid snap destination.
+      ========================================================= */}
+      <footer
+        className="
+          w-full
+          shrink-0
+          snap-start
+          bg-[var(--color5)]
+          px-5
+          pb-6
+          pt-12
+          text-[var(--color4)]
+          sm:px-8
+          lg:px-[7vw]
+        "
+      >
+        <div className="mx-auto max-w-[1400px]">
+          {/* Top Footer */}
+          <div
             className="
-              mt-2
-              max-w-sm
-              text-sm leading-relaxed
-              text-[var(--color4)]/70
+              grid
+              grid-cols-1
+              gap-10
+              sm:grid-cols-2
+              sm:gap-x-10
+              sm:gap-y-12
+              lg:grid-cols-4
+              lg:gap-16
             "
           >
-            Join the Community and receive our monthly newsletter
-            straight to your inbox.
-          </p>
+            {/* Brand */}
+            <div>
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt="Dentists @ The Place Logo"
+                  width={60}
+                  height={60}
+                  className="h-10 w-auto"
+                />
+              </Link>
 
-          <form
-  onSubmit={handleNewsletterSubmit}
-  className="
-    mt-4 flex w-full
-    flex-col gap-2
-    sm:flex-row
-  "
->
-  <input
-    type="email"
-    value={newsletterEmail}
-    onChange={(e) => setNewsletterEmail(e.target.value)}
-    placeholder="Enter Your Email Address"
-    required
-    className="
-      h-11
-      min-w-0
-      flex-1
-      rounded-md
-      bg-white
-      appearance-none
-      px-3
-      text-sm
-      text-[var(--color4)]
-      outline-none
-      placeholder:text-gray-400
-    "
-  />
+              <p className="mt-3 text-base sm:text-lg">
+                Dental Care For Your New Smile
+              </p>
 
-  <button
-    type="submit"
-    disabled={newsletterLoading}
-    className="
-      h-11
-      w-full
-      shrink-0
-      rounded-md
-      bg-white
-      px-6
-      font-medium
-      text-[var(--color2)]
-      transition-colors
-      hover:bg-gray-100
-      disabled:cursor-not-allowed
-      disabled:opacity-60
-      sm:w-auto
-    "
-  >
-    {newsletterLoading ? "Joining..." : "Join"}
-  </button>
-</form>
-          {newsletterMessage && (
-            <p className="mt-2 text-sm font-medium text-green-600">
-              {newsletterMessage}
-            </p>
-          )}
+              <p
+                className="
+                  mt-5
+                  max-w-xs
+                  text-sm
+                  leading-[1.5]
+                  text-[var(--color4)]/70
+                "
+              >
+                We provide all aspects of general dentistry together with
+                advanced procedures in a welcoming and comfortable environment
+                where your oral health comes first.
+              </p>
+            </div>
 
-          {newsletterError && (
-            <p className="mt-2 text-sm font-medium text-red-600">
-              {newsletterError}
-            </p>
-          )}
+            {/* Quick Links */}
+            <div>
+              <h3 className="mb-4 text-lg font-medium">
+                Quick Links
+              </h3>
+
+              <ul className="space-y-3 text-sm text-[var(--color4)]/70">
+                <li>
+                  <Link href="/">· Home</Link>
+                </li>
+
+                <li>
+                  <Link href="/aboutus">· About Us</Link>
+                </li>
+
+                <li>
+                  <Link href="/services">· Services</Link>
+                </li>
+
+                <li>
+                  <Link href="/dentists">· Our Doctors</Link>
+                </li>
+
+                <li>
+                  <Link href="/#contact">· Contact Us</Link>
+                </li>
+
+                <li>
+                  <Link href="/testimonials">
+                    · Testimonials
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h3 className="mb-4 text-lg font-medium">
+                Services
+              </h3>
+
+              <ul className="space-y-3 text-sm text-[var(--color4)]/70">
+                <li>· Dental Implants</li>
+                <li>· Cavity Prevention</li>
+                <li>· Dental Hygiene</li>
+                <li>· Family Dentistry</li>
+                <li>· Root Canal Treatment</li>
+                <li>· Tooth Extraction</li>
+                <li>· Crowns & Bridges</li>
+                <li>· Orthodontics</li>
+                <li>· Invisalign</li>
+              </ul>
+            </div>
+
+            {/* Legal + Newsletter */}
+            <div>
+              <h3 className="mb-4 text-lg font-medium">
+                Legal
+              </h3>
+
+              <ul className="space-y-3 text-sm text-[var(--color4)]/70">
+                <li>· Privacy Policy</li>
+                <li>· Terms of Services</li>
+                <li>· Cookies</li>
+              </ul>
+
+              <div className="mt-7">
+                <h3 className="text-lg font-medium">
+                  Newsletter
+                </h3>
+
+                <p
+                  className="
+                    mt-2
+                    max-w-sm
+                    text-sm
+                    leading-relaxed
+                    text-[var(--color4)]/70
+                  "
+                >
+                  Join the Community and receive our monthly newsletter
+                  straight to your inbox.
+                </p>
+
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="
+                    mt-4
+                    flex
+                    w-full
+                    flex-col
+                    gap-2
+                    sm:flex-row
+                  "
+                >
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) =>
+                      setNewsletterEmail(e.target.value)
+                    }
+                    placeholder="Enter Your Email Address"
+                    required
+                    className="
+                      h-11
+                      min-w-0
+                      flex-1
+                      appearance-none
+                      rounded-md
+                      bg-white
+                      px-3
+                      text-sm
+                      text-[var(--color4)]
+                      outline-none
+                      placeholder:text-gray-400
+                    "
+                  />
+
+                  <button
+                    type="submit"
+                    disabled={newsletterLoading}
+                    className="
+                      h-11
+                      w-full
+                      shrink-0
+                      rounded-md
+                      bg-white
+                      px-6
+                      font-medium
+                      text-[var(--color2)]
+                      transition-colors
+                      hover:bg-gray-100
+                      disabled:cursor-not-allowed
+                      disabled:opacity-60
+                      sm:w-auto
+                    "
+                  >
+                    {newsletterLoading
+                      ? "Joining..."
+                      : "Join"}
+                  </button>
+                </form>
+
+                {newsletterMessage && (
+                  <p className="mt-2 text-sm font-medium text-green-600">
+                    {newsletterMessage}
+                  </p>
+                )}
+
+                {newsletterError && (
+                  <p className="mt-2 text-sm font-medium text-red-600">
+                    {newsletterError}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Bar */}
+          <div
+            className="
+              mt-12
+              grid
+              grid-cols-1
+              gap-7
+              border-t
+              border-[var(--color4)]/15
+              pt-6
+              text-sm
+              sm:grid-cols-2
+              sm:gap-x-10
+              sm:gap-y-7
+              lg:grid-cols-4
+              lg:gap-10
+            "
+          >
+            {/* Location */}
+            <div>
+              <p className="text-[var(--color4)]/50">
+                Visit Our Clinic
+              </p>
+
+              <p className="mt-1 font-medium leading-relaxed">
+                The Place, General Mathenge Rd, next to Autoexpress and
+                Zucchini, Westlands, Nairobi.
+              </p>
+            </div>
+
+            {/* Email */}
+            <div>
+              <p className="text-[var(--color4)]/50">
+                General Inquiries
+              </p>
+
+              <p className="mt-1 break-words font-medium">
+                dentists@theplace.co.ke
+              </p>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <p className="text-[var(--color4)]/50">
+                Call Us
+              </p>
+
+              <p className="mt-1 font-medium leading-relaxed">
+                0725 272727
+                <br />
+                0754 272727
+              </p>
+            </div>
+
+            {/* Copyright */}
+            <div className="lg:text-right">
+              <p>
+                © {new Date().getFullYear()} Dentists @ The Place
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    {/* CONTACT BAR */}
-    <div
-      className="
-        mt-12
-        grid grid-cols-1
-        gap-7
-        border-t border-[var(--color4)]/15
-        pt-6
-        text-sm
-        sm:grid-cols-2 sm:gap-x-10 sm:gap-y-7
-        lg:grid-cols-4 lg:gap-10
-      "
-    >
-      {/* LOCATION */}
-      <div>
-        <p className="text-[var(--color4)]/50">
-          Visit Our Clinic
-        </p>
-
-        <p className="mt-1 font-medium leading-relaxed">
-          The Place, General Mathenge Rd, next to Autoexpress and
-          Zucchini, Westlands, Nairobi.
-        </p>
-      </div>
-
-      {/* EMAIL */}
-      <div>
-        <p className="text-[var(--color4)]/50">
-          General Inquiries
-        </p>
-
-        <p className="mt-1 font-medium break-words">
-          dentists@theplace.co.ke
-        </p>
-      </div>
-
-      {/* PHONE */}
-      <div>
-        <p className="text-[var(--color4)]/50">
-          Call Us
-        </p>
-
-        <p className="mt-1 font-medium leading-relaxed">
-          0725 272727
-          <br />
-          0754 272727
-        </p>
-      </div>
-
-      {/* COPYRIGHT */}
-      <div className="lg:text-right">
-        <p>
-          © {new Date().getFullYear()} Dentists @ The Place
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
+      </footer>
     </div>
   );
 }
