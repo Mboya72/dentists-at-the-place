@@ -7,65 +7,128 @@ import Link from "next/link";
 
 export default function AboutUs() {
   return (
-    <div className="bg-white text-[var(--color4)]">
+    <div
+      data-nav-theme="light"
+      className="
+        text-[var(--color4)]
+        bg-white
+      "
+    >
       {/* HERO */}
-      <section className="relative h-[100dvh] w-full overflow-hidden">
-        <Image
-          src="/aboutus.jpg"
-          alt="Dentists at The Place"
-          fill
-          priority
-          className="object-cover object-center"
+      <section
+        className="
+          overflow-hidden
+          h-[100dvh] w-full
+          relative
+        "
+      >
+        {/* IMAGE */}
+        <div
+          className="
+            absolute inset-0 will-change-transform
+          "
+        >
+          <Image
+            src="/1.jpg"
+            alt="Dentists at The Place"
+            fill
+            priority
+            className="
+              object-cover object-center
+            "
+          />
+        </div>
+
+        {/* LIGHT OVERLAY */}
+        <div
+          className="
+            bg-white/25
+            absolute inset-0
+          "
         />
 
-        <div className="absolute inset-0 bg-black/55" />
+        {/* EXTRA SOFT GRADIENT */}
+        <div
+          className="
+            bg-gradient-to-r from-white/80 via-white/45 to-white/10
+            absolute inset-0
+          "
+        />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[90vw] flex-col text-white">
+        {/* CONTENT */}
+        <div
+          className="
+            z-10 flex flex-col
+            min-h-screen max-w-[90vw]
+            mx-auto
+            relative
+          "
+        >
           <Navbar />
 
-          <main className="flex flex-1 flex-col justify-center pb-20">
-            <div className="max-w-4xl">
-              {/* Label */}
+          <main
+            className="
+              flex flex-1 flex-col
+              pb-20
+              justify-center
+            "
+          >
+            <div
+              className="
+                max-w-4xl
+                will-change-transform
+              "
+            >
+              {/* LABEL */}
               <div
                 className="
-                  mb-5 inline-flex items-center
+                  inline-flex
+                  mb-5 px-4 py-2
+                  text-sm font-medium text-[var(--color4)]
+                  bg-white/75
                   rounded-full
-                  border border-white/20
-                  bg-white/10
-                  px-4 py-2
-                  text-sm
-                  backdrop-blur-sm
+                  shadow-sm
+                  items-center backdrop-blur-sm
+                  sm:text-base
                 "
               >
-                <span className="mr-2 text-[var(--color2)]">•</span>
+                <span
+                  className="
+                    mr-2
+                    text-[var(--color2)]
+                  "
+                >
+                  •
+                </span>
                 About Us
               </div>
 
-              {/* Heading */}
+              {/* HEADING */}
               <h1
                 className="
-                  text-5xl
-                  font-medium
-                  leading-[1.05]
-                  tracking-tight
+                  text-5xl font-medium leading-[1.05] tracking-tight text-[var(--color4)]
                   sm:text-6xl
                   md:text-7xl
                   lg:text-8xl
                 "
               >
                 Dental Care for
-                <span className="block text-[var(--color2)]">Everyone.</span>
+                <span
+                  className="
+                    block
+                    text-[var(--color2)]
+                  "
+                >
+                  Everyone.
+                </span>
               </h1>
 
-              {/* Description */}
+              {/* DESCRIPTION */}
               <p
                 className="
-                  mt-6
                   max-w-2xl
-                  text-base
-                  font-light
-                  leading-relaxed
-                  text-white/85
+                  mt-6
+                  text-base font-light leading-relaxed text-[var(--color4)]/80
                   sm:text-lg
                   lg:text-xl
                 "
@@ -78,44 +141,42 @@ export default function AboutUs() {
               </p>
 
               {/* CTA */}
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
+              <div
+                className="
+                  flex flex-wrap
+                  mt-8
+                  gap-4
+                "
+              >
+                <Link
                   href="/services"
                   className="
-                    rounded-full
-                    bg-[var(--color2)]
                     px-6 py-3
-                    text-sm
-                    font-medium
-                    text-white
+                    text-sm font-medium text-white
+                    bg-[var(--color2)]
+                    rounded-full
                     transition-all
-                    hover:bg-white
-                    hover:text-[var(--color2)]
+                    duration-300 hover:-translate-y-0.5 hover:bg-[var(--color4)]
                     sm:text-base
                   "
                 >
                   Explore Our Services
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="#our-story"
                   className="
-                    rounded-full
-                    border border-white/40
-                    bg-white/5
                     px-6 py-3
-                    text-sm
-                    font-medium
-                    text-white
-                    backdrop-blur-sm
+                    text-sm font-medium text-[var(--color4)]
+                    bg-white/70
+                    rounded-full border border-[var(--color4)]/20
                     transition-all
-                    hover:bg-white
-                    hover:text-[var(--color4)]
+                    backdrop-blur-sm duration-300 hover:-translate-y-0.5 hover:border-[var(--color2)] hover:bg-[var(--color2)] hover:text-white
                     sm:text-base
                   "
                 >
                   Discover More
-                </a>
+                </Link>
               </div>
             </div>
           </main>
@@ -126,61 +187,91 @@ export default function AboutUs() {
       <section
         id="our-story"
         className="
-          mx-auto
           flex
-          min-h-screen
-          w-full
-          max-w-[90vw]
+          min-h-screen w-full max-w-[90vw]
+          mx-auto py-20
           items-center
-          py-20
         "
       >
-        <div className="grid w-full items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div
+          className="
+            grid
+            w-full
+            items-center gap-14
+            lg:grid-cols-2 lg:gap-20
+          "
+        >
           {/* Text */}
           <div>
             <div
               className="
-                mb-4 inline-flex items-center
-                rounded-full
+                inline-flex
+                mb-4 px-4 py-2
+                text-sm font-medium text-[var(--color4)]
                 bg-[var(--color5)]
-                px-4 py-2
-                text-sm
-                font-medium
-                text-[var(--color4)]
+                rounded-full
+                items-center
               "
             >
-              <span className="mr-2 text-[var(--color2)]">•</span>
+              <span
+                className="
+                  mr-2
+                  text-[var(--color2)]
+                "
+              >
+                •
+              </span>
               Who We Are
             </div>
 
             <h2
               className="
-                text-4xl
-                font-medium
-                leading-tight
+                text-4xl font-medium leading-tight
                 sm:text-5xl
                 lg:text-6xl
               "
             >
               A Contemporary Approach to
-              <span className="text-[var(--color2)]"> Oral Healthcare.</span>
+              <span
+                className="
+                  text-[var(--color2)]
+                "
+              >
+                {" "}
+                Oral Healthcare.
+              </span>
             </h2>
 
-            <p className="mt-7 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-7
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               Dentists @ The Place is a multidisciplinary clinic located in the
               heart of Westlands, with accessible on-site parking. We provide
               comprehensive general dentistry alongside advanced dental
               procedures.
             </p>
 
-            <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-5
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               Our approach to dental care is contemporary and conservative,
               combining qualified dental professionals, innovative therapy, and
               personalised treatment plans to provide care around the individual
               needs of every patient.
             </p>
 
-            <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-5
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               From preventive care and routine dental hygiene to advanced
               procedures and complete smile transformations, our goal is to help
               every patient maintain a healthy and confident smile.
@@ -188,13 +279,22 @@ export default function AboutUs() {
           </div>
 
           {/* Image */}
-          <div className="relative overflow-hidden rounded-3xl">
+          <div
+            className="
+              overflow-hidden
+              rounded-3xl
+              relative
+            "
+          >
             <Image
               src="/aboutus.png"
               alt="Dental care at Dentists at The Place"
               width={850}
               height={850}
-              className="h-auto w-full object-cover"
+              className="
+                object-cover
+                h-auto w-full
+              "
             />
           </div>
         </div>
@@ -203,41 +303,71 @@ export default function AboutUs() {
       {/* WHAT WE DO */}
       <section
         className="
-          min-h-screen
-          w-full
+          min-h-screen w-full
+          px-6 py-20
           bg-[var(--color5)]
-          px-6
-          py-20
           lg:px-10
         "
       >
-        <div className="mx-auto max-w-[90vw]">
-          <div className="max-w-3xl">
-            <div className="mb-4 text-sm font-medium text-[var(--color2)]">
+        <div
+          className="
+            max-w-[90vw]
+            mx-auto
+          "
+        >
+          <div
+            className="
+              max-w-3xl
+            "
+          >
+            <div
+              className="
+                mb-4
+                text-sm font-medium text-[var(--color2)]
+              "
+            >
               WHAT WE DO
             </div>
 
             <h2
               className="
-                text-4xl
-                font-medium
-                leading-tight
+                text-4xl font-medium leading-tight
                 sm:text-5xl
                 lg:text-6xl
               "
             >
               Comprehensive Dental Care
-              <span className="text-[var(--color2)]"> for Everyone.</span>
+              <span
+                className="
+                  text-[var(--color2)]
+                "
+              >
+                {" "}
+                for Everyone.
+              </span>
             </h2>
 
-            <p className="mt-6 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-6
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               We provide all aspects of general dentistry together with advanced
               procedures designed to meet a wide range of dental care needs.
             </p>
           </div>
 
           {/* Services */}
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="
+              grid
+              mt-12
+              gap-4
+              sm:grid-cols-2
+              lg:grid-cols-3
+            "
+          >
             {[
               "Dental Implants",
               "Cavity Prevention",
@@ -252,15 +382,18 @@ export default function AboutUs() {
               <div
                 key={service}
                 className="
-                  rounded-2xl
-                  bg-white
                   p-6
+                  bg-white
+                  rounded-2xl
                   transition-all
-                  duration-300
-                  hover:-translate-y-1
+                  duration-300 hover:-translate-y-1
                 "
               >
-                <span className="text-sm text-[var(--color2)]">
+                <span
+                  className="
+                    text-sm text-[var(--color2)]
+                  "
+                >
                   0
                   {[
                     ...[
@@ -277,9 +410,21 @@ export default function AboutUs() {
                   ].indexOf(service) + 1}
                 </span>
 
-                <h3 className="mt-4 text-xl font-medium">{service}</h3>
+                <h3
+                  className="
+                    mt-4
+                    text-xl font-medium
+                  "
+                >
+                  {service}
+                </h3>
 
-                <p className="mt-3 text-sm font-light leading-relaxed text-gray-500">
+                <p
+                  className="
+                    mt-3
+                    text-sm font-light leading-relaxed text-gray-500
+                  "
+                >
                   Professional, patient-centred dental care delivered using
                   modern techniques and personalised treatment.
                 </p>
@@ -290,88 +435,195 @@ export default function AboutUs() {
       </section>
 
       {/* GALLERY */}
-      <section className="w-full px-6 py-20 lg:px-10">
-        <div className="mx-auto max-w-[90vw]">
+      <section
+        className="
+          w-full
+          px-6 py-20
+          lg:px-10
+        "
+      >
+        <div
+          className="
+            max-w-[90vw]
+            mx-auto
+          "
+        >
           {/* Gallery Heading */}
-          <div className="max-w-3xl">
-            <div className="mb-4 text-sm font-medium text-[var(--color2)]">
+          <div
+            className="
+              max-w-3xl
+            "
+          >
+            <div
+              className="
+                mb-4
+                text-sm font-medium text-[var(--color2)]
+              "
+            >
               OUR CLINIC
             </div>
 
             <h2
               className="
-          text-4xl
-          font-medium
-          leading-tight
-          sm:text-5xl
-          lg:text-6xl
-        "
+                text-4xl font-medium leading-tight
+                sm:text-5xl
+                lg:text-6xl
+              "
             >
               A Look Inside
-              <span className="text-[var(--color2)]"> Our Dental Care.</span>
+              <span
+                className="
+                  text-[var(--color2)]
+                "
+              >
+                {" "}
+                Our Dental Care.
+              </span>
             </h2>
 
-            <p className="mt-6 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-6
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               Take a closer look at our clinic, our environment, and the spaces
               designed to make every dental visit comfortable.
             </p>
           </div>
 
           {/* Gallery */}
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            className="
+              grid grid-cols-1
+              mt-12
+              gap-4
+              sm:grid-cols-2
+              lg:grid-cols-4
+            "
+          >
             {/* Large Image */}
-            <div className="relative h-[300px] overflow-hidden rounded-3xl sm:col-span-2 sm:h-[380px] lg:row-span-2 lg:h-full">
+            <div
+              className="
+                overflow-hidden
+                h-[300px]
+                rounded-3xl
+                relative
+                sm:h-[380px] sm:col-span-2
+                lg:h-full lg:row-span-2
+              "
+            >
               <Image
                 src="/img1.jpg"
                 alt="Dentists at The Place clinic"
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-500 hover:scale-105
+                "
               />
             </div>
 
             {/* Image 2 */}
-            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+            <div
+              className="
+                overflow-hidden
+                h-[220px]
+                rounded-3xl
+                relative
+                sm:h-[260px]
+              "
+            >
               <Image
                 src="/img2.jpg"
                 alt="Dental treatment room"
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-500 hover:scale-105
+                "
               />
             </div>
 
             {/* Image 3 */}
-            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+            <div
+              className="
+                overflow-hidden
+                h-[220px]
+                rounded-3xl
+                relative
+                sm:h-[260px]
+              "
+            >
               <Image
                 src="/img3.jpg"
                 alt="Dental care at The Place"
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-500 hover:scale-105
+                "
               />
             </div>
 
             {/* Image 4 */}
-            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+            <div
+              className="
+                overflow-hidden
+                h-[220px]
+                rounded-3xl
+                relative
+                sm:h-[260px]
+              "
+            >
               <Image
                 src="/img4.jpg"
                 alt="Dentist consultation"
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-500 hover:scale-105
+                "
               />
             </div>
 
             {/* Image 5 */}
-            <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[260px]">
+            <div
+              className="
+                overflow-hidden
+                h-[220px]
+                rounded-3xl
+                relative
+                sm:h-[260px]
+              "
+            >
               <Image
                 src="/img5.jpg"
                 alt="Modern dental clinic"
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-500 hover:scale-105
+                "
               />
             </div>
           </div>
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-2 px-5 py-3 mt-6 text-sm font-medium text-white bg-[var(--color2)] rounded-full transition-colors hover:bg-[var(--color4)]"
+            className="
+              inline-flex
+              px-5 py-3 mt-6
+              text-sm font-medium text-white
+              bg-[var(--color2)]
+              rounded-full
+              transition-colors
+              items-center gap-2 hover:bg-[var(--color4)]
+            "
           >
             View Full Gallery
             <Image
@@ -379,34 +631,65 @@ export default function AboutUs() {
               alt=""
               width={20}
               height={20}
-              className="w-5 h-5"
+              className="
+                w-5 h-5
+              "
             />
           </Link>
         </div>
       </section>
 
       {/* INNOVATION */}
-      <section className="min-h-auto w-full px-6 py-20 lg:px-10">
-        <div className="mx-auto grid max-w-[90vw] items-center gap-14 lg:grid-cols-2">
+      <section
+        className="
+          min-h-auto w-full
+          px-6 py-20
+          lg:px-10
+        "
+      >
+        <div
+          className="
+            grid
+            max-w-[90vw]
+            mx-auto
+            items-center gap-14
+            lg:grid-cols-2
+          "
+        >
           <div>
-            <div className="mb-4 text-sm font-medium text-[var(--color2)]">
+            <div
+              className="
+                mb-4
+                text-sm font-medium text-[var(--color2)]
+              "
+            >
               OUR APPROACH
             </div>
 
             <h2
               className="
-                text-4xl
-                font-medium
-                leading-tight
+                text-4xl font-medium leading-tight
                 sm:text-5xl
                 lg:text-6xl
               "
             >
               Innovative Therapy &
-              <span className="text-[var(--color2)]"> Qualified Dentists.</span>
+              <span
+                className="
+                  text-[var(--color2)]
+                "
+              >
+                {" "}
+                Qualified Dentists.
+              </span>
             </h2>
 
-            <p className="mt-7 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-7
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               We combine modern dental technology with professional expertise to
               provide effective, personalised treatment. Our contemporary
               approach allows us to address both routine dental needs and more
@@ -414,19 +697,43 @@ export default function AboutUs() {
               care.
             </p>
 
-            <p className="mt-5 text-lg font-light leading-relaxed text-gray-600">
+            <p
+              className="
+                mt-5
+                text-lg font-light leading-relaxed text-gray-600
+              "
+            >
               Whether you are visiting for preventive care, restorative
               treatment, cosmetic dentistry, or a complete smile transformation,
               our team is committed to providing care tailored to you.
             </p>
           </div>
 
-          <div className="rounded-3xl bg-[var(--color3)] p-8 text-white sm:p-12">
-            <p className="text-sm font-medium uppercase tracking-widest text-white/70">
+          <div
+            className="
+              p-8
+              text-white
+              bg-[var(--color3)]
+              rounded-3xl
+              sm:p-12
+            "
+          >
+            <p
+              className="
+                text-sm font-medium tracking-widest text-white/70
+                uppercase
+              "
+            >
               Our Philosophy
             </p>
 
-            <h3 className="mt-6 text-3xl font-medium leading-tight sm:text-4xl">
+            <h3
+              className="
+                mt-6
+                text-3xl font-medium leading-tight
+                sm:text-4xl
+              "
+            >
               Contemporary care.
               <br />
               Personal attention.
@@ -441,34 +748,53 @@ export default function AboutUs() {
       <section
         className="
           w-full
+          px-6 py-24
+          text-center text-white
           bg-[var(--color4)]
-          px-6
-          py-24
-          text-center
-          text-white
           lg:px-10
         "
       >
-        <div className="mx-auto max-w-3xl">
-          <p className="text-sm font-medium uppercase tracking-widest text-white/60">
+        <div
+          className="
+            max-w-3xl
+            mx-auto
+          "
+        >
+          <p
+            className="
+              text-sm font-medium tracking-widest text-white/60
+              uppercase
+            "
+          >
             Your Smile Starts Here
           </p>
 
           <h2
             className="
               mt-4
-              text-4xl
-              font-medium
-              leading-tight
+              text-4xl font-medium leading-tight
               sm:text-5xl
               lg:text-6xl
             "
           >
             Ready to take care of
-            <span className="text-[var(--color2)]"> your smile?</span>
+            <span
+              className="
+                text-[var(--color2)]
+              "
+            >
+              {" "}
+              your smile?
+            </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/70">
+          <p
+            className="
+              max-w-2xl
+              mx-auto mt-6
+              text-lg font-light leading-relaxed text-white/70
+            "
+          >
             Get in touch with Dentists @ The Place and let our team help you
             find the right dental care for your needs.
           </p>
@@ -476,17 +802,13 @@ export default function AboutUs() {
           <a
             href="#contact"
             className="
-              mt-8
               inline-flex
-              rounded-full
+              mt-8 px-7 py-3
+              text-sm font-medium text-white
               bg-[var(--color2)]
-              px-7 py-3
-              text-sm
-              font-medium
-              text-white
+              rounded-full
               transition-all
-              hover:bg-white
-              hover:text-[var(--color4)]
+              hover:bg-white hover:text-[var(--color4)]
               sm:text-base
             "
           >
