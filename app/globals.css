@@ -35,3 +35,49 @@ body {
   color: var(--foreground);
   font-family: var(--font-outfit), sans-serif;
 }
+
+/* =========================================
+   SNAP BOUNCE
+========================================= */
+
+.snap-bounce,
+.snap-bounce-image,
+.snap-bounce-card {
+  opacity: 0;
+  transform: translateY(45px) scale(0.96);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+}
+
+.snap-bounce.is-visible,
+.snap-bounce-image.is-visible,
+.snap-bounce-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Images */
+.snap-bounce-image {
+  transform: translateY(55px) scale(0.94);
+}
+
+/* Cards */
+.snap-bounce-card {
+  transform: translateY(35px) scale(0.97);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .snap-bounce,
+  .snap-bounce-image,
+  .snap-bounce-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

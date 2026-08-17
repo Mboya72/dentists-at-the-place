@@ -182,7 +182,7 @@ export default function Home() {
     <div
       className="
         overflow-y-scroll flex flex-col
-        min-h-screen h-screen
+        min-h-[100dvh] h-screen
         text-[var(--color2)] font-sans
         bg-white
         snap-y snap-mandatory scroll-smooth
@@ -453,7 +453,7 @@ export default function Home() {
         data-nav-theme="light"
         className="
           flex flex-col
-          w-full min-h-dvh max-w-[90vw]
+          w-full min-h-[100dvh] max-w-[90vw]
           mx-auto py-10
           items-center justify-center snap-start snap-always shrink-0
           lg:py-12
@@ -1074,7 +1074,7 @@ export default function Home() {
       <section
         className="
           flex flex-col
-          min-h-screen w-full
+          min-h-[100dvh] w-full
           px-5 py-10 py-12
           justify-center items-center snap-start snap-always shrink-0
           sm:px-8
@@ -1315,7 +1315,7 @@ export default function Home() {
       <section
         className="
           flex flex-col
-          min-h-screen w-full
+          min-h-[100dvh] w-full
           px-5 py-12 py-10
           justify-center snap-start snap-always shrink-0
           sm:px-8
@@ -2177,334 +2177,272 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer
-        className="
-          w-full
-          px-5 pt-12 pb-6
-          text-[var(--color4)]
-          bg-[var(--color5)]
-          snap-end shrink-0
-          sm:px-8
-          lg:px-[7vw]
-        "
-      >
-        <div
+<footer
+  className="
+    w-full
+    shrink-0 snap-end
+    bg-[var(--color5)]
+    px-5 pt-12 pb-6
+    text-[var(--color4)]
+    sm:px-8
+    lg:px-[7vw]
+  "
+>
+  <div className="mx-auto max-w-[1400px]">
+
+    {/* TOP FOOTER */}
+    <div
+      className="
+        grid grid-cols-1
+        gap-10
+        sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12
+        lg:grid-cols-4 lg:gap-16
+      "
+    >
+      {/* BRAND */}
+      <div>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Dentists @ The Place Logo"
+            width={60}
+            height={60}
+            className="h-10 w-auto"
+          />
+        </Link>
+
+        <p className="mt-3 text-base sm:text-lg">
+          Dental Care For Your New Smile
+        </p>
+
+        <p
           className="
-            max-w-[1400px]
-            mx-auto
+            mt-5 max-w-xs
+            text-sm leading-[1.5]
+            text-[var(--color4)]/70
           "
         >
-          {/* TOP FOOTER */}
-          <div
+          We provide all aspects of general dentistry together with
+          advanced procedures in a welcoming and comfortable environment
+          where your oral health comes first.
+        </p>
+      </div>
+
+      {/* QUICK LINKS */}
+      <div>
+        <h3 className="mb-4 text-lg font-medium">
+          Quick Links
+        </h3>
+
+        <ul
+          className="
+            space-y-3
+            text-sm text-[var(--color4)]/70
+          "
+        >
+          <li>
+            <Link href="/">· Home</Link>
+          </li>
+          <li>
+            <Link href="/aboutus">· About Us</Link>
+          </li>
+          <li>
+            <Link href="/services">· Services</Link>
+          </li>
+          <li>
+            <Link href="/dentists">· Our Doctors</Link>
+          </li>
+          <li>
+            <Link href="/#contact">· Contact Us</Link>
+          </li>
+          <li>
+            <Link href="/testimonials">· Testimonials</Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* SERVICES */}
+      <div>
+        <h3 className="mb-4 text-lg font-medium">
+          Services
+        </h3>
+
+        <ul
+          className="
+            space-y-3
+            text-sm text-[var(--color4)]/70
+          "
+        >
+          <li>· Dental Implants</li>
+          <li>· Cavity Prevention</li>
+          <li>· Dental Hygiene</li>
+          <li>· Family Dentistry</li>
+          <li>· Root Canal Treatment</li>
+          <li>· Tooth Extraction</li>
+          <li>· Crowns & Bridges</li>
+          <li>· Orthodontics</li>
+          <li>· Invisalign</li>
+        </ul>
+      </div>
+
+      {/* LEGAL + NEWSLETTER */}
+      <div>
+        <h3 className="mb-4 text-lg font-medium">
+          Legal
+        </h3>
+
+        <ul
+          className="
+            space-y-3
+            text-sm text-[var(--color4)]/70
+          "
+        >
+          <li>· Privacy Policy</li>
+          <li>· Terms of Services</li>
+          <li>· Cookies</li>
+        </ul>
+
+        <div className="mt-7">
+          <h3 className="text-lg font-medium">
+            Newsletter
+          </h3>
+
+          <p
             className="
-              grid grid-cols-1
-              gap-10 gap-16
-              sm:grid-cols-2
-              lg:grid-cols-4
+              mt-2
+              max-w-sm
+              text-sm leading-relaxed
+              text-[var(--color4)]/70
             "
           >
-            {/* BRAND */}
-            <div>
-              <Link
-                href="/"
-                className="
-                  flex
-                  items-center
-                "
-              >
-                <Image
-                  src="/logo.png"
-                  alt="Dentists @ The Place Logo"
-                  width={60}
-                  height={60}
-                  className="
-                    h-10 w-auto
-                  "
-                />
-              </Link>
+            Join the Community and receive our monthly newsletter
+            straight to your inbox.
+          </p>
 
-              <p
-                className="
-                  mt-3
-                  text-base
-                  sm:text-lg
-                "
-              >
-                Dental Care For Your New Smile
-              </p>
+          <form
+  onSubmit={handleNewsletterSubmit}
+  className="
+    mt-4 flex w-full
+    flex-col gap-2
+    sm:flex-row
+  "
+>
+  <input
+    type="email"
+    value={newsletterEmail}
+    onChange={(e) => setNewsletterEmail(e.target.value)}
+    placeholder="Enter Your Email Address"
+    required
+    className="
+      h-11
+      min-w-0
+      flex-1
+      rounded-md
+      bg-white
+      appearance-none
+      px-3
+      text-sm
+      text-[var(--color4)]
+      outline-none
+      placeholder:text-gray-400
+    "
+  />
 
-              <p
-                className="
-                  max-w-xs
-                  mt-6
-                  text-sm leading-[1.4] text-[var(--color4)]/70
-                "
-              >
-                We provide all aspects of general dentistry together with
-                advanced procedures in a welcoming and comfortable environment
-                where your oral health comes first.
-              </p>
-            </div>
+  <button
+    type="submit"
+    disabled={newsletterLoading}
+    className="
+      h-11
+      w-full
+      shrink-0
+      rounded-md
+      bg-white
+      px-6
+      font-medium
+      text-[var(--color2)]
+      transition-colors
+      hover:bg-gray-100
+      disabled:cursor-not-allowed
+      disabled:opacity-60
+      sm:w-auto
+    "
+  >
+    {newsletterLoading ? "Joining..." : "Join"}
+  </button>
+</form>
+          {newsletterMessage && (
+            <p className="mt-2 text-sm font-medium text-green-600">
+              {newsletterMessage}
+            </p>
+          )}
 
-            {/* QUICK LINKS */}
-            <div>
-              <h3
-                className="
-                  mb-4
-                  text-lg font-medium
-                "
-              >
-                Quick Links
-              </h3>
-
-              <ul
-                className="
-                  space-y-3
-                  text-sm text-[var(--color4)]/70
-                "
-              >
-                <li>
-                  <Link href="/">· Home</Link>
-                </li>
-                <li>
-                  <Link href="/aboutus">· About Us</Link>
-                </li>
-                <li>
-                  <Link href="/services">· Services</Link>
-                </li>
-                <li>
-                  <Link href="/dentists">· Our Doctors</Link>
-                </li>
-                <li>
-                  <Link href="/#contact">· Contact Us</Link>
-                </li>
-                <li>
-                  <Link href="/testimonials">· Testimonials</Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* SERVICES */}
-            <div>
-              <h3
-                className="
-                  mb-4
-                  text-lg font-medium
-                "
-              >
-                Services
-              </h3>
-
-              <ul
-                className="
-                  space-y-3
-                  text-sm text-[var(--color4)]/70
-                "
-              >
-                <li>· Dental Implants</li>
-                <li>· Cavity Prevention</li>
-                <li>· Dental Hygiene</li>
-                <li>· Family Dentistry</li>
-                <li>· Root Canal Treatment</li>
-                <li>· Tooth Extraction</li>
-                <li>· Crowns & Bridges</li>
-                <li>· Orthodontics</li>
-                <li>· Invisalign</li>
-              </ul>
-            </div>
-
-            {/* LEGAL + NEWSLETTER */}
-            <div>
-              <h3
-                className="
-                  mb-4
-                  text-lg font-medium
-                "
-              >
-                Legal
-              </h3>
-
-              <ul
-                className="
-                  space-y-3
-                  text-sm text-[var(--color4)]/70
-                "
-              >
-                <li>· Privacy Policy</li>
-                <li>· Terms of Services</li>
-                <li>· Cookies</li>
-              </ul>
-
-              <div
-                className="
-                  mt-7
-                "
-              >
-                <h3
-                  className="
-                    text-lg font-medium
-                  "
-                >
-                  Newsletter
-                </h3>
-
-                <p
-                  className="
-                    mt-2
-                    text-sm text-[var(--color4)]/70
-                  "
-                >
-                  Join the Community and receive our monthly newsletter straight
-                  to your inbox.
-                </p>
-
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  className="
-                    flex flex-col
-                    mt-4
-                    gap-2
-                    sm:flex-row
-                  "
-                >
-                  <input
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Enter Your Email Address"
-                    required
-                    className="
-                      flex-1
-                      h-11
-                      px-3
-                      text-[var(--color4)] text-sm
-                      bg-white
-                      rounded-md
-                      outline-none
-                    "
-                  />
-
-                  <button
-                    type="submit"
-                    disabled={newsletterLoading}
-                    className="
-                      h-11
-                      px-6
-                      text-[var(--color2)] font-medium
-                      bg-white
-                      rounded-md
-                      transition-colors cursor-pointer
-                      hover:bg-gray-100 disabled:opacity-60 disabled:cursor-not-allowed
-                    "
-                  >
-                    {newsletterLoading ? "Joining..." : "Join"}
-                  </button>
-                </form>
-
-                {newsletterMessage && (
-                  <p
-                    className="
-                      mt-2
-                      text-sm font-medium text-green-600
-                    "
-                  >
-                    {newsletterMessage}
-                  </p>
-                )}
-
-                {newsletterError && (
-                  <p
-                    className="
-                      mt-2
-                      text-sm font-medium text-red-600
-                    "
-                  >
-                    {newsletterError}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* CONTACT BAR */}
-          <div
-            className="
-              grid grid-cols-1
-              mt-12 pt-6
-              text-sm
-              border-t border-[var(--color4)]/15
-              gap-60
-              sm:grid-cols-2
-              lg:grid-cols-4
-            "
-          >
-            <div>
-              <p
-                className="
-                  text-[var(--color4)]/50
-                "
-              >
-                Visit Our Clinic
-              </p>
-
-              <p
-                className="
-                  font-medium
-                "
-              >
-                The Place, General Mathenge Rd, next to Autoexpress and
-                Zucchini, Westlands, Nairobi.
-              </p>
-            </div>
-
-            <div>
-              <p
-                className="
-                  text-[var(--color4)]/50
-                "
-              >
-                General Inquiries
-              </p>
-
-              <p
-                className="
-                  font-medium
-                "
-              >
-                dentists@theplace.co.ke
-              </p>
-            </div>
-
-            <div>
-              <p
-                className="
-                  text-[var(--color4)]/50
-                "
-              >
-                Call Us
-              </p>
-
-              <p
-                className="
-                  font-medium
-                "
-              >
-                0725 272727
-                <br />
-                0754 272727
-              </p>
-            </div>
-
-            <div
-              className="
-                lg:text-right
-              "
-            >
-              <p>© {new Date().getFullYear()} Dentists @ The Place</p>
-            </div>
-          </div>
+          {newsletterError && (
+            <p className="mt-2 text-sm font-medium text-red-600">
+              {newsletterError}
+            </p>
+          )}
         </div>
-      </footer>
+      </div>
+    </div>
+
+    {/* CONTACT BAR */}
+    <div
+      className="
+        mt-12
+        grid grid-cols-1
+        gap-7
+        border-t border-[var(--color4)]/15
+        pt-6
+        text-sm
+        sm:grid-cols-2 sm:gap-x-10 sm:gap-y-7
+        lg:grid-cols-4 lg:gap-10
+      "
+    >
+      {/* LOCATION */}
+      <div>
+        <p className="text-[var(--color4)]/50">
+          Visit Our Clinic
+        </p>
+
+        <p className="mt-1 font-medium leading-relaxed">
+          The Place, General Mathenge Rd, next to Autoexpress and
+          Zucchini, Westlands, Nairobi.
+        </p>
+      </div>
+
+      {/* EMAIL */}
+      <div>
+        <p className="text-[var(--color4)]/50">
+          General Inquiries
+        </p>
+
+        <p className="mt-1 font-medium break-words">
+          dentists@theplace.co.ke
+        </p>
+      </div>
+
+      {/* PHONE */}
+      <div>
+        <p className="text-[var(--color4)]/50">
+          Call Us
+        </p>
+
+        <p className="mt-1 font-medium leading-relaxed">
+          0725 272727
+          <br />
+          0754 272727
+        </p>
+      </div>
+
+      {/* COPYRIGHT */}
+      <div className="lg:text-right">
+        <p>
+          © {new Date().getFullYear()} Dentists @ The Place
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
