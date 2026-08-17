@@ -253,11 +253,11 @@ export default function Home() {
         >
           <h2
             className="
-              text-2xl
+              text-xl
               font-normal
               tracking-tight
-              sm:text-4xl
-              md:text-3xl
+              sm:text-3xl
+              md:text-2xl
             "
           >
             Dental Care For
@@ -265,7 +265,7 @@ export default function Home() {
 
           <h1
             className="
-              text-[65px]/[1]
+              text-[55px]/[1]
               font-semibold
               tracking-tight
               text-white/90
@@ -281,7 +281,7 @@ export default function Home() {
             className="
               mt-2
               max-w-180
-              text-xl
+              text-lg
               font-light
               leading-relaxed
               text-white
@@ -420,7 +420,7 @@ export default function Home() {
                 sm:w-70
               "
             >
-              <h1 className="text-2xl sm:text-3xl">
+              <h1 className="text-xl sm:text-2xl">
                 Working
                 <br />
                 Hours
@@ -460,7 +460,7 @@ export default function Home() {
                 sm:w-70
               "
             >
-              <h1 className="text-2xl sm:text-3xl">
+              <h1 className="text-xl sm:text-2xl">
                 Visit Our
                 <br />
                 Clinic
