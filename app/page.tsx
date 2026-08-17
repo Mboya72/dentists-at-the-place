@@ -2302,6 +2302,7 @@ export default function Home() {
                   className="
                     mt-4
                     flex
+                    h-25 sm:h-auto
                     w-full
                     flex-col
                     gap-2
@@ -2320,7 +2321,6 @@ export default function Home() {
                       h-11
                       min-w-0
                       flex-1
-                      appearance-none
                       rounded-md
                       bg-white
                       px-3
