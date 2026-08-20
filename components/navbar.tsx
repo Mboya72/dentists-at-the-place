@@ -83,7 +83,7 @@ export default function Navbar() {
               href={item.href}
               className={`pb-1 transition-colors duration-300 hover:text-[var(--color2)] ${
                 pathname === item.href
-                  ? "rounded-sm border-b-4 border-[var(--color2)] font-medium text-[var(--color2)]"
+                  ? "rounded-sm border-b-4 border-[var(--color3)] font-medium text-[var(--color3)]"
                   : ""
               }`}
             >
@@ -102,11 +102,11 @@ export default function Navbar() {
       ${
         isDark
           ? `
-            bg-white text-[var(--color2)]
+            bg-white text-[var(--color3)]
             hover:bg-[var(--color2)] hover:text-white
           `
           : `
-            bg-[var(--color2)] text-white
+            bg-[var(--color3)] text-white
             hover:bg-[var(--color4)] hover:text-white
           `
       }
@@ -178,7 +178,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className={`
                 transition-colors duration-300
-                hover:text-[var(--color2)]
+                hover:text-[var(--color3)]
                 ${
                   pathname === item.href
                     ? "font-semibold text-[var(--color2)]"
@@ -205,11 +205,11 @@ export default function Navbar() {
       ${
         isDark
           ? `
-            bg-white text-[var(--color2)]
+            bg-white text-[var(--color3)]
             hover:bg-[var(--color2)] hover:text-white
           `
           : `
-            bg-[var(--color2)] text-white
+            bg-[var(--color3)] text-white
             hover:bg-[var(--color4)] hover:text-white
           `
       }

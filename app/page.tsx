@@ -291,7 +291,7 @@ export default function Home() {
                 className="
                   z-30 flex
                   px-3 py-3
-                  text-sm font-medium text-[#0399B0]
+                  text-sm font-medium text-[var(--color2)]
                   bg-white
                   rounded-full
                   cursor-pointer transition-colors
@@ -483,18 +483,17 @@ export default function Home() {
           <div
             className="
               inline-flex
-              px-4 py-1.5
-              text-sm font-medium text-[var(--color4)]
-              bg-[var(--color5)]
+              mb-2 px-3 py-1
+              text-xs font-medium text-[var(--color4)]
+              bg-gray-100
               rounded-full
               items-center
-              sm:text-base
+              sm:px-4 sm:text-sm
             "
           >
             <span
               className="
-                mr-2
-                text-[var(--color2)]
+                mr-1
               "
             >
               •
@@ -757,7 +756,9 @@ export default function Home() {
                 shrink-0 items-center justify-center
               "
             >
-              •
+            <img src="/googlemaps.svg" alt=""
+            className="w-5"
+            />
             </div>
 
             <div>
