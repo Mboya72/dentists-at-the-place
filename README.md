@@ -1,37 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dentists @ The Place — Dental Clinic Website
 
-## Getting Started
+A modern, responsive dental clinic website built with **Next.js, React, TypeScript, and Tailwind CSS**. It helps patients explore dental services, meet the dentists, read testimonials, and request appointments.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* Responsive design for mobile, tablet, and desktop
+* Modern dental-focused UI
+* Responsive navigation with active links
+* Dental services showcase
+* Dentist profiles
+* Patient testimonials
+* Appointment request form
+* Newsletter subscription
+* Contact information and clinic details
+* Dedicated About Us, Services, Dentists, and Testimonials pages
+* Next.js API routes for forms
+
+## 🛠️ Tech Stack
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* HTML5 / CSS3
+* Next.js App Router
+* Next.js Image Optimization
+
+## 📁 Structure
+
+```text
+dentists-at-the-place/
+├── app/
+│   ├── api/
+│   │   ├── contact/
+│   │   └── newsletter/
+│   ├── aboutus/
+│   ├── dentists/
+│   ├── services/
+│   ├── testimonials/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   └── navbar.tsx
+├── public/
+│   └── images & icons
+├── package.json
+├── next.config.ts
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+git clone <repository-url>
+cd dentists-at-the-place
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open **http://localhost:3000** in your browser.
 
-## Learn More
+For production:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📬 API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Appointment
 
-## Deploy on Vercel
+```text
+POST /api/contact
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Handles appointment requests including patient details, service, dentist, date, and message.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# doctors-at-the-place
+### Newsletter
+
+```text
+POST /api/newsletter
+```
+
+Handles newsletter subscriptions.
+
+## 🎨 Design
+
+The website uses CSS variables for its brand colors, making the visual identity easy to customize.
+
+```css
+--color1: #ffffff;
+--color2: #0399B0;
+--color3: #01B3C4;
+```
+
+## 🖼️ Images
+
+All website images are stored in the `public/` directory and can be referenced directly:
+
+```tsx
+<Image src="/landingpage.jpg" alt="Dental clinic" fill />
+```
+
+Ensure all referenced images exist in `public/` to avoid 404 errors.
+
+## 🔐 Environment Variables
+
+If external services are added, store credentials in `.env.local` and never commit them to Git.
+
+## 🚀 Deployment
+
+The website is ready for deployment on platforms such as **Vercel**. Configure any required environment variables before deployment.
+
+## 👨‍💻 Author
+
+**Elvis Mboya**
+Software Developer & Graphic Designer
+
+Built for **Dentists @ The Place — Nairobi, Kenya**.
+
+## 📄 License
+
+This project is intended for the Dentists @ The Place website. Clinic branding and proprietary assets remain the property of their respective owners.
