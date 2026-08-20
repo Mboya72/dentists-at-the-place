@@ -100,9 +100,8 @@ The website uses CSS variables for its brand colors, making the visual identity 
 
 All website images are stored in the `public/` directory and can be referenced directly:
 
-```tsx
 <Image src="/landingpage.jpg" alt="Dental clinic" fill />
-```
+
 
 Ensure all referenced images exist in `public/` to avoid 404 errors.
 

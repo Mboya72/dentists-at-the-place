@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
+import { services } from "@/lib/services";
 
 const doctors = [
   {
@@ -24,54 +25,31 @@ const doctors = [
   },
 ];
 
-const services = [
-  {
-    title: "General Dentistry",
-    description:
-      "Routine checkups, professional cleanings, fillings, and preventive care to keep your smile healthy.",
-    image: "/general-dentistry.jpg",
-  },
-  {
-    title: "Cosmetic Dentistry",
-    description:
-      "Teeth whitening, veneers, and smile enhancements that boost your confidence.",
-    image: "/cosmetic-dentistry.jpg",
-  },
-  {
-    title: "Dental Implants",
-    description:
-      "Replace missing teeth with durable, natural-looking implant solutions.",
-    image: "/dental-implants.jpg",
-  },
-  {
-    title: "Orthodontics",
-    description:
-      "Straighten your teeth with braces or clear aligners for a healthier bite.",
-    image: "/orthodontics.jpg",
-  },
-  {
-    title: "Paediatric Dentistry",
-    description:
-      "Gentle, compassionate dental care tailored to children of all ages.",
-    image: "/paediatric-dentistry.jpg",
-  },
-  {
-    title: "Dental Hygiene & Gum Care",
-    description:
-      "Professional cleaning and gum care designed to maintain healthy teeth, prevent gum disease, and keep your smile fresh.",
-    image: "/emergency-dentistry.jpg",
-  },
-];
+
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    dentist: "",
-    date: "",
-    message: "",
+
+  const [formData, setFormData] = useState(() => {
+    const defaultData = {
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      dentist: "",
+      date: "",
+      message: "",
+    };
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const service = params.get("service");
+
+      if (service) {
+        defaultData.service = service;
+      }
+    }
+
+    return defaultData;
   });
 
   const [loading, setLoading] = useState(false);
@@ -91,6 +69,9 @@ export default function Home() {
     }));
   };
 
+  /*
+   * Submit appointment
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -117,6 +98,7 @@ export default function Home() {
         "Your appointment request has been sent successfully. We will get back to you shortly.",
       );
 
+      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -141,6 +123,7 @@ export default function Home() {
   const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [newsletterMessage, setNewsletterMessage] = useState("");
   const [newsletterError, setNewsletterError] = useState("");
+
 
   const handleNewsletterSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -172,12 +155,15 @@ export default function Home() {
       setNewsletterEmail("");
     } catch (error) {
       setNewsletterError(
-        error instanceof Error ? error.message : "Failed to subscribe.",
+        error instanceof Error
+          ? error.message
+          : "Failed to subscribe.",
       );
     } finally {
       setNewsletterLoading(false);
     }
   };
+
 
   return (
     <div
@@ -189,7 +175,7 @@ export default function Home() {
         snap-y snap-proximity scroll-smooth
       "
     >
-      ```tsx
+      
       <section
         className="
           overflow-hidden
@@ -199,7 +185,7 @@ export default function Home() {
       >
         {/* Background Image */}
         <Image
-          src="/landingpage.jpg"
+          src="/landing.jpg"
           alt="Landing page hero image"
           fill
           priority
@@ -212,7 +198,7 @@ export default function Home() {
         <div
           className="
             z-0
-            bg-black/15
+            bg-black/25
             pointer-events-none
             absolute inset-0
           "
@@ -949,131 +935,134 @@ export default function Home() {
         </div>
 
         {/* Services Grid */}
-        <div
+        {/* Services Grid */}
+<div
+  className="
+    grid grid-cols-1
+    min-h-0 w-full max-w-[1350px]
+    gap-3
+    sm:grid-cols-2 sm:gap-4
+    md:gap-5
+    lg:grid-cols-3 lg:gap-5
+  "
+>
+  {services.slice(0, 6).map((service) => (
+    <div
+      key={service.title}
+      className="
+        overflow-hidden
+        w-full min-w-0
+        bg-[#ccecf1]
+        rounded-xl
+        transition-all
+        group duration-300 hover:-translate-y-1
+      "
+    >
+      {/* Image */}
+      <div
+        className="
+          overflow-hidden
+          h-[120px] w-full
+          relative
+          sm:h-[135px]
+          md:h-[145px]
+          lg:h-[150px]
+          xl:h-[175px]
+        "
+      >
+        <Image
+          src={service.image}
+          alt={service.title}
+          fill
+          sizes="
+            (max-width: 640px) 100vw,
+            (max-width: 1024px) 50vw,
+            33vw
+          "
           className="
-            grid grid-cols-1
-            min-h-0 w-full max-w-[1350px]
-            gap-3
-            sm:grid-cols-2 sm:gap-4
-            md:gap-5
-            lg:grid-cols-3 lg:gap-5
+            object-cover
+            transition-transform
+            duration-500 group-hover:scale-105
+          "
+        />
+      </div>
+
+      {/* Content */}
+      <div
+        className="
+          min-h-[100px]
+          px-4 py-3 pr-14
+          relative
+          sm:min-h-[105px]
+          md:min-h-[110px]
+          lg:min-h-[115px]
+        "
+      >
+        <h3
+          className="
+            mb-1.5
+            text-base font-medium leading-tight text-[var(--color4)]
+            sm:text-lg
+            md:text-lg
+            lg:text-xl
           "
         >
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="
-                overflow-hidden
-                w-full min-w-0
-                bg-[#ccecf1]
-                rounded-xl
-                transition-all
-                group duration-300 hover:-translate-y-1
-              "
-            >
-              {/* Image */}
-              <div
-                className="
-                  overflow-hidden
-                  h-[120px] w-full
-                  relative
-                  sm:h-[135px]
-                  md:h-[145px]
-                  lg:h-[150px]
-                  xl:h-[175px]
-                "
-              >
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="
-                    (max-width: 640px) 100vw,
-                    (max-width: 1024px) 50vw,
-                    33vw
-                  "
-                  className="
-                    object-cover
-                    transition-transform
-                    duration-500 group-hover:scale-105
-                  "
-                />
-              </div>
+          {service.title}
+        </h3>
 
-              {/* Content */}
-              <div
-                className="
-                  min-h-[100px]
-                  px-4 py-3 pr-14
-                  relative
-                  sm:min-h-[105px]
-                  md:min-h-[110px]
-                  lg:min-h-[115px]
-                "
-              >
-                <h3
-                  className="
-                    mb-1.5
-                    text-base font-medium leading-tight text-[var(--color4)]
-                    sm:text-lg
-                    md:text-lg
-                    lg:text-xl
-                  "
-                >
-                  {service.title}
-                </h3>
+        <p
+          className="
+            max-w-[92%]
+            text-xs font-light leading-[1.3] text-[var(--color4)]
+            sm:text-sm
+            md:text-sm
+            lg:text-[15px]
+          "
+        >
+          {service.description}
+        </p>
 
-                <p
-                  className="
-                    max-w-[92%]
-                    text-xs font-light leading-[1.3] text-[var(--color4)]
-                    sm:text-sm
-                    md:text-sm
-                    lg:text-[15px]
-                  "
-                >
-                  {service.description}
-                </p>
-
-                <Link
-                  href={`/services/${service.title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                  aria-label={`Learn more about ${service.title}`}
-                  className="
-                    flex
-                    h-9 w-9
-                    text-[var(--color1)]
-                    bg-[var(--color4)]
-                    rounded-full
-                    transition-all
-                    group/arrow absolute bottom-3 right-3 items-center justify-center duration-300 ease-out hover:scale-105 hover:bg-[var(--color2)] hover:text-white
-                    sm:h-10 sm:w-10
-                    md:h-11 md:w-11
-                    lg:h-12 lg:w-12
-                  "
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="
-                      h-4 w-4
-                      sm:h-5 sm:w-5
-                    "
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m13 6 6 6-6 6" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Link
+          href={`/services/${service.title
+            .toLowerCase()
+            .replace(/\s+/g, "-")}`}
+          aria-label={`Learn more about ${service.title}`}
+          className="
+            flex
+            h-9 w-9
+            text-[var(--color1)]
+            bg-[var(--color4)]
+            rounded-full
+            transition-all
+            group/arrow absolute bottom-3 right-3
+            items-center justify-center
+            duration-300 ease-out
+            hover:scale-105
+            hover:bg-[var(--color2)]
+            hover:text-white
+            sm:h-10 sm:w-10
+            md:h-11 md:w-11
+            lg:h-12 lg:w-12
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4 sm:h-5 sm:w-5"
+          >
+            <path d="M5 12h14" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
+        </Link>
+      </div>
+    </div>
+  ))}
+</div>
 
         {/* All Services */}
         <Link
@@ -2005,231 +1994,235 @@ export default function Home() {
           </div>
 
           {/* Booking Form */}
-          <div
-            className="
-              p-5
-              bg-[var(--color5)]
-              rounded-xl
-              sm:p-6
-              lg:p-7
-            "
+<div
+  className="
+    rounded-xl
+    bg-[var(--color5)]
+    p-5
+    sm:p-6
+    lg:p-7
+  "
+>
+  <h3
+    className="
+      mb-5
+      text-2xl font-medium text-[var(--color4)]
+      sm:text-3xl
+      lg:text-4xl
+    "
+  >
+    Dental Appointment Booking
+  </h3>
+
+  <form
+    onSubmit={handleSubmit}
+    className="space-y-4"
+  >
+    {/* Name + Email */}
+    <div
+      className="
+        grid grid-cols-1
+        gap-4
+        sm:grid-cols-2
+      "
+    >
+      <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Your Name"
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      />
+
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email Address"
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      />
+    </div>
+
+    {/* Phone + Service */}
+    <div
+      className="
+        grid grid-cols-1
+        gap-4
+        sm:grid-cols-2
+      "
+    >
+      <input
+        type="tel"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        placeholder="Phone"
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      />
+
+      <select
+        name="service"
+        value={formData.service}
+        onChange={handleChange}
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      >
+        <option value="">Select Service</option>
+
+        {services.map((service) => (
+          <option
+            key={service.slug}
+            value={service.title}
           >
-            <h3
-              className="
-                mb-5
-                text-2xl font-medium text-[var(--color4)]
-                sm:text-3xl
-                lg:text-4xl
-              "
-            >
-              Dental Appointment Booking
-            </h3>
+            {service.title}
+          </option>
+        ))}
+      </select>
+    </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="
-                space-y-4
-              "
-            >
-              {/* Name + Email */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                />
+    {/* Dentist + Date */}
+    <div
+      className="
+        grid grid-cols-1
+        gap-4
+        sm:grid-cols-2
+      "
+    >
+      <select
+        name="dentist"
+        value={formData.dentist}
+        onChange={handleChange}
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      >
+        <option value="">Select Dentist</option>
+        <option>Any</option>
+        <option>Dr. Chand Shah</option>
+        <option>Dr. Kunal Shah</option>
+        <option>Dr. Aisha Mohamed</option>
+      </select>
 
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                />
-              </div>
+      <input
+        type="date"
+        name="date"
+        value={formData.date}
+        onChange={handleChange}
+        required
+        className="
+          h-12 w-full
+          rounded-md
+          border border-[var(--color2)]/20
+          bg-white
+          px-3
+          text-sm
+          outline-none
+          focus:border-[var(--color2)]
+        "
+      />
+    </div>
 
-              {/* Phone + Service */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone"
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                />
+    {/* Message */}
+    <textarea
+      name="message"
+      value={formData.message}
+      onChange={handleChange}
+      placeholder="Type Your Message"
+      rows={5}
+      className="
+        w-full
+        resize-none
+        rounded-md
+        border border-[var(--color2)]/20
+        bg-white
+        px-3 py-3
+        text-sm
+        outline-none
+        focus:border-[var(--color2)]
+      "
+    />
 
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                >
-                  <option value="">Select Service</option>
-                  <option>Dental Implants</option>
-                  <option>Cavity Prevention</option>
-                  <option>Dental Hygiene</option>
-                  <option>Family Dentistry</option>
-                  <option>Root Canal Treatment</option>
-                  <option>Tooth Extraction</option>
-                  <option>Crowns & Bridges</option>
-                  <option>Orthodontics</option>
-                  <option>Invisalign</option>
-                </select>
-              </div>
+    {/* Submit */}
+    <button
+      type="submit"
+      disabled={loading}
+      className="
+        rounded-md
+        bg-[var(--color2)]
+        px-5 py-2.5
+        text-sm text-white
+        transition-colors
+        hover:bg-[var(--color4)]
+        disabled:cursor-not-allowed
+        disabled:opacity-60
+        sm:text-base
+      "
+    >
+      {loading ? "Sending..." : "Book Appointment"}
+    </button>
 
-              {/* Dentist + Date */}
-              <div
-                className="
-                  grid grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
-                <select
-                  name="dentist"
-                  value={formData.dentist}
-                  onChange={handleChange}
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                >
-                  <option value="">Select Dentist</option>
-                  <option>Any</option>
-                  <option>Dr. Chand Shah</option>
-                  <option>Dr. Kunal Shah</option>
-                  <option>Dr. Aisha Mohamed</option>
-                </select>
+    {success && (
+      <p className="mt-3 text-sm font-medium text-green-600">
+        {success}
+      </p>
+    )}
 
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                  required
-                  className="
-                    h-12 w-full
-                    px-3
-                    text-sm
-                    bg-white
-                    rounded-md border border-[var(--color2)]/20
-                    outline-none focus:border-[var(--color2)]
-                  "
-                />
-              </div>
-
-              {/* Message */}
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Type Your Message"
-                rows={5}
-                className="
-                  w-full
-                  px-3 py-3
-                  text-sm
-                  bg-white
-                  rounded-md border border-[var(--color2)]/20
-                  resize-none
-                  outline-none focus:border-[var(--color2)]
-                "
-              />
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="
-                  px-5 py-2.5
-                  text-sm text-white
-                  bg-[var(--color2)]
-                  rounded-md
-                  cursor-pointer transition-colors
-                  hover:bg-[var(--color4)] disabled:cursor-not-allowed disabled:opacity-60
-                  sm:text-base
-                "
-              >
-                {loading ? "Sending..." : "Book Appointment"}
-              </button>
-
-              {success && (
-                <p
-                  className="
-                    mt-3
-                    text-sm font-medium text-green-600
-                  "
-                >
-                  {success}
-                </p>
-              )}
-
-              {error && (
-                <p
-                  className="
-                    mt-3
-                    text-sm font-medium text-red-600
-                  "
-                >
-                  {error}
-                </p>
-              )}
-            </form>
-          </div>
+    {error && (
+      <p className="mt-3 text-sm font-medium text-red-600">
+        {error}
+      </p>
+    )}
+  </form>
+</div>
         </div>
       </section>
       {/* =========================================================

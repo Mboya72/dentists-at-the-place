@@ -55,15 +55,6 @@ export const teamMembers = [
       "Elizabeth supports the dental team and contributes to a comfortable and efficient experience for patients.",
   },
   {
-    slug: "cecilia",
-    name: "Cecilia",
-    role: "Dental Assistant",
-    qualifications: "",
-    image: "/team/cecilia.jpg",
-    description:
-      "Cecilia supports the clinical team in providing patients with a comfortable and well-coordinated dental experience.",
-  },
-  {
     slug: "cate",
     name: "Cate",
     role: "Dental Assistant",

@@ -1,70 +1,9 @@
 import Navbar from "@/components/navbar";
 import "../globals.css";
+import Link from "next/link";
+import { services } from "@/lib/services";
 
 export default function ServicesPage() {
-  const services = [
-  {
-    title: "Dental Implants",
-    description:
-      "Replace missing teeth with durable, natural-looking implants designed to restore function, comfort, and confidence.",
-  },
-  {
-    title: "Cavity Prevention",
-    description:
-      "Prevent tooth decay and maintain a healthy smile through regular examinations, preventive care, and professional guidance.",
-  },
-  {
-    title: "Dental Hygiene",
-    description:
-      "Professional dental hygiene care to keep your teeth and gums clean, healthy, and free from harmful plaque buildup.",
-  },
-  {
-    title: "Family Dentistry",
-    description:
-      "Comprehensive dental care for the whole family, delivered in a comfortable and welcoming environment.",
-  },
-  {
-    title: "Root Canal Treatment",
-    description:
-      "Advanced root canal treatment to relieve pain, treat infected teeth, and help preserve your natural smile.",
-  },
-  {
-    title: "Tooth Extraction",
-    description:
-      "Safe and professional tooth extraction when a tooth cannot be restored or needs to be removed for your oral health.",
-  },
-  {
-    title: "Crowns & Bridges",
-    description:
-      "Restore damaged or missing teeth with carefully designed crowns and bridges that improve both function and appearance.",
-  },
-  {
-    title: "Orthodontics",
-    description:
-      "Improve tooth alignment and your bite with modern orthodontic treatment designed around your individual needs.",
-  },
-  {
-    title: "Invisalign",
-    description:
-      "Straighten your teeth with virtually invisible, removable clear aligners without the wires and brackets of traditional braces.",
-  },
-  {
-    title: "Teeth Whitening",
-    description:
-      "Brighten your smile with professional teeth whitening designed to safely improve the appearance of discoloured teeth.",
-  },
-  {
-    title: "Laser Gum Correction",
-    description:
-      "Modern laser-based gum treatment designed to address gum concerns with a contemporary and conservative approach.",
-  },
-  {
-    title: "Full Mouth Rehabilitation",
-    description:
-      "Comprehensive treatment combining multiple dental procedures to restore the health, function, and appearance of your smile.",
-  },
-];
-
   return (
     <div
       data-nav-theme="light"
@@ -76,17 +15,12 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-[1400px]">
           {/* HEADER */}
           <div className="flex flex-col items-center text-center">
-            {/* Label */}
             <div
               className="
-                inline-flex
-                items-center
-                rounded-full
+                inline-flex items-center rounded-full
                 bg-[var(--color5)]
-                px-4
-                py-2
-                text-sm
-                font-medium
+                px-4 py-2
+                text-sm font-medium
                 text-[var(--color4)]
               "
             >
@@ -94,37 +28,26 @@ export default function ServicesPage() {
               Dental Services
             </div>
 
-            {/* Heading */}
             <h1
               className="
-                mt-6
+                mt-6 text-4xl font-medium leading-[1.05] tracking-tight
                 text-[var(--color4)]
-                text-4xl
-                font-medium
-                leading-[1.05]
-                tracking-tight
-                sm:text-5xl
-                md:text-6xl
-                lg:text-7xl
-                xl:text-8xl
+                sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
               "
             >
               Comprehensive Dental Care
               <br className="hidden sm:block" />
-              <span className="text-[var(--color2)]"> for Every Smile</span>
+              <span className="text-[var(--color2)]">
+                {" "}
+                for Every Smile
+              </span>
             </h1>
 
-            {/* Description */}
             <p
               className="
-                mt-6
-                max-w-3xl
-                text-base
-                font-light
-                leading-[1.5]
+                mt-6 max-w-3xl text-base font-light leading-[1.5]
                 text-[var(--color4)]/70
-                sm:text-lg
-                lg:text-xl
+                sm:text-lg lg:text-xl
               "
             >
               We offer comprehensive dental care tailored to every stage of
@@ -137,69 +60,46 @@ export default function ServicesPage() {
           {/* SERVICES GRID */}
           <div
             className="
-              mt-12
-              grid
-              grid-cols-1
-              gap-5
+              mt-12 grid grid-cols-1 gap-5
               sm:grid-cols-2
-              lg:mt-16
-              lg:grid-cols-3
-              lg:gap-6
+              lg:mt-16 lg:grid-cols-3 lg:gap-6
             "
           >
             {services.map((service, index) => (
-              <div
-                key={service.title}
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
                 className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-2xl
-                  border
-                  border-[var(--color3)]/15
-                  bg-[var(--color5)]
-                  p-6
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-lg
-                  sm:p-7
-                  lg:p-8
+                  group relative block overflow-hidden rounded-2xl
+                  border border-[var(--color3)]/15
+                  bg-[var(--color5)] p-6
+                  transition-all duration-300
+                  hover:-translate-y-1 hover:shadow-lg
+                  sm:p-7 lg:p-8
                 "
               >
-                {/* Number */}
                 <span
                   className="
-                    text-sm
-                    font-medium
+                    text-sm font-medium
                     text-[var(--color2)]
                   "
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
-                {/* Title */}
                 <h2
                   className="
-                    mt-6
-                    text-xl
-                    font-medium
-                    leading-tight
+                    mt-6 text-xl font-medium leading-tight
                     text-[var(--color4)]
-                    sm:text-2xl
-                    lg:text-3xl
+                    sm:text-2xl lg:text-3xl
                   "
                 >
                   {service.title}
                 </h2>
 
-                {/* Description */}
                 <p
                   className="
-                    mt-4
-                    text-sm
-                    font-light
-                    leading-[1.5]
+                    mt-4 text-sm font-light leading-[1.5]
                     text-[var(--color4)]/70
                     sm:text-base
                   "
@@ -207,12 +107,10 @@ export default function ServicesPage() {
                   {service.description}
                 </p>
 
-                {/* Learn More */}
                 <div className="mt-7 flex items-center justify-between">
                   <span
                     className="
-                      text-sm
-                      font-medium
+                      text-sm font-medium
                       text-[var(--color2)]
                     "
                   >
@@ -221,24 +119,16 @@ export default function ServicesPage() {
 
                   <div
                     className="
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[var(--color2)]
-                      transition-all
-                      duration-300
+                      flex h-10 w-10 items-center justify-center
+                      rounded-full bg-[var(--color2)]
+                      transition-all duration-300
                       group-hover:bg-[var(--color4)]
                     "
                   >
                     <span
                       className="
-                        text-lg
-                        text-[var(--color1)]
-                        transition-transform
-                        duration-300
+                        text-lg text-[var(--color1)]
+                        transition-transform duration-300
                         group-hover:translate-x-1
                       "
                     >
@@ -246,26 +136,17 @@ export default function ServicesPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           {/* BOTTOM CTA */}
           <div
             className="
-              mt-12
-              flex
-              flex-col
-              items-center
-              justify-between
-              gap-5
-              rounded-2xl
-              bg-[var(--color4)]
-              px-6
-              py-8
-              text-center
-              sm:flex-row
-              sm:text-left
+              mt-12 flex flex-col items-center justify-between gap-5
+              rounded-2xl bg-[var(--color4)]
+              px-6 py-8 text-center
+              sm:flex-row sm:text-left
               lg:mt-16
             "
           >
@@ -279,26 +160,20 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <a
-              href="/contact"
+            <Link
+              href="/#contact"
               className="
-                shrink-0
-                rounded-full
+                shrink-0 rounded-full
                 bg-[var(--color2)]
-                px-6
-                py-3
-                text-sm
-                font-medium
-                text-white
-                transition-all
-                duration-300
-                hover:bg-white
-                hover:text-[var(--color4)]
+                px-6 py-3
+                text-sm font-medium text-white
+                transition-all duration-300
+                hover:bg-white hover:text-[var(--color4)]
                 sm:text-base
               "
             >
               Book An Appointment
-            </a>
+            </Link>
           </div>
         </div>
       </main>
