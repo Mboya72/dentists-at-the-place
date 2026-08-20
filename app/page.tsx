@@ -189,9 +189,7 @@ export default function Home() {
         snap-y snap-proximity scroll-smooth
       "
     >
-      {/* =========================================================
-          1. HERO SECTION
-      ========================================================= */}
+      ```tsx
       <section
         className="
           overflow-hidden
@@ -224,8 +222,10 @@ export default function Home() {
         <header
           className="
             z-50 flex
-            py-6 mx-auto
+            mx-auto px-4 py-4
             absolute top-0 left-0 right-0 items-center justify-between
+            sm:px-6 sm:py-6
+            lg:px-8
           "
         >
           <Navbar />
@@ -237,15 +237,20 @@ export default function Home() {
             max-w-[90vw]
             mx-auto
             text-white
-            absolute top-1/6 left-0 right-0
-            sm:top-1/5
+            absolute left-0 right-0 top-[15%]
+            md:max-w-[88vw] md:top-[14%]
+            lg:max-w-[88vw] lg:top-[13%]
+            xl:max-w-[90vw] xl:top-[20%]
           "
         >
+          {/* Heading */}
           <h2
             className="
-              text-xl font-normal tracking-tight
-              sm:text-3xl
+              text-lg font-normal tracking-tight
+              sm:text-2xl
               md:text-2xl
+              lg:text-2xl
+              xl:text-3xl
             "
           >
             Dental Care For
@@ -253,8 +258,11 @@ export default function Home() {
 
           <h1
             className="
-              text-[55px]/[1] font-semibold tracking-tight text-white/90
-              sm:text-[150px]/[1]
+              text-[52px]/[0.95] font-semibold tracking-tight text-white/90
+              sm:text-[80px]/[0.95]
+              md:text-[85px]/[0.95]
+              lg:text-[90px]/[0.9]
+              xl:text-[150px]/[0.9]
             "
           >
             Your
@@ -262,13 +270,16 @@ export default function Home() {
             New Smile
           </h1>
 
+          {/* Description */}
           <p
             className="
-              max-w-180
+              max-w-[600px]
               mt-2
-              text-md font-light leading-relaxed text-white
-              sm:max-w-160
-              lg:text-xl
+              text-sm font-light leading-relaxed text-white
+              sm:text-base
+              md:max-w-[600px]
+              lg:max-w-[620px] lg:text-lg
+              xl:text-xl
             "
           >
             We provide all aspects of general dentistry together with advanced
@@ -280,23 +291,28 @@ export default function Home() {
           <div
             className="
               flex flex-wrap
-              max-w-240
-              mt-2
-              justify-between gap-3
-              sm:max-w-175 sm:mt-6
+              mt-3
+              items-center gap-3
+              sm:mt-5
+              md:mt-5
+              lg:mt-6
+              xl:mt-6
             "
           >
             <Link href="#contact">
               <span
                 className="
-                  z-30 flex
-                  px-3 py-3
+                  flex
+                  px-3 py-2.5
                   text-sm font-medium text-[var(--color2)]
                   bg-white
                   rounded-full
                   cursor-pointer transition-colors
-                  items-center gap-4 hover:bg-[var(--color2)] hover:text-[var(--color1)]
-                  sm:text-xl
+                  items-center gap-3 hover:bg-[var(--color2)] hover:text-[var(--color1)]
+                  sm:px-4 sm:py-3 sm:text-base
+                  md:text-base
+                  lg:text-lg
+                  xl:text-xl
                 "
               >
                 <span>Book An Appointment</span>
@@ -311,8 +327,9 @@ export default function Home() {
                     p-1
                     bg-[var(--color2)]
                     rounded-full
-                    sm:h-8 sm:w-8
-                    md:h-10 md:w-10
+                    sm:h-7 sm:w-7
+                    lg:h-8 lg:w-8
+                    xl:h-10 xl:w-10
                   "
                 />
               </span>
@@ -321,14 +338,17 @@ export default function Home() {
             <Link href="/services">
               <span
                 className="
-                  z-30 flex
-                  px-3 py-3
+                  flex
+                  px-3 py-2.5
                   text-sm font-medium text-[var(--color1)]
                   bg-[var(--color2)]
                   rounded-full
                   cursor-pointer transition-colors
-                  items-center gap-4 hover:bg-[var(--color1)] hover:text-[var(--color2)]
-                  sm:text-xl
+                  items-center gap-3 hover:bg-[var(--color1)] hover:text-[var(--color2)]
+                  sm:px-4 sm:py-3 sm:text-base
+                  md:text-base
+                  lg:text-lg
+                  xl:text-xl
                 "
               >
                 <span>Explore Services</span>
@@ -343,8 +363,9 @@ export default function Home() {
                     p-1
                     bg-[var(--color2)]
                     rounded-full
-                    sm:h-8 sm:w-8
-                    md:h-10 md:w-10
+                    sm:h-7 sm:w-7
+                    lg:h-8 lg:w-8
+                    xl:h-10 xl:w-10
                   "
                 />
               </span>
@@ -355,28 +376,36 @@ export default function Home() {
           <div
             className="
               flex
+              w-full
               mt-4
-              justify-between gap-2
-              sm:mt-9
+              items-stretch justify-between gap-4
+              sm:mt-6
+              md:mt-6
+              lg:mt-7
+              xl:mt-9
             "
           >
             {/* Working Hours */}
             <div
               className="
-                w-60
-                p-2
-                text-neutral-800
-                bg-white/20
-                rounded-2xl border border-white/30
-                shadow-xl
-                backdrop-blur-xl dark:border-white/10 dark:bg-black/30 dark:text-neutral-100
-                sm:w-70 sm:p-5
+                w-[210px]
+                p-3
+                text-white
+                bg-white/[0.12]
+                rounded-3xl border border-white/25
+                shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.25)]
+                backdrop-blur-2xl backdrop-saturate-150
+                sm:w-[240px] sm:p-4
+                md:w-[245px]
+                lg:w-[250px]
+                xl:w-[280px] xl:p-5
               "
             >
               <h1
                 className="
-                  text-xl
-                  sm:text-2xl
+                  text-lg
+                  sm:text-xl
+                  lg:text-2xl
                 "
               >
                 Working
@@ -388,15 +417,25 @@ export default function Home() {
                 className="
                   flex
                   mt-2
-                  items-center gap-4
+                  items-center gap-3
                 "
               >
-                <Image src="/clock.svg" alt="clock" width={45} height={45} />
+                <Image
+                  src="/clock.svg"
+                  alt="clock"
+                  width={45}
+                  height={45}
+                  className="
+                    h-9 w-9
+                    lg:h-10 lg:w-10
+                  "
+                />
 
                 <div
                   className="
                     flex flex-col
-                    text-sm
+                    text-xs
+                    sm:text-sm
                   "
                 >
                   <p>MON - FRI</p>
@@ -409,20 +448,24 @@ export default function Home() {
             {/* Clinic Location */}
             <div
               className="
-                w-60
-                p-2
-                text-neutral-800
-                bg-white/20
-                rounded-2xl border border-white/30
-                shadow-xl
-                backdrop-blur-xl dark:border-white/10 dark:bg-black/30 dark:text-neutral-100
-                sm:w-70 sm:p-5
+                w-[210px]
+                p-3
+                text-white
+                bg-white/[0.12]
+                rounded-3xl border border-white/25
+                shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.25)]
+                backdrop-blur-2xl backdrop-saturate-150
+                sm:w-[240px] sm:p-4
+                md:w-[245px]
+                lg:w-[250px]
+                xl:w-[280px] xl:p-5
               "
             >
               <h1
                 className="
-                  text-xl
-                  sm:text-2xl
+                  text-lg
+                  sm:text-xl
+                  lg:text-2xl
                 "
               >
                 Visit Our
@@ -442,11 +485,17 @@ export default function Home() {
                   alt="location"
                   width={65}
                   height={65}
+                  className="
+                    h-10 w-10
+                    shrink-0
+                    lg:h-12 lg:w-12
+                  "
                 />
 
                 <p
                   className="
-                    text-sm
+                    text-xs
+                    sm:text-sm
                   "
                 >
                   The Place, General Mathenge Rd, next to Autoexpress and
@@ -457,7 +506,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      ```
       {/* =========================================================
           2. ABOUT SECTION
       ========================================================= */}
@@ -756,9 +805,13 @@ export default function Home() {
                 shrink-0 items-center justify-center
               "
             >
-            <img src="/googlemaps.svg" alt=""
-            className="w-5"
-            />
+              <img
+                src="/googlemaps.svg"
+                alt=""
+                className="
+                  w-5
+                "
+              />
             </div>
 
             <div>
@@ -828,7 +881,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
       {/* =========================================================
           3. SERVICES SECTION
       ========================================================= */}
@@ -1071,7 +1123,6 @@ export default function Home() {
           </span>
         </Link>
       </section>
-
       {/* =========================================================
           4. DOCTORS SECTION
       ========================================================= */}
@@ -1314,7 +1365,6 @@ export default function Home() {
           </span>
         </Link>
       </section>
-
       {/* =========================================================
           5. TESTIMONIALS SECTION
       ========================================================= */}
@@ -1650,7 +1700,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* =========================================================
           6. CONTACT SECTION
       ========================================================= */}
@@ -2183,7 +2232,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* =========================================================
           FOOTER
           
