@@ -2227,7 +2227,7 @@ export default function Home() {
                 "
               >
                 <Image
-                  src="/logo.png"
+                  src="/Logo.png"
                   alt="Dentists @ The Place Logo"
                   width={60}
                   height={60}
