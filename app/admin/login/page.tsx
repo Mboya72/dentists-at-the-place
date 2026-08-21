@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
       }
 
       // Login successful
-      router.push("/admin");
+      router.push("/admin/testimonials");
       router.refresh();
     } catch (err) {
       console.error("Login error:", err);
