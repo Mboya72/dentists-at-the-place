@@ -1,36 +1,95 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+
+function normalizePhoneNumber(value: string) {
+  let cleaned = value
+    .replace(/\s+/g, "")
+    .replace(/-/g, "")
+    .replace(/\(/g, "")
+    .replace(/\)/g, "");
+
+  if (cleaned.startsWith("07") || cleaned.startsWith("01")) {
+    cleaned = "+254" + cleaned.substring(1);
+  } else if (cleaned.startsWith("254")) {
+    cleaned = "+" + cleaned;
+  }
+
+  return cleaned;
+}
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    const phone = body?.phone;
 
-    const { name, message, rating } = body;
-
-    if (!name || !message || !rating) {
+    if (!phone) {
       return NextResponse.json(
         {
-          error: "Name, message and rating are required.",
+          message: "Phone number is required.",
         },
         { status: 400 }
       );
     }
 
-    const supabase = await createClient();
+    const normalizedPhone = normalizePhoneNumber(phone);
 
-    // Example verification logic
-    // We can connect this to your patients table later.
+    if (!/^\+254[0-9]{9}$/.test(normalizedPhone)) {
+      return NextResponse.json(
+        {
+          message:
+            "Please enter a valid Kenyan phone number, e.g. 0727168320.",
+        },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json({
-      success: true,
-      verified: true,
-    });
+    // Use the admin client so patient verification is not blocked
+    // by the patients table RLS policies.
+    const supabase = createAdminClient();
+
+    const { data: patient, error } = await supabase
+      .from("patients")
+      .select("id, full_name, phone")
+      .eq("phone", normalizedPhone)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Patient verification database error:", error);
+
+      return NextResponse.json(
+        {
+          message: "Unable to verify your phone number.",
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!patient) {
+      return NextResponse.json(
+        {
+          message:
+            "No patient record was found for this phone number.",
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        patient: {
+          id: patient.id,
+          name: patient.full_name,
+        },
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Verification error:", error);
 
     return NextResponse.json(
       {
-        error: "Unable to verify testimonial.",
+        message: "Unable to verify your phone number.",
       },
       { status: 500 }
     );

@@ -86,33 +86,49 @@ export default async function AdminPage() {
           </div>
 
           {/* Right */}
-          <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
+  {/* Add Patient */}
+  <Link
+    href="/admin/patients/add"
+    className="
+      rounded-full
+      bg-[var(--color4)]
+      px-5
+      py-2.5
+      text-sm
+      font-medium
+      text-white
+      transition
+      hover:bg-[var(--color2)]
+    "
+  >
+    Add Patient
+  </Link>
 
-            {/* Website */}
-            <Link
-              href="/testimonials"
-              className="
-                hidden
-                rounded-full
-                border
-                border-[var(--color4)]/10
-                px-5
-                py-2.5
-                text-sm
-                font-medium
-                text-[var(--color4)]
-                transition
-                hover:bg-[var(--color5)]
-                sm:block
-              "
-            >
-              View Website
-            </Link>
+  {/* Website */}
+  <Link
+    href="/testimonials"
+    className="
+      hidden
+      rounded-full
+      border
+      border-[var(--color4)]/10
+      px-5
+      py-2.5
+      text-sm
+      font-medium
+      text-[var(--color4)]
+      transition
+      hover:bg-[var(--color5)]
+      sm:block
+    "
+  >
+    View Website
+  </Link>
 
-            {/* Profile + Sign Out */}
-            <AdminHeaderActions />
-
-          </div>
+  {/* Profile + Sign Out */}
+  <AdminHeaderActions />
+</div>
         </div>
       </header>
 
