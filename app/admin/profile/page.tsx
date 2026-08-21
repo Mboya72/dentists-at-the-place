@@ -23,6 +23,9 @@ export default function AdminProfilePage() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -45,9 +48,7 @@ export default function AdminProfilePage() {
         setEmail(user.email ?? "");
 
         setFullName(
-          user.user_metadata?.full_name ??
-            user.user_metadata?.name ??
-            "Admin"
+          user.user_metadata?.full_name ?? user.user_metadata?.name ?? "Admin"
         );
 
         setAvatarUrl(user.user_metadata?.avatar_url ?? "");
@@ -101,9 +102,7 @@ export default function AdminProfilePage() {
         return;
       }
 
-      setMessage(
-        "Profile updated successfully."
-      );
+      setMessage("Profile updated successfully.");
     } catch (err) {
       console.error("Profile update error:", err);
       setError("Unable to update your profile.");
@@ -186,9 +185,7 @@ export default function AdminProfilePage() {
       if (uploadError) {
         console.error("Avatar upload error:", uploadError);
 
-        setError(
-          `Unable to upload profile picture: ${uploadError.message}`
-        );
+        setError(`Unable to upload profile picture: ${uploadError.message}`);
 
         return;
       }
@@ -198,9 +195,7 @@ export default function AdminProfilePage() {
        */
       const {
         data: { publicUrl },
-      } = supabase.storage
-        .from("avatars")
-        .getPublicUrl(filePath);
+      } = supabase.storage.from("avatars").getPublicUrl(filePath);
 
       /*
        * Add cache-busting timestamp so the browser
@@ -213,27 +208,21 @@ export default function AdminProfilePage() {
       /*
        * Save avatar URL to Supabase Auth metadata
        */
-      const { error: updateError } =
-        await supabase.auth.updateUser({
-          data: {
-            avatar_url: updatedAvatarUrl,
-            full_name: fullName.trim(),
-          },
-        });
+      const { error: updateError } = await supabase.auth.updateUser({
+        data: {
+          avatar_url: updatedAvatarUrl,
+          full_name: fullName.trim(),
+        },
+      });
 
       if (updateError) {
-        console.error(
-          "Avatar profile update error:",
-          updateError
-        );
+        console.error("Avatar profile update error:", updateError);
 
         setError(updateError.message);
         return;
       }
 
-      setMessage(
-        "Profile picture updated successfully."
-      );
+      setMessage("Profile picture updated successfully.");
     } catch (err) {
       console.error("Avatar upload error:", err);
       setError("Unable to upload profile picture.");
@@ -261,9 +250,7 @@ export default function AdminProfilePage() {
     }
 
     if (newPassword.length < 6) {
-      setError(
-        "Password must be at least 6 characters long."
-      );
+      setError("Password must be at least 6 characters long.");
       return;
     }
 
@@ -280,10 +267,7 @@ export default function AdminProfilePage() {
       });
 
       if (error) {
-        console.error(
-          "Password update error:",
-          error
-        );
+        console.error("Password update error:", error);
 
         setError(error.message);
         return;
@@ -292,18 +276,11 @@ export default function AdminProfilePage() {
       setNewPassword("");
       setConfirmPassword("");
 
-      setMessage(
-        "Password changed successfully."
-      );
+      setMessage("Password changed successfully.");
     } catch (err) {
-      console.error(
-        "Password update error:",
-        err
-      );
+      console.error("Password update error:", err);
 
-      setError(
-        "Unable to change your password."
-      );
+      setError("Unable to change your password.");
     } finally {
       setChangingPassword(false);
     }
@@ -324,9 +301,7 @@ export default function AdminProfilePage() {
   if (loading) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[var(--color5)]">
-        <p className="text-sm text-[var(--color4)]/50">
-          Loading profile...
-        </p>
+        <p className="text-sm text-[var(--color4)]/50">Loading profile...</p>
       </main>
     );
   }
@@ -369,9 +344,7 @@ export default function AdminProfilePage() {
                 />
               ) : (
                 <div className="flex h-30 w-30 items-center justify-center rounded-full bg-[var(--color2)]/10 text-4xl font-medium text-[var(--color2)]">
-                  {(fullName || email || "A")
-                    .charAt(0)
-                    .toUpperCase()}
+                  {(fullName || email || "A").charAt(0).toUpperCase()}
                 </div>
               )}
 
@@ -448,9 +421,7 @@ export default function AdminProfilePage() {
                   id="fullName"
                   type="text"
                   value={fullName}
-                  onChange={(e) =>
-                    setFullName(e.target.value)
-                  }
+                  onChange={(e) => setFullName(e.target.value)}
                   placeholder="Administrator"
                   className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
                 />
@@ -469,16 +440,14 @@ export default function AdminProfilePage() {
                   id="email"
                   type="email"
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value)
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@dentalclinic.com"
                   className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
                 />
 
                 <p className="mt-2 text-xs text-[var(--color4)]/40">
-                  Supabase may require email confirmation
-                  after changing your email.
+                  Supabase may require email confirmation after changing your
+                  email.
                 </p>
               </div>
             </div>
@@ -488,18 +457,15 @@ export default function AdminProfilePage() {
               <button
                 type="button"
                 onClick={handleSave}
-                disabled={
-                  saving || uploading
-                }
+                disabled={saving || uploading}
                 className="rounded-full bg-[var(--color4)] px-7 py-3 text-sm font-medium text-white transition hover:bg-[var(--color2)] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {saving
-                  ? "Saving..."
-                  : "Save Changes"}
+                {saving ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </section>
 
+          {/* PASSWORD */}
           {/* PASSWORD */}
           <section className="mt-10 border-t border-[var(--color4)]/10 pt-10">
             <div className="mb-6">
@@ -508,57 +474,172 @@ export default function AdminProfilePage() {
               </h3>
 
               <p className="mt-1 text-sm text-[var(--color4)]/50">
-                Update the password used to access
-                the admin portal.
+                Update the password used to access the admin portal.
               </p>
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               {/* NEW PASSWORD */}
-              <div>
-                <label
-                  htmlFor="newPassword"
-                  className="mb-2 block text-sm font-medium text-[var(--color4)]"
-                >
-                  New Password
-                </label>
+<div>
+  <label
+    htmlFor="newPassword"
+    className="mb-2 block text-sm font-medium text-[var(--color4)]"
+  >
+    New Password
+  </label>
 
-                <input
-                  id="newPassword"
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) =>
-                    setNewPassword(e.target.value)
-                  }
-                  placeholder="••••••••"
-                  autoComplete="new-password"
-                  className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
-                />
-              </div>
+  <div className="relative">
+    <input
+      id="newPassword"
+      type={showNewPassword ? "text" : "password"}
+      value={newPassword}
+      onChange={(e) => setNewPassword(e.target.value)}
+      placeholder="••••••••"
+      autoComplete="new-password"
+      className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 pr-12 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
+    />
 
-              {/* CONFIRM PASSWORD */}
-              <div>
-                <label
-                  htmlFor="confirmPassword"
-                  className="mb-2 block text-sm font-medium text-[var(--color4)]"
-                >
-                  Confirm Password
-                </label>
+    <button
+      type="button"
+      onClick={() => setShowNewPassword((prev) => !prev)}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color4)]/40 transition hover:text-[var(--color2)]"
+      aria-label={showNewPassword ? "Hide password" : "Show password"}
+    >
+      {showNewPassword ? (
+        /* Eye Off */
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 3l18 18"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.58 10.58a2 2 0 002.83 2.83"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.88 4.24A9.77 9.77 0 0112 4c5 0 8.5 4 9.5 8a11.8 11.8 0 01-2.16 4.11"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.61 6.61C4.73 7.92 3.45 9.73 2.5 12c1 4 4.5 8 9.5 8 1.61 0 3.07-.4 4.39-1.1"
+          />
+        </svg>
+      ) : (
+        /* Eye */
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"
+          />
+          <circle cx="12" cy="12" r="2.5" />
+        </svg>
+      )}
+    </button>
+  </div>
+</div>
 
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) =>
-                    setConfirmPassword(
-                      e.target.value
-                    )
-                  }
-                  placeholder="••••••••"
-                  autoComplete="new-password"
-                  className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
-                />
-              </div>
+{/* CONFIRM PASSWORD */}
+<div>
+  <label
+    htmlFor="confirmPassword"
+    className="mb-2 block text-sm font-medium text-[var(--color4)]"
+  >
+    Confirm Password
+  </label>
+
+  <div className="relative">
+    <input
+      id="confirmPassword"
+      type={showConfirmPassword ? "text" : "password"}
+      value={confirmPassword}
+      onChange={(e) => setConfirmPassword(e.target.value)}
+      placeholder="••••••••"
+      autoComplete="new-password"
+      className="w-full rounded-xl border border-[var(--color4)]/10 bg-[var(--color5)]/40 px-4 py-3 pr-12 text-sm text-[var(--color4)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color2)] focus:ring-2 focus:ring-[var(--color2)]/10"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowConfirmPassword((prev) => !prev)}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color4)]/40 transition hover:text-[var(--color2)]"
+      aria-label={
+        showConfirmPassword
+          ? "Hide confirm password"
+          : "Show confirm password"
+      }
+    >
+      {showConfirmPassword ? (
+        /* Eye Off */
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 3l18 18"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.58 10.58a2 2 0 002.83 2.83"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.88 4.24A9.77 9.77 0 0112 4c5 0 8.5 4 9.5 8a11.8 11.8 0 01-2.16 4.11"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.61 6.61C4.73 7.92 3.45 9.73 2.5 12c1 4 4.5 8 9.5 8 1.61 0 3.07-.4 4.39-1.1"
+          />
+        </svg>
+      ) : (
+        /* Eye */
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"
+          />
+          <circle cx="12" cy="12" r="2.5" />
+        </svg>
+      )}
+    </button>
+  </div>
+</div>
             </div>
 
             <div className="mt-6 flex justify-end">
@@ -568,9 +649,7 @@ export default function AdminProfilePage() {
                 disabled={changingPassword}
                 className="rounded-full border border-[var(--color4)]/10 px-7 py-3 text-sm font-medium text-[var(--color4)] transition hover:bg-[var(--color5)] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {changingPassword
-                  ? "Updating..."
-                  : "Change Password"}
+                {changingPassword ? "Updating..." : "Change Password"}
               </button>
             </div>
           </section>
