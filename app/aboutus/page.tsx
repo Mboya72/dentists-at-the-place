@@ -69,7 +69,7 @@ export default function AboutUs() {
         {/* IMAGE */}
         <div className="absolute inset-0">
           <Image
-            src="/about.jpg"
+            src="/.jpg"
             alt="Dentists at The Place"
             fill
             priority
